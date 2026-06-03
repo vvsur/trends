@@ -10,6 +10,7 @@
 - Каждая запись должна сохранять source PDF, raw text reference, source number and source section.
 - Нумерация из источника сохраняется без перенумерации.
 - Не исправлять неоднозначности источника молча; сохранять raw comment and traceability note.
+- Проверка seed source contract запускается командой `pnpm seed:check`.
 
 ## Files
 

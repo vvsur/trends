@@ -16,7 +16,7 @@ export default [
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    files: ['apps/backend/src/**/*.ts', 'apps/backend/vitest.config.ts'],
+    files: ['apps/backend/src/**/*.ts', 'apps/backend/vitest.config.ts', 'scripts/**/*.mjs'],
     languageOptions: {
       globals: {
         ...globals.node,

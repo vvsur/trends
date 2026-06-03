@@ -16,7 +16,8 @@
     "lint": "eslint . --max-warnings=0",
     "format:check": "pnpm -r --if-present run format:check",
     "contract:generate": "pnpm --filter @trends/api-contract run generate",
-    "contract:check": "pnpm --filter @trends/api-contract run check:generated"
+    "contract:check": "pnpm --filter @trends/api-contract run check:generated",
+    "seed:check": "node scripts/validate-seed-source.mjs"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

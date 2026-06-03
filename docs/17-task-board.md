@@ -49,7 +49,8 @@
 | TR-022 | Импортировать стартовый реестр из материалов | Blocked | P0 | Product/Data | TBD | 2026-06-03 | Blocked: нужны seed data files, reference data и seed loader before import |
 | TR-310 | Подготовить seed data file для PDF-инициатив | Done | P0 | Product/Data | Codex | 2026-06-03 | Done: `data/seed/strategic-initiatives.seed.json`; 7 records validated against traceability contract |
 | TR-311 | Подготовить seed data file для первичных трендов | Done | P0 | Product/Data | Codex | 2026-06-03 | Done: `data/seed/primary-technology-trends.seed.json`; 10 records validated, source number `9` absent |
-| TR-313 | Реализовать source traceability fields | Ready | P0 | Data/Backend | TBD | 2026-06-03 | Следующая data-model задача для seed/import provenance |
+| TR-313 | Реализовать source traceability fields | Done | P0 | Data/Backend | Codex | 2026-06-03 | Done: SourceTrace documented; `pnpm seed:check` validates PDF/raw/source numbers |
+| TR-312 | Реализовать seed loader | Ready | P0 | Backend/Data | TBD | 2026-06-03 | Ready after TR-310/TR-311/TR-313; implement idempotent loader next |
 | TR-073 | Страница "Мои тренды" | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует UX-gate |
 | TR-074 | Статус своей идеи | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует workflow и feedback SLA |
 | TR-075 | Полезный ответ при отклонении идеи | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует UX copy и decision reasons |

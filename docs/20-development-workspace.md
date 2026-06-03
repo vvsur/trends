@@ -43,6 +43,7 @@ pnpm typecheck
 pnpm test
 pnpm lint
 pnpm contract:check
+pnpm seed:check
 ```
 
 Test evidence после задач фиксируется по `docs/21-test-evidence-format.md`.
@@ -56,3 +57,4 @@ Test evidence после задач фиксируется по `docs/21-test-ev
 - TR-204 added OpenAPI 3.0.3, generated TypeScript types, FE/BE contract usage and stale generated-type check.
 - TR-205 extracted the frontend shell into layout/navigation/page components and verified desktop/mobile browser behavior.
 - TR-206 centralized frontend theme shell state and verified light, dark, inverted-light and inverted-dark browser states.
+- TR-313 added a seed source traceability contract and `pnpm seed:check`.

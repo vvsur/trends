@@ -48,6 +48,32 @@
 | correlation_id | string/UUID | нет |
 | created_at | timestamp | да |
 
+## SourceTrace
+
+SourceTrace - обязательный компонент для записей, созданных из seed/import. Он может быть реализован как отдельная таблица или встраиваемый JSON/owned component в первой миграции, но поля должны сохраняться без потери смысла.
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| source_kind | enum pdf_seed/import_batch/manual_reference | да |
+| source_contract | string/path | да |
+| source_pdf | string/path | нет |
+| source_raw_text | string/path | нет |
+| source_number | int/string | нет |
+| source_section | string | нет |
+| source_row_key | string | да |
+| source_hash | string | нет |
+| imported_from_dataset | string | нет |
+| review_status | enum pending/approved/rejected/corrected | да |
+| reviewed_by | user ref | нет |
+| reviewed_at | timestamp | нет |
+| version | int | да |
+
+Правила:
+
+- PDF seed records must preserve `source_contract`, `source_pdf`, `source_raw_text`, `source_number` and `source_section`.
+- Нумерация из PDF не перенумеровывается; пропуски вроде отсутствующей позиции `9` сохраняются как traceability fact.
+- SourceTrace не заменяет audit log: seed/import publication and manual correction still create `AuditEvent`.
+
 ## Trend
 
 | Поле | Тип | Обязательное |
@@ -64,6 +90,7 @@
 | status | enum | да |
 | horizon | enum | да |
 | relevance_score | int 0-100 | нет |
+| source_trace_id / source_trace | ref/json | нет |
 | version | int | да |
 | created_at / updated_at | timestamp | да |
 
@@ -94,6 +121,7 @@
 | pipeline_status | enum | да |
 | expected_effect | text | нет |
 | comment | text | нет |
+| source_trace_id / source_trace | ref/json | нет |
 | version | int | да |
 
 ## Hypothesis
