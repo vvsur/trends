@@ -135,6 +135,17 @@
 | TR-112 | P0 | Добавить рабочие правила для implementation agents | В корневом `AGENTS.md` зафиксированы правила: читать документацию до реализации, сначала analysis, затем implementation, self-review, testing, result analysis, обновление docs/backlog, соблюдение React/TypeScript и MOEX DS guardrails. |
 | TR-113 | P0 | Закрепить командный workflow статусов backlog | В документации есть workflow статусов: Backlog, Discovery, Ready, In Progress, In Review, Testing, Done, Blocked, Deferred, Cancelled. Для каждого статуса описаны смысл, условия перехода, ответственные, WIP limits и правила blocked-задач. |
 | TR-114 | P0 | Вести task board для командной работы до подключения issue tracker | В репозитории есть `docs/17-task-board.md` с текущими статусами ключевых задач, assignee, owner, updated_at и notes. Правила обновления task board описаны в `docs/16-team-workflow.md`. |
+| TR-115 | P0 | Сформировать полный implementation backlog по всей документации | В `docs/18-full-implementation-backlog.md` сформирован полный реализационный backlog по release slices: governance, architecture decisions, skeleton, core data, seed import, trend CRUD, innovation registry, scoring, pilots, dashboards, employee value, sources, business cases, testing и future roadmap. Для задач указаны priority, status, dependencies и acceptance criteria. |
+
+## Детализированный implementation backlog
+
+Полный реализационный backlog находится в `docs/18-full-implementation-backlog.md`.
+
+Использование:
+
+- `docs/04-backlog.md` хранит product backlog верхнего уровня;
+- `docs/18-full-implementation-backlog.md` хранит подробные implementation tasks;
+- `docs/17-task-board.md` хранит текущие статусы задач ближайшей итерации.
 
 ## MVP-срез
 
@@ -151,7 +162,7 @@
 - TR-073, TR-074, TR-075;
 - TR-090, TR-092;
 - TR-100, TR-102;
-- TR-110, TR-111, TR-112, TR-113, TR-114.
+- TR-110, TR-111, TR-112, TR-113, TR-114, TR-115.
 
 MVP ограничивается доменом `technology`. Домены `exchange_finance`, `regulatory`, `hr`, `product_client`, `resilience`, `macro_industry` и `esg` должны быть предусмотрены в модели данных и интерфейсах, но подключаются поэтапно.
 

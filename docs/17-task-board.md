@@ -29,7 +29,14 @@
 | TR-112 | Добавить рабочие правила для implementation agents | Done | P0 | Product | Codex | 2026-06-03 | Зафиксировано в `AGENTS.md` |
 | TR-113 | Закрепить командный workflow статусов backlog | Done | P0 | Product | Codex | 2026-06-03 | Зафиксировано в `docs/16-team-workflow.md` |
 | TR-114 | Вести task board для командной работы до подключения issue tracker | Done | P0 | Product | Codex | 2026-06-03 | Зафиксировано в `docs/17-task-board.md` |
+| TR-115 | Сформировать полный implementation backlog по всей документации | Done | P0 | Product | Codex | 2026-06-03 | Зафиксировано в `docs/18-full-implementation-backlog.md` |
 | TR-102 | Зафиксировать и соблюдать ограничения стека: React frontend, TypeScript backend | Done | P0 | Architecture | Codex | 2026-06-03 | Зафиксировано в `docs/11-technology-stack.md` |
+| TR-120 | Выбрать frontend build tool/framework поверх React | Ready | P0 | Architecture | TBD | 2026-06-03 | Следующая архитектурная задача перед skeleton |
+| TR-121 | Выбрать TypeScript backend runtime/framework | Ready | P0 | Architecture | TBD | 2026-06-03 | Следующая архитектурная задача перед skeleton |
+| TR-122 | Выбрать API style и контракт shared types | Ready | P0 | Architecture | TBD | 2026-06-03 | Зависит от TR-120/TR-121 |
+| TR-123 | Выбрать хранилище данных и стратегию миграций | Ready | P0 | Architecture/Data | TBD | 2026-06-03 | Нужно до core model и seed loader |
+| TR-124 | Определить RBAC и роли MVP | Ready | P0 | Product/Security | TBD | 2026-06-03 | Нужно до ручной корректировки и review |
+| TR-125 | Определить формат audit log и versioning | Ready | P0 | Architecture/Security | TBD | 2026-06-03 | Нужно до CRUD |
 | TR-022 | Импортировать стартовый реестр из материалов | Ready | P0 | Product/Data | TBD | 2026-06-03 | Использовать seed contract из `docs/13-source-traceability.md` |
 | TR-073 | Страница "Мои тренды" | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует UX-gate |
 | TR-074 | Статус своей идеи | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует workflow и feedback SLA |
