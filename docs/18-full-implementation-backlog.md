@@ -40,7 +40,7 @@
 | TR-121 | P0 | Done | Выбрать TypeScript backend runtime/framework | TR-102 | ADR фиксирует выбор Node.js 24 LTS + Fastify + TypeScript, причины, альтернативы, последствия |
 | TR-122 | P0 | Done | Выбрать API style и контракт shared types | TR-120, TR-121 | Зафиксировано REST JSON API + OpenAPI 3.0.3 + generated TypeScript types |
 | TR-123 | P0 | Done | Выбрать хранилище данных и стратегию миграций | TR-121 | ADR фиксирует PostgreSQL + Prisma ORM/Migrate, traceable seed strategy and rollback policy |
-| TR-124 | P0 | Ready | Определить RBAC и роли MVP | `docs/03-product-concept.md` | Описаны роли: admin, trend owner, expert, executive, employee; права на CRUD/review/correction |
+| TR-124 | P0 | Done | Определить RBAC и роли MVP | `docs/03-product-concept.md` | Описаны роли employee, trend_owner, expert, executive, admin; права на CRUD/review/correction и scope-aware assignments |
 | TR-125 | P0 | Ready | Определить формат audit log и versioning | TR-005, TR-006 | Зафиксированы поля audit log, tracked entities, before/after, actor, reason |
 | TR-126 | P0 | Backlog | Определить Definition of Done для browser/UI проверки | TR-100 | Зафиксированы браузер, разрешение, темы, screenshots/evidence |
 | TR-127 | P0 | Backlog | Назначить обязательные expertise/roles на первый этап | TR-111 | Назначены Product, UX, Trend Analyst, QA, Security/Architecture owners |
@@ -289,6 +289,5 @@
 
 ## Next recommended tasks
 
-1. `TR-124`: определить RBAC.
-2. `TR-125`: определить audit log.
-3. `TR-200`/`TR-201`: создать skeleton после архитектурных решений.
+1. `TR-125`: определить audit log.
+2. `TR-200`/`TR-201`: создать skeleton после архитектурных решений.

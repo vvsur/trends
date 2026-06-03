@@ -1,5 +1,29 @@
 # Черновая модель данных
 
+## User
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| id | UUID | да |
+| display_name | string | да |
+| email | string | да |
+| status | enum active/inactive/service | да |
+| department_id | ref | нет |
+| created_at / updated_at | timestamp | да |
+
+## RoleAssignment
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| id | UUID | да |
+| user_id | user ref | да |
+| role | enum employee/trend_owner/expert/executive/admin | да |
+| scope_type | enum global/domain/department/entity | нет |
+| scope_id | string/UUID | нет |
+| active | boolean | да |
+| reason | text | нет |
+| created_at / updated_at | timestamp | да |
+
 ## Trend
 
 | Поле | Тип | Обязательное |
