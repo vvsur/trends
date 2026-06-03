@@ -89,8 +89,8 @@
 | --- | --- | --- | --- | --- | --- |
 | TR-022 | P0 | Blocked | Импортировать стартовый реестр из материалов | TR-300, TR-301, TR-312, TR-313 | Импортированы 7 стратегических инициатив и 10 трендов из `docs/13-source-traceability.md` |
 | TR-310 | P0 | Done | Подготовить seed data file для PDF-инициатив | TR-123 | `data/seed/strategic-initiatives.seed.json` contains 7 traceable records with source_pdf, source_number, department, created_quarter, owner, year, comment |
-| TR-311 | P0 | Ready | Подготовить seed data file для первичных трендов | TR-123 | Seed сохраняет пропуск номера `9`; владельцы/комментарии сохранены |
-| TR-312 | P0 | Blocked | Реализовать seed loader | TR-310, TR-311 | Повторный запуск идемпотентен; ошибки показывают строку/поле |
+| TR-311 | P0 | Done | Подготовить seed data file для первичных трендов | TR-123 | `data/seed/primary-technology-trends.seed.json` contains 10 traceable records and preserves missing source number `9` |
+| TR-312 | P0 | Ready | Реализовать seed loader | TR-310, TR-311 | Повторный запуск идемпотентен; ошибки показывают строку/поле |
 | TR-313 | P0 | Ready | Реализовать source traceability fields | TR-123 | У seed-записей есть ссылка на PDF/raw/source number |
 | TR-314 | P0 | Blocked | Реализовать UI/API для проверки seed после импорта | TR-312, TR-205 | Пользователь видит, что импортировано и что требует ручной проверки |
 | TR-315 | P0 | Blocked | Реализовать ручную корректировку seed-записей | TR-307, TR-314 | Любое исправление seed сохраняет audit trail и source traceability |
@@ -289,5 +289,5 @@
 
 ## Next recommended tasks
 
-1. `TR-311`: подготовить seed data file для первичных трендов.
-2. `TR-313`: реализовать source traceability fields.
+1. `TR-313`: реализовать source traceability fields.
+2. `TR-300`: реализовать справочник доменов трендов.

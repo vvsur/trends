@@ -14,3 +14,4 @@
 ## Files
 
 - `strategic-initiatives.seed.json`: 7 стратегических инициатив из PDF для будущего seed loader.
+- `primary-technology-trends.seed.json`: 10 первичных технологических трендов/инноваций из PDF; source number `9` intentionally absent.

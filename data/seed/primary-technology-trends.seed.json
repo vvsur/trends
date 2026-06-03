@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "dataset": "primary_technology_trends",
+  "source_contract": "docs/13-source-traceability.md#seed-первичный-набор-технологических-трендовинноваций-для-скоринга",
+  "source_pdf": "source-materials/trends-portal-task-2.pdf",
+  "source_raw_text": "docs/research/raw-trends-portal-task-2.txt",
+  "source_number_gap_note": "В PDF отсутствует позиция 9; нумерация сохранена как в источнике.",
+  "items": [
+    {
+      "seed_key": "pdf-task-2-primary-technology-trend-1",
+      "source_number": 1,
+      "source_section": "Seed: первичный набор технологических трендов/инноваций для скоринга",
+      "title": "ИИ-трансформация. Внедрение ИИ-идей, что приносит бизнес в production",
+      "department_code": "КСС",
+      "created_quarter": "Q2",
+      "owner": "Кузнецов Виталий Владимирович",
+      "comment": "Вайбкод, который предоставляет бизнес, может быть легко развернут в production"
+    },
+    {
+      "seed_key": "pdf-task-2-primary-technology-trend-2",
+      "source_number": 2,
+      "source_section": "Seed: первичный набор технологических трендов/инноваций для скоринга",
+      "title": "Гибридная рабочая сила, копайлоты + BARSIK",
+      "department_code": "КСС",
+      "created_quarter": "Q2",
+      "owner": "Лобанов Сергей Михайлович",
+      "comment": "ИИ ускоряет работу сотрудников различных ролей в разработке ПО"
+    },
+    {
+      "seed_key": "pdf-task-2-primary-technology-trend-3",
+      "source_number": 3,
+      "source_section": "Seed: первичный набор технологических трендов/инноваций для скоринга",
+      "title": "Платформенные разработки на основе ИИ",
+      "department_code": "КСС",
+      "created_quarter": "Q2",
+      "owner": "Ширяев Дмитрий Сергеевич; Розин Кирилл Иванович",
+      "comment": ""
+    },
+    {
+      "seed_key": "pdf-task-2-primary-technology-trend-4",
+      "source_number": 4,
+      "source_section": "Seed: первичный набор технологических трендов/инноваций для скоринга",
+      "title": "Малые языковые модели",
+      "department_code": "КСС",
+      "created_quarter": "Q2",
+      "owner": "Комиссаров Андрей Владимирович",
+      "comment": ""
+    },
+    {
+      "seed_key": "pdf-task-2-primary-technology-trend-5",
+      "source_number": 5,
+      "source_section": "Seed: первичный набор технологических трендов/инноваций для скоринга",
+      "title": "Open-API",
+      "department_code": "КСС",
+      "created_quarter": "Q2",
+      "owner": "Гублин Денис Юрьевич",
+      "comment": ""
+    },
+    {
+      "seed_key": "pdf-task-2-primary-technology-trend-6",
+      "source_number": 6,
+      "source_section": "Seed: первичный набор технологических трендов/инноваций для скоринга",
+      "title": "ИИ-ready API",
+      "department_code": "КСС",
+      "created_quarter": "Q2",
+      "owner": "Макомов Александр Николаевич",
+      "comment": ""
+    },
+    {
+      "seed_key": "pdf-task-2-primary-technology-trend-7",
+      "source_number": 7,
+      "source_section": "Seed: первичный набор технологических трендов/инноваций для скоринга",
+      "title": "AI-first",
+      "department_code": "КСС",
+      "created_quarter": "Q2",
+      "owner": "Чушенков Константин Витальевич",
+      "comment": "ИИ не помощник, а участник SDLC"
+    },
+    {
+      "seed_key": "pdf-task-2-primary-technology-trend-8",
+      "source_number": 8,
+      "source_section": "Seed: первичный набор технологических трендов/инноваций для скоринга",
+      "title": "ИИ-агенты и CTO-агенты",
+      "department_code": "КСС",
+      "created_quarter": "Q2",
+      "owner": "Спевак Данила Сергеевич",
+      "comment": ""
+    },
+    {
+      "seed_key": "pdf-task-2-primary-technology-trend-10",
+      "source_number": 10,
+      "source_section": "Seed: первичный набор технологических трендов/инноваций для скоринга",
+      "title": "MCP к нашим системам",
+      "department_code": "КСС",
+      "created_quarter": "Q2",
+      "owner": "Беляков Станислав Вячеславович",
+      "comment": ""
+    },
+    {
+      "seed_key": "pdf-task-2-primary-technology-trend-11",
+      "source_number": 11,
+      "source_section": "Seed: первичный набор технологических трендов/инноваций для скоринга",
+      "title": "Разработка перспективной технологической платформы \"Рапид\"",
+      "department_code": "TKC",
+      "created_quarter": "Q2",
+      "owner": "Агибалов Александр Михайлович",
+      "comment": ""
+    }
+  ]
+}
