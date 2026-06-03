@@ -38,11 +38,17 @@ Backend должен разрабатываться на TypeScript.
 - конкретный backend framework выбирается отдельным архитектурным решением;
 - open collector может быть отдельным сервисом, но если он входит в продуктовый backend-контур, он также должен соответствовать TypeScript-ограничению.
 
+Архитектурное решение TR-121:
+
+- backend runtime/framework для MVP: Node.js 24 LTS + Fastify + TypeScript;
+- ADR: `docs/adr/0002-backend-runtime-framework.md`;
+- production backend должен собираться через TypeScript compiler и запускаться как compiled JavaScript на Node.js;
+- request/response validation должна использовать доверенные статические схемы приложения, а не пользовательские dynamic schemas.
+
 ## Требует отдельного решения
 
 Перед началом реализации нужно выбрать и зафиксировать:
 
-- backend runtime и framework;
 - API style: REST, GraphQL или mixed;
 - схема shared types между frontend и backend;
 - стратегия тестирования frontend/backend;

@@ -37,7 +37,7 @@
 | TR-116 | P0 | Done | Проверить покрытие всей документации задачами backlog | `docs/19-backlog-coverage-review.md` | Матрица покрытия создана; выявленные пробелы заведены в product и implementation backlog |
 | TR-100 | P0 | Done | Подключить MOEX design system skills и закрепить правила UI-разработки | Доступ к `git@github.com:ui-sigma/sigma-skills.git` | `.skills` подключен как submodule; `AGENTS.md` обновлен registry и правилами; UI rules обязательны |
 | TR-120 | P0 | Done | Выбрать frontend build tool/framework поверх React | TR-102 | ADR фиксирует выбор Vite + React + TypeScript SPA, причины, альтернативы, последствия |
-| TR-121 | P0 | Ready | Выбрать TypeScript backend runtime/framework | TR-102 | ADR фиксирует runtime/framework, причины, альтернативы, последствия |
+| TR-121 | P0 | Done | Выбрать TypeScript backend runtime/framework | TR-102 | ADR фиксирует выбор Node.js 24 LTS + Fastify + TypeScript, причины, альтернативы, последствия |
 | TR-122 | P0 | Ready | Выбрать API style и контракт shared types | TR-120, TR-121 | Зафиксировано REST/GraphQL/mixed; выбран способ типизации API между FE/BE |
 | TR-123 | P0 | Ready | Выбрать хранилище данных и стратегию миграций | TR-121 | ADR фиксирует DB, migrations, seed strategy, rollback |
 | TR-124 | P0 | Ready | Определить RBAC и роли MVP | `docs/03-product-concept.md` | Описаны роли: admin, trend owner, expert, executive, employee; права на CRUD/review/correction |
@@ -289,9 +289,8 @@
 
 ## Next recommended tasks
 
-1. `TR-121`: выбрать TypeScript backend framework/runtime.
-2. `TR-122`: выбрать API/shared types approach.
-3. `TR-123`: выбрать storage/migration strategy.
-4. `TR-124`: определить RBAC.
-5. `TR-125`: определить audit log.
-6. `TR-200`/`TR-201`: создать skeleton после архитектурных решений.
+1. `TR-122`: выбрать API/shared types approach.
+2. `TR-123`: выбрать storage/migration strategy.
+3. `TR-124`: определить RBAC.
+4. `TR-125`: определить audit log.
+5. `TR-200`/`TR-201`: создать skeleton после архитектурных решений.
