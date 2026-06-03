@@ -18,6 +18,7 @@
 - `docs/10-design-system-ui-rules.md` - будущие правила подключения MOEX design system skills и обязательные UI rules.
 - `docs/11-technology-stack.md` - ограничения по стеку: React на frontend и TypeScript на backend.
 - `docs/12-implementation-readiness-review.md` - проверка целостности документации и готовности к старту реализации.
+- `docs/13-source-traceability.md` - матрица покрытия PDF-материалов, seed-набор инициатив и первичных трендов.
 - `docs/research/raw-*.txt` - извлеченный текст PDF для воспроизводимости анализа.
 
 ## Текущий фокус
