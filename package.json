@@ -14,5 +14,8 @@
     "test": "pnpm -r --if-present run test",
     "lint": "pnpm -r --if-present run lint",
     "format:check": "pnpm -r --if-present run format:check"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.60.0"
   }
 }

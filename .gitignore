@@ -4,3 +4,8 @@ docs/research/ocr-pages/
 # Local OS/editor files
 .DS_Store
 
+node_modules/
+dist/
+test-results/
+playwright-report/
+*.tsbuildinfo

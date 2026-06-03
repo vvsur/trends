@@ -23,7 +23,7 @@ pnpm --version
 
 ```text
 apps/
-  frontend/       React frontend skeleton, TR-200
+  frontend/       React frontend skeleton
   backend/        Fastify backend skeleton, TR-201
 packages/
   api-contract/   Generated/shared API contract types, TR-204
@@ -45,7 +45,7 @@ pnpm lint
 ## Notes
 
 - Application code is intentionally not created in TR-202.
-- TR-200 adds frontend dependencies and scripts.
+- TR-200 added frontend dependencies, Vite scripts, placeholder routes and MOEX token CSS.
 - TR-201 adds backend dependencies and scripts.
 - TR-203 turns these placeholder-safe root commands into enforced lint/typecheck/test baseline.
 - TR-204 adds OpenAPI/generated TypeScript contract workflow under `packages/api-contract`.
