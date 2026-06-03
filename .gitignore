@@ -1,0 +1,6 @@
+# Generated OCR render artifacts
+docs/research/ocr-pages/
+
+# Local OS/editor files
+.DS_Store
+
