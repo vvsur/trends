@@ -11,6 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@trends/api-contract": "workspace:*",
     "fastify": "5.8.5"
   },
   "devDependencies": {

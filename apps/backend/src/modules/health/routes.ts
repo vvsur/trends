@@ -1,4 +1,5 @@
 import type { FastifyInstance } from 'fastify';
+import type { HealthResponse } from '@trends/api-contract';
 
 export async function registerHealthRoutes(app: FastifyInstance) {
   app.get('/health', {
@@ -14,7 +15,7 @@ export async function registerHealthRoutes(app: FastifyInstance) {
         },
       },
     },
-  }, async () => {
+  }, async (): Promise<HealthResponse> => {
     return {
       service: 'trends-backend',
       status: 'ok' as const,

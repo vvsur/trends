@@ -42,7 +42,8 @@
 | TR-200 | Создать frontend skeleton на React | Done | P0 | Architecture/Frontend | Codex | 2026-06-03 | Done: Vite React skeleton, routes-заглушки, MOEX token CSS, typecheck/build/browser check |
 | TR-201 | Создать backend skeleton на TypeScript | Done | P0 | Architecture/Backend | Codex | 2026-06-03 | Done: Fastify TypeScript skeleton, `/api/v1/health`, app factory test |
 | TR-203 | Настроить lint/typecheck/test baseline | Done | P0 | Architecture/QA | Codex | 2026-06-03 | Done: ESLint baseline; root lint/typecheck/test/build pass |
-| TR-204 | Настроить shared types/API contract baseline | Ready | P0 | Architecture/API | TBD | 2026-06-03 | Следующая задача; зависит от TR-122 и skeleton |
+| TR-204 | Настроить shared types/API contract baseline | Done | P0 | Architecture/API | Codex | 2026-06-03 | Done: OpenAPI 3.0.3 baseline, generated TS types, FE/BE type-only usage, stale check |
+| TR-205 | Настроить базовый layout приложения | Ready | P0 | Frontend | TBD | 2026-06-03 | Следующая UI foundation задача; TR-100/TR-200 выполнены |
 | TR-022 | Импортировать стартовый реестр из материалов | Ready | P0 | Product/Data | TBD | 2026-06-03 | Использовать seed contract из `docs/13-source-traceability.md` |
 | TR-073 | Страница "Мои тренды" | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует UX-gate |
 | TR-074 | Статус своей идеи | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует workflow и feedback SLA |

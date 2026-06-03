@@ -1,0 +1,40 @@
+openapi: 3.0.3
+info:
+  title: Trends Portal API
+  version: 0.1.0
+  description: MVP REST JSON contract for the corporate trends portal.
+servers:
+  - url: /api/v1
+tags:
+  - name: Health
+    description: Service readiness endpoints.
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      tags:
+        - Health
+      summary: Check backend health.
+      responses:
+        "200":
+          description: Backend service is available.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - service
+        - status
+      properties:
+        service:
+          type: string
+          example: trends-backend
+        status:
+          type: string
+          enum:
+            - ok

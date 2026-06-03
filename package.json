@@ -14,7 +14,9 @@
     "typecheck": "pnpm -r --if-present run typecheck",
     "test": "pnpm -r --if-present run test",
     "lint": "eslint . --max-warnings=0",
-    "format:check": "pnpm -r --if-present run format:check"
+    "format:check": "pnpm -r --if-present run format:check",
+    "contract:generate": "pnpm --filter @trends/api-contract run generate",
+    "contract:check": "pnpm --filter @trends/api-contract run check:generated"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
