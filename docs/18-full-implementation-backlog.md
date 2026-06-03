@@ -57,7 +57,7 @@
 | TR-202 | P0 | Done | Настроить monorepo/workspace или структуру FE/BE | TR-120, TR-121 | pnpm workspace структура понятна; команды install/dev/test documented |
 | TR-203 | P0 | Done | Настроить lint/typecheck/test baseline | TR-200, TR-201 | Root commands lint/typecheck/test/build configured and pass on skeleton |
 | TR-204 | P0 | Done | Настроить shared types/API contract baseline | TR-122 | OpenAPI 3.0.3 baseline, generated TS types, FE/BE type-only usage and stale check configured |
-| TR-205 | P0 | Ready | Настроить базовый layout приложения | TR-100, TR-200 | Навигация по основным разделам без ad hoc UI |
+| TR-205 | P0 | Done | Настроить базовый layout приложения | TR-100, TR-200 | Layout/navigation components extracted; nav and icon-button states use MOEX token recipes; desktop/mobile browser check passed |
 | TR-206 | P0 | Ready | Настроить light/dark/inverted theme shell | TR-100, TR-200 | Переключение/проверка тем работает на shell |
 | TR-207 | P0 | Ready | Настроить начальный test evidence format | TR-203 | Документирован формат вывода тестов/screenshots/manual checks |
 
@@ -289,5 +289,5 @@
 
 ## Next recommended tasks
 
-1. `TR-205`: настроить базовый layout приложения.
-2. `TR-206`: настроить light/dark/inverted theme shell.
+1. `TR-206`: настроить light/dark/inverted theme shell.
+2. `TR-207`: настроить начальный test evidence format.

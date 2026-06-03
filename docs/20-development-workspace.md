@@ -50,3 +50,4 @@ pnpm contract:check
 - TR-201 added backend dependencies, Fastify app factory, `/api/v1/health` and a health endpoint test.
 - TR-203 added ESLint and verified root lint/typecheck/test/build baseline.
 - TR-204 added OpenAPI 3.0.3, generated TypeScript types, FE/BE contract usage and stale generated-type check.
+- TR-205 extracted the frontend shell into layout/navigation/page components and verified desktop/mobile browser behavior.
