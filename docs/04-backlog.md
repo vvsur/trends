@@ -133,6 +133,8 @@
 | TR-110 | P0 | Закрепить правила формирования backlog и работы с задачами | В документации есть backlog operating model с типами задач, шаблоном, Definition of Ready, Definition of Done, правилом analysis before implementation, правилом post-implementation analysis/testing, cadence refinement и UX/data gates. |
 | TR-111 | P0 | Закрепить обязательные skills/expertise для реализации портала | В документации есть skill matrix: Trend Analysis, UX Expertise, MOEX Design System, Delivery Quality, Data Governance, QA, Security/Architecture, Product и domain experts. Для каждого типа задач указано, какие skills обязательны. |
 | TR-112 | P0 | Добавить рабочие правила для implementation agents | В корневом `AGENTS.md` зафиксированы правила: читать документацию до реализации, сначала analysis, затем implementation, self-review, testing, result analysis, обновление docs/backlog, соблюдение React/TypeScript и MOEX DS guardrails. |
+| TR-113 | P0 | Закрепить командный workflow статусов backlog | В документации есть workflow статусов: Backlog, Discovery, Ready, In Progress, In Review, Testing, Done, Blocked, Deferred, Cancelled. Для каждого статуса описаны смысл, условия перехода, ответственные, WIP limits и правила blocked-задач. |
+| TR-114 | P0 | Вести task board для командной работы до подключения issue tracker | В репозитории есть `docs/17-task-board.md` с текущими статусами ключевых задач, assignee, owner, updated_at и notes. Правила обновления task board описаны в `docs/16-team-workflow.md`. |
 
 ## MVP-срез
 
@@ -149,7 +151,7 @@
 - TR-073, TR-074, TR-075;
 - TR-090, TR-092;
 - TR-100, TR-102;
-- TR-110, TR-111, TR-112.
+- TR-110, TR-111, TR-112, TR-113, TR-114.
 
 MVP ограничивается доменом `technology`. Домены `exchange_finance`, `regulatory`, `hr`, `product_client`, `resilience`, `macro_industry` и `esg` должны быть предусмотрены в модели данных и интерфейсах, но подключаются поэтапно.
 

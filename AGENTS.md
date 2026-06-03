@@ -34,10 +34,20 @@ Before implementation, read the relevant documents:
 ## Backlog rules
 
 - Use `docs/14-backlog-operating-model.md` as the operating model.
+- Use `docs/16-team-workflow.md` for statuses, WIP limits and team workflow.
+- Use `docs/17-task-board.md` as the repository task board until an external issue tracker is connected.
 - A task is not ready unless it has value, scope, acceptance criteria, analysis plan and test plan.
 - Use INVEST as a quality check for user stories.
 - Keep discovery/research tasks separate from delivery tasks.
 - Update backlog/docs when implementation reveals new decisions, risks or follow-ups.
+
+## Task status rules
+
+- Before starting implementation, explicitly say: `Taking task: <ID/title>`.
+- If the task board is used, move the task to `In Progress`, set assignee and update `updated_at`.
+- If analysis shows the task is not ready, move it to `Discovery` or `Blocked` and explain why.
+- Do not keep blocked work hidden inside an `In Progress` status.
+- After implementation, move through self-review/testing and mark `Done` only when Definition of Done is met.
 
 ## Product rules
 

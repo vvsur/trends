@@ -21,6 +21,8 @@
 - `docs/13-source-traceability.md` - матрица покрытия PDF-материалов, seed-набор инициатив и первичных трендов.
 - `docs/14-backlog-operating-model.md` - правила формирования backlog, Definition of Ready/Done и цикл работы над задачей.
 - `docs/15-required-expertise-and-skills.md` - необходимые роли/skills: trend analysis, UX, design system, data governance, QA и другие.
+- `docs/16-team-workflow.md` - командный workflow статусов, WIP limits и правила "беру в работу / в работе / сделано".
+- `docs/17-task-board.md` - временная task board в репозитории до подключения внешнего issue tracker.
 - `AGENTS.md` - рабочие правила для будущих implementation agents.
 - `docs/research/raw-*.txt` - извлеченный текст PDF для воспроизводимости анализа.
 
