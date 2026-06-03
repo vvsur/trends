@@ -51,3 +51,4 @@ pnpm contract:check
 - TR-203 added ESLint and verified root lint/typecheck/test/build baseline.
 - TR-204 added OpenAPI 3.0.3, generated TypeScript types, FE/BE contract usage and stale generated-type check.
 - TR-205 extracted the frontend shell into layout/navigation/page components and verified desktop/mobile browser behavior.
+- TR-206 centralized frontend theme shell state and verified light, dark, inverted-light and inverted-dark browser states.

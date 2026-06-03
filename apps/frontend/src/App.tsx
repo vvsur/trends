@@ -1,20 +1,11 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { AppLayout, type ThemeMode } from './layout/AppLayout';
+import { AppLayout } from './layout/AppLayout';
 import { ModulePage } from './pages/ModulePage';
 import { portalRoutes } from './routes';
+import { useThemeShell } from './theme/theme-shell';
 
 export function App() {
-  const [mode, setMode] = useState<ThemeMode>('light');
-  const [inverted, setInverted] = useState(false);
-
-  useEffect(() => {
-    if (mode === 'dark') {
-      document.documentElement.dataset.mode = 'dark';
-    } else {
-      delete document.documentElement.dataset.mode;
-    }
-  }, [mode]);
+  const { inverted, mode, setMode, toggleInverted } = useThemeShell();
 
   return (
     <AppLayout
@@ -22,7 +13,7 @@ export function App() {
       mode={mode}
       routes={portalRoutes}
       onModeChange={setMode}
-      onToggleInverted={() => setInverted((value) => !value)}
+      onToggleInverted={toggleInverted}
     >
       <Routes>
         <Route element={<Navigate to="/trends" replace />} path="/" />

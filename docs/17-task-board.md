@@ -44,6 +44,8 @@
 | TR-203 | Настроить lint/typecheck/test baseline | Done | P0 | Architecture/QA | Codex | 2026-06-03 | Done: ESLint baseline; root lint/typecheck/test/build pass |
 | TR-204 | Настроить shared types/API contract baseline | Done | P0 | Architecture/API | Codex | 2026-06-03 | Done: OpenAPI 3.0.3 baseline, generated TS types, FE/BE type-only usage, stale check |
 | TR-205 | Настроить базовый layout приложения | Done | P0 | Frontend | Codex | 2026-06-03 | Done: layout/navigation components extracted, MOEX token states aligned, desktop/mobile browser check |
+| TR-206 | Настроить light/dark/inverted theme shell | Done | P0 | Frontend | Codex | 2026-06-03 | Done: centralized theme shell, localStorage persistence, color-scheme sync, 4-state browser check |
+| TR-207 | Настроить начальный test evidence format | Ready | P0 | QA | TBD | 2026-06-03 | Следующая foundation задача; зависит от TR-203 |
 | TR-022 | Импортировать стартовый реестр из материалов | Ready | P0 | Product/Data | TBD | 2026-06-03 | Использовать seed contract из `docs/13-source-traceability.md` |
 | TR-073 | Страница "Мои тренды" | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует UX-gate |
 | TR-074 | Статус своей идеи | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует workflow и feedback SLA |

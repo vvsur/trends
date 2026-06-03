@@ -4,8 +4,7 @@ import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import { IconButton } from '../components/IconButton';
 import type { PortalRoute } from '../routes';
-
-export type ThemeMode = 'light' | 'dark';
+import type { ThemeMode } from '../theme/theme-shell';
 
 type AppLayoutProps = {
   children: ReactNode;
