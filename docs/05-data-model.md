@@ -159,3 +159,44 @@
 | signature | string | да |
 | validation_status | enum | да |
 | validation_errors | json | нет |
+
+## EmployeeProfile
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| user_id | user ref | да |
+| role | string/ref | да |
+| department_id | ref | да |
+| skills | string[] | нет |
+| interests | string[] | нет |
+| subscribed_domains | enum[] | нет |
+| contribution_score | decimal | нет |
+
+## Contribution
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| id | UUID | да |
+| user_id | user ref | да |
+| entity_type | enum idea/review/pilot/case/comment | да |
+| entity_id | UUID | да |
+| contribution_type | enum | да |
+| business_impact | text | нет |
+| recognized | boolean | да |
+| created_at | timestamp | да |
+
+## ValueMetric
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| id | UUID | да |
+| entity_type | enum trend/innovation/pilot/business_case | да |
+| entity_id | UUID | да |
+| metric_group | enum revenue/efficiency/risk/market_position/employee_value/process_health | да |
+| metric_name | string | да |
+| baseline | decimal/text | нет |
+| target | decimal/text | нет |
+| actual | decimal/text | нет |
+| confidence | decimal | нет |
+| calculation_note | text | нет |
+| owner_id | user ref | да |
