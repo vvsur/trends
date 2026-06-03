@@ -2,7 +2,7 @@
 
 ## Статус
 
-Этот документ фиксирует будущие работы. На текущем этапе submodule не подключается, UI не реализуется и CSS не мигрируется.
+MOEX design system skills подключены как `.skills` submodule. UI в рамках TR-100 не реализуется и CSS не мигрируется.
 
 ## Источник дизайн-системы
 
@@ -86,4 +86,3 @@ git submodule add git@github.com:ui-sigma/sigma-skills.git .skills
 - отсутствие raw-цветов в CSS/TS/TSX;
 - корректность маппинга CSS `:active` в `pressed`;
 - использование `active` только для выбранного/включенного элемента.
-

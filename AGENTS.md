@@ -68,9 +68,49 @@ Before implementation, read the relevant documents:
 ## UI rules
 
 - Before active UI development, execute backlog item TR-100: connect MOEX design system skills as `.skills` and update this file with the MOEX registry/rules.
-- Until `.skills` is connected, do not invent final UI tokens, colors, button variants or themes.
-- After `.skills` is connected, all UI work must follow `docs/10-design-system-ui-rules.md`.
+- `.skills` is connected as the MOEX design system skills submodule.
+- After `.skills` is connected, all UI work must follow `docs/10-design-system-ui-rules.md` and the mandatory skills registry below.
+- Before any UI change, read and apply the relevant skills from `.skills`.
+- Use only tokens and recipes from `.skills/skills/foundations-tokens/tokens.yaml`.
+- Before choosing colors, semantic or emphasis, read `.skills/skills/foundations-tokens/decision-guide.yaml`.
+- For themes, use `.skills/skills/foundations-themes/SKILL.md`.
+- For buttons, use `.skills/skills/component-button/SKILL.md`.
+- Do not invent colors, states, borders, shadows, button variants or themes.
+- Do not use raw colors in CSS/TS/TSX (`#hex`, `rgb()`, `rgba()`, `hsl()`), unless they are part of MOEX token definitions.
+- Support light, dark and inverted themes.
+- Map CSS `:active` to the `pressed` token state.
+- Use `active` only for selected/enabled/toggled elements, for example `[aria-pressed]` or `[aria-selected]`.
+- Do not use `negative ghost button`.
+- All buttons must follow documented size, emphasis, semantic, state, loading, focus and accessibility rules.
 - Every UI change must include a browser check at the current resolution.
+
+### MOEX skills registry
+
+```json
+{
+  "foundations-tokens": {
+    "slug": "foundations-tokens",
+    "name": "Design Tokens",
+    "category": "foundations",
+    "skillPath": "skills/foundations-tokens/SKILL.md",
+    "description": "MOEX design token system with decision guide (decision-guide.yaml), token values and recipes (tokens.yaml). Supports light/dark/inverted themes."
+  },
+  "foundations-themes": {
+    "slug": "foundations-themes",
+    "name": "Theme System",
+    "category": "foundations",
+    "skillPath": "skills/foundations-themes/SKILL.md",
+    "description": "MOEX theme system: light/dark themes with inverted variants, state mapping, surface hierarchy, contrast requirements"
+  },
+  "component-button": {
+    "slug": "component-button",
+    "name": "Button",
+    "category": "components",
+    "skillPath": "skills/component-button/SKILL.md",
+    "description": "Complete Button component: 4 sizes (SM/MD/LG/XL), 4 emphasis levels (solid/soft/outline/ghost), 6 semantics (brand/neutral/positive/negative/warning/info), all states, button groups, a11y. Full MOEX token recipes for light/dark themes."
+  }
+}
+```
 
 ## Quality rules
 

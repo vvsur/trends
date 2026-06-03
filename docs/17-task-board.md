@@ -23,7 +23,7 @@
 
 | ID | Title | Status | Priority | Owner | Assignee | Updated at | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| TR-100 | Подключить MOEX design system skills и закрепить правила UI-разработки | Ready | P0 | TBD | TBD | 2026-06-03 | Первый recommended implementation slice; до выполнения не начинать активную UI-разработку |
+| TR-100 | Подключить MOEX design system skills и закрепить правила UI-разработки | Done | P0 | TBD | Codex | 2026-06-03 | Done: `.skills` submodule подключен, обязательные skill-файлы проверены, `AGENTS.md` registry/rules обновлены |
 | TR-110 | Закрепить правила формирования backlog и работы с задачами | Done | P0 | Product | Codex | 2026-06-03 | Зафиксировано в `docs/14-backlog-operating-model.md` |
 | TR-111 | Закрепить обязательные skills/expertise для реализации портала | Done | P0 | Product | Codex | 2026-06-03 | Зафиксировано в `docs/15-required-expertise-and-skills.md` |
 | TR-112 | Добавить рабочие правила для implementation agents | Done | P0 | Product | Codex | 2026-06-03 | Зафиксировано в `AGENTS.md` |
