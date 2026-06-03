@@ -123,6 +123,7 @@
 | --- | --- | --- | --- |
 | TR-100 | P0 | Подключить MOEX design system skills и закрепить правила UI-разработки | Цель: подключить `.skills` с дизайн-системой MOEX, добавить правила в `AGENTS.md` и обеспечить, чтобы все UI-изменения использовали токены, темы и кнопки строго из дизайн-системы.<br><br>1. В проект добавлен git submodule `.skills`: `git submodule add git@github.com:ui-sigma/sigma-skills.git .skills`.<br><br>2. В корневом `AGENTS.md` добавлены обязательные инструкции: перед любыми UI-изменениями читать и применять скиллы из `.skills`; использовать только токены и рецепты из `.skills/skills/foundations-tokens/tokens.yaml`; перед выбором цветов, semantic и emphasis читать `.skills/skills/foundations-tokens/decision-guide.yaml`; для тем использовать `.skills/skills/foundations-themes/SKILL.md`; для кнопок использовать `.skills/skills/component-button/SKILL.md`; не придумывать свои цвета, состояния, границы, тени и варианты кнопок; не использовать raw-цвета в CSS: `#hex`, `rgb()`, `rgba()`, `hsl()`, если они не являются частью токенов; поддерживать light, dark и inverted темы; CSS `:active` маппить на состояние `pressed`; состояние `active` использовать только для выбранного/включенного элемента; не использовать `negative ghost button`; все кнопки должны соответствовать documented size, emphasis, semantic, state, loading, focus и accessibility rules; после UI-изменений проверять интерфейс в браузере на текущем разрешении.<br><br>3. В `AGENTS.md` добавлен registry скиллов `foundations-tokens`, `foundations-themes`, `component-button` из `docs/10-design-system-ui-rules.md`.<br><br>4. В документации есть раздел Design System / UI Rules: источник дизайн-системы `.skills`, обязательные скиллы, запрет на ad hoc UI-стили, требование проверять light/dark/inverted темы, требование браузерной проверки после UI-изменений. |
 | TR-101 | P1 | Провести аудит текущего UI на соответствие MOEX design system | Проверить raw-цвета в CSS/TS/TSX; кнопки вне дизайн-системы; самодельные темы или CSS variables; некорректные hover/pressed/active/focus состояния; визуальные расхождения на текущем разрешении. По результатам аудита подготовить список нарушений и план миграции без автоматической правки UI. |
+| TR-102 | P0 | Зафиксировать и соблюдать ограничения стека: React frontend, TypeScript backend | В проектной документации закреплено: frontend реализуется на React, backend реализуется на TypeScript. До начала реализации принято отдельное архитектурное решение по frontend build tool/framework, backend runtime/framework, API style и shared types. Новые задачи реализации не должны выбирать альтернативный frontend/backend стек без отдельного согласованного изменения архитектуры. |
 
 ## MVP-срез
 
@@ -138,7 +139,7 @@
 - TR-050, TR-051, TR-054;
 - TR-073, TR-074, TR-075;
 - TR-090, TR-092;
-- TR-100.
+- TR-100, TR-102.
 
 MVP ограничивается доменом `technology`. Домены `exchange_finance`, `regulatory`, `hr`, `product_client`, `resilience`, `macro_industry` и `esg` должны быть предусмотрены в модели данных и интерфейсах, но подключаются поэтапно.
 
@@ -153,3 +154,4 @@ MVP ограничивается доменом `technology`. Домены `exch
 - Каким способом физически передавать подписанные пакеты между открытым и закрытым контуром?
 - Кто является владельцем review по каждому домену трендов?
 - Когда подключать MOEX design system submodule `.skills` и кто владеет обновлением корневого `AGENTS.md`?
+- Какой React build tool/framework и какой TypeScript backend framework выбираются для реализации?
