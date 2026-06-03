@@ -47,5 +47,5 @@ pnpm lint
 - Application code is intentionally not created in TR-202.
 - TR-200 added frontend dependencies, Vite scripts, placeholder routes and MOEX token CSS.
 - TR-201 added backend dependencies, Fastify app factory, `/api/v1/health` and a health endpoint test.
-- TR-203 turns these placeholder-safe root commands into enforced lint/typecheck/test baseline.
+- TR-203 added ESLint and verified root lint/typecheck/test/build baseline.
 - TR-204 adds OpenAPI/generated TypeScript contract workflow under `packages/api-contract`.
