@@ -30,6 +30,7 @@
 | TR-113 | Закрепить командный workflow статусов backlog | Done | P0 | Product | Codex | 2026-06-03 | Зафиксировано в `docs/16-team-workflow.md` |
 | TR-114 | Вести task board для командной работы до подключения issue tracker | Done | P0 | Product | Codex | 2026-06-03 | Зафиксировано в `docs/17-task-board.md` |
 | TR-115 | Сформировать полный implementation backlog по всей документации | Done | P0 | Product | Codex | 2026-06-03 | Зафиксировано в `docs/18-full-implementation-backlog.md` |
+| TR-116 | Проверить покрытие всей документации задачами backlog | Done | P0 | Product | Codex | 2026-06-03 | Зафиксировано в `docs/19-backlog-coverage-review.md` |
 | TR-102 | Зафиксировать и соблюдать ограничения стека: React frontend, TypeScript backend | Done | P0 | Architecture | Codex | 2026-06-03 | Зафиксировано в `docs/11-technology-stack.md` |
 | TR-120 | Выбрать frontend build tool/framework поверх React | Ready | P0 | Architecture | TBD | 2026-06-03 | Следующая архитектурная задача перед skeleton |
 | TR-121 | Выбрать TypeScript backend runtime/framework | Ready | P0 | Architecture | TBD | 2026-06-03 | Следующая архитектурная задача перед skeleton |

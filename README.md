@@ -24,6 +24,7 @@
 - `docs/16-team-workflow.md` - командный workflow статусов, WIP limits и правила "беру в работу / в работе / сделано".
 - `docs/17-task-board.md` - временная task board в репозитории до подключения внешнего issue tracker.
 - `docs/18-full-implementation-backlog.md` - полный implementation backlog по release slices и задачам реализации.
+- `docs/19-backlog-coverage-review.md` - проверка, что требования из документации заведены в backlog.
 - `AGENTS.md` - рабочие правила для будущих implementation agents.
 - `docs/research/raw-*.txt` - извлеченный текст PDF для воспроизводимости анализа.
 

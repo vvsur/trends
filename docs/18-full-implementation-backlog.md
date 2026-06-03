@@ -34,6 +34,7 @@
 | TR-113 | P0 | Done | Закрепить командный workflow статусов backlog | `docs/16-team-workflow.md` | Описаны статусы, переходы, роли, WIP limits и blocked rules |
 | TR-114 | P0 | Done | Вести task board для командной работы до подключения issue tracker | `docs/17-task-board.md` | Board содержит status, owner, assignee, updated_at, notes |
 | TR-115 | P0 | Done | Сформировать полный implementation backlog по всей документации | This document | Backlog покрывает product tasks, release slices, dependencies, acceptance criteria и next tasks |
+| TR-116 | P0 | Done | Проверить покрытие всей документации задачами backlog | `docs/19-backlog-coverage-review.md` | Матрица покрытия создана; выявленные пробелы заведены в product и implementation backlog |
 | TR-100 | P0 | Ready | Подключить MOEX design system skills и закрепить правила UI-разработки | Доступ к `git@github.com:ui-sigma/sigma-skills.git` | `.skills` подключен как submodule; `AGENTS.md` обновлен registry и правилами; UI rules обязательны |
 | TR-120 | P0 | Ready | Выбрать frontend build tool/framework поверх React | TR-102 | ADR фиксирует выбор, причины, альтернативы, последствия |
 | TR-121 | P0 | Ready | Выбрать TypeScript backend runtime/framework | TR-102 | ADR фиксирует runtime/framework, причины, альтернативы, последствия |
@@ -124,12 +125,16 @@
 | TR-021 | P0 | Blocked | Реализовать pipeline инноваций | TR-020, TR-302 | Статусы: предложено, на оценке, прошел скоринг, пилот, эффект измеряется, внедрено, остановлено, отложено |
 | TR-023 | P1 | Blocked | Причины остановки/нереализуемости инноваций | TR-333 | Причины классифицированы: ИБ, архитектура, инфраструктура, ресурсы, эффект, дублирование |
 | TR-024 | P0 | Blocked | Реализовать ручное исправление импортированной инновации | TR-315, TR-020 | Поля/связи/status редактируются с audit log |
+| TR-025 | P0 | Blocked | Формулировать гипотезу из инновации | TR-336 | У гипотезы есть trend/innovation, expected effect, test criterion, owner, status, pilot link |
+| TR-026 | P0 | Blocked | Фиксировать ранние ограничения инициативы | TR-337 | Ограничения ИБ, архитектуры, инфраструктуры, данных, ресурсов и compliance видны до пилота |
 | TR-330 | P0 | Blocked | Реализовать форму предложения идеи сотрудником | TR-020, TR-305 | Employee может создать идею; получает статус и next step |
 | TR-331 | P0 | Blocked | Реализовать карточку идеи/инновации | TR-020 | Видны trend, owner, status, comments, history, next action |
 | TR-332 | P0 | Blocked | Реализовать комментарии эксперта к идее | TR-331 | Комментарии сохраняют автора, дату, visibility |
 | TR-333 | P0 | Blocked | Реализовать причины отклонения/остановки | TR-023, TR-075 | Причины классифицированы: ИБ, архитектура, инфраструктура, ресурсы, эффект, дублирование |
 | TR-334 | P0 | Blocked | Реализовать feedback SLA поля | TR-074, TR-331 | Есть due date, status overdue, owner responsible |
 | TR-335 | P1 | Blocked | Реализовать duplicate detection manual marker | TR-333 | Эксперт может связать дубли и объяснить решение |
+| TR-336 | P0 | Blocked | Реализовать Hypothesis model/API/UI MVP | TR-025, TR-020, TR-123, TR-305 | Гипотезу можно создать из инновации, связать с пилотом и отредактировать с audit log |
+| TR-337 | P0 | Blocked | Реализовать Risk/Constraint section | TR-026, TR-305 | В карточках innovation/hypothesis/pilot есть constraints с owner, severity, status, comment |
 
 ## Release 6. Configurable Draft Scoring
 
@@ -160,10 +165,14 @@
 | TR-043 | P0 | Blocked | Зафиксировать итоговое решение | TR-041 | Решения: эксплуатация, масштабирование, остановка, повторный пилот, отложить |
 | TR-044 | P1 | Blocked | Расчет LT и CT | TR-351 | Для каждой инновации фиксируются даты создания, скоринга, старта/завершения пилота и решения |
 | TR-045 | P0 | Blocked | Ручно корректировать статус и даты пилота | TR-307, TR-040 | Изменение требует comment/reason и audit log |
+| TR-046 | P1 | Blocked | Единый журнал управленческих решений | TR-354 | Решения по trend/innovation/hypothesis/pilot/case имеют автора, дату, rationale, next step |
+| TR-047 | P1 | Blocked | Оценка потребности пилота в ресурсах | TR-355 | У пилота есть roles, FTE/effort, budget estimate или причина отсутствия оценки |
 | TR-350 | P0 | Blocked | Реализовать pilot blocker tracking | TR-042 | Блокеры классифицированы и видны руководителю |
 | TR-351 | P1 | Blocked | Рассчитать LT/CT | TR-044 | Фиксируются даты создания, скоринга, старта/завершения пилота, решения |
 | TR-352 | P1 | Blocked | Связать пилот с ValueMetric | TR-055, TR-041 | Pilot хранит effect type, baseline, target, actual, confidence |
 | TR-353 | P1 | Blocked | Сформировать business case из успешного пилота | TR-060, TR-043 | Создается case с problem, solution, effect, constraints, contacts |
+| TR-354 | P1 | Blocked | Реализовать Decision model/API/list view | TR-046, TR-123, TR-305 | Decision поддерживает entity_type/entity_id, decided_by, rationale, next_review_date и audit log |
+| TR-355 | P1 | Blocked | Реализовать resource estimate fields для pilot | TR-047, TR-040 | Ресурсная оценка хранится версионно и не превращается в сложное бюджетирование MVP |
 
 ## Release 8. KPI, Value Scorecard, Executive Dashboards
 
@@ -196,12 +205,14 @@
 | TR-075 | P0 | Backlog | Полезный ответ при отклонении идеи | TR-333, TR-332 | Отклонение содержит причину, экспертный комментарий, возможность доработки |
 | TR-076 | P1 | Blocked | Профиль вклада сотрудника | TR-371 | Профиль показывает идеи, review, пилоты, кейсы, экспертные комментарии и признание |
 | TR-077 | P1 | Blocked | Связь тренда с навыками и обучением | TR-372 | У тренда есть skill map, рекомендуемые материалы, внутренние эксперты и пилоты |
+| TR-078 | P1 | Blocked | Поиск релевантных трендов, идей, пилотов и кейсов | TR-376 | Поиск и фильтры работают по роли, подразделению, продукту, технологии, навыку и статусу |
 | TR-370 | P0 | Blocked | Реализовать personal trend relevance rules | TR-073 | Релевантность строится по role, department, skills, subscriptions |
 | TR-371 | P0 | Blocked | Реализовать профиль вклада MVP | TR-076, TR-304 | Видны идеи, reviews, pilots participation, comments |
 | TR-372 | P1 | Blocked | Skill map для тренда | TR-077, TR-010 | У тренда есть skills, learning links, internal experts |
 | TR-373 | P1 | Blocked | Открытые пилоты для участия | TR-040, TR-073 | Employee видит pilots, где нужен вклад |
 | TR-374 | P1 | Blocked | Персональный digest MVP | TR-073 | Digest по подпискам/роли без внешних уведомлений на первом этапе |
 | TR-375 | P1 | Blocked | Метрики employee value | TR-054, TR-073 | Idea feedback SLA, repeat contributors, skill coverage, pilot participation |
+| TR-376 | P1 | Blocked | Реализовать global search MVP | TR-078, TR-320, TR-331, TR-042, TR-061 | Search индексирует published trends, innovations, pilots, cases и поддерживает измерение search success |
 
 ## Release 10. Governance, Sources, Closed/Open Contour Preparation
 
@@ -219,12 +230,14 @@
 | TR-095 | P1 | Blocked | Календарь обновлений по доменам | TR-384 | Отображается частота сбора, последний импорт, просрочки review |
 | TR-096 | P2 | Backlog | Open collector для allowlist источников | TR-385 | Сборщик работает только в открытом контуре и формирует подписанный batch |
 | TR-097 | P2 | Backlog | Запрет активного контента при импорте | TR-383 | Импортируются только разрешенные форматы без исполняемых вложений |
+| TR-098 | P1 | Blocked | Ежемесячная повестка обновления трендов | TR-386 | Повестка содержит новые тренды, pending reviews, решения к комитету, просроченные пересмотры, кандидатов на пилоты |
 | TR-380 | P0 | Blocked | Source registry admin UI | TR-090, TR-100 | Admin может создать/изменить/deactivate source |
 | TR-381 | P1 | Blocked | Ручная загрузка внешних сигналов JSON/CSV | TR-091, TR-093 | Schema validation, errors, audit log |
 | TR-382 | P1 | Blocked | Staging area для сигналов | TR-092 | Expert видит pending signals, approve/reject/link |
 | TR-383 | P1 | Blocked | Signature/hash validation design | TR-093 | Зафиксирован формат hash/signature для import batch |
 | TR-384 | P1 | Blocked | Calendar обновлений по доменам | TR-095 | Видны last import/review overdue |
 | TR-385 | P2 | Blocked | Open collector MVP design | TR-096 | Отдельная architecture spec для открытого контура |
+| TR-386 | P1 | Blocked | Реализовать management agenda view | TR-098, TR-046, TR-095 | Есть список решений, просрочек review, новых сигналов и кандидатов на пилот для ежемесячного контура |
 
 ## Release 11. Business Cases, Communication, Innovation Culture
 
@@ -272,6 +285,7 @@
 | TR-506 | P2 | Backlog | Jira/portfolio integration | TR-080 | External link/status sync without breaking closed contour |
 | TR-507 | P2 | Backlog | Automatic presentation export | TR-052 | Export follows approved reporting format |
 | TR-508 | P2 | Backlog | Marketplace/reuse of business cases | TR-062 | Cases reusable across departments |
+| TR-084 | P2 | Backlog | Ресурсные и бюджетные ограничения портфеля | TR-047 | Есть укрупненный обзор потребности в ресурсах/бюджете по пилотам и инициативам |
 
 ## Next recommended tasks
 

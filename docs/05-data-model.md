@@ -46,6 +46,22 @@
 | expected_effect | text | нет |
 | comment | text | нет |
 
+## Hypothesis
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| id | UUID | да |
+| innovation_id | ref | да |
+| trend_id | ref | да |
+| title | string | да |
+| statement | text | да |
+| expected_effect | text | да |
+| test_criterion | text | да |
+| owner_id | user ref | да |
+| status | enum draft/ready_for_scoring/scored/pilot/planned/stopped | да |
+| linked_pilot_id | ref | нет |
+| created_at / updated_at | timestamp | да |
+
 ## Scoring
 
 | Поле | Тип | Обязательное |
@@ -81,6 +97,35 @@
 | target | text/metric | да |
 | result | text | нет |
 | decision | enum | нет |
+
+## RiskConstraint
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| id | UUID | да |
+| entity_type | enum trend/innovation/hypothesis/pilot | да |
+| entity_id | UUID | да |
+| constraint_type | enum security/architecture/infrastructure/data/resource/compliance/other | да |
+| severity | enum low/medium/high/blocker | да |
+| status | enum open/accepted/mitigated/closed | да |
+| owner_id | user ref | да |
+| description | text | да |
+| mitigation | text | нет |
+| created_at / updated_at | timestamp | да |
+
+## ResourceEstimate
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| id | UUID | да |
+| pilot_id | ref | да |
+| required_roles | string[] | да |
+| effort_estimate | text/decimal | нет |
+| budget_estimate | text/decimal | нет |
+| confidence | enum low/medium/high | нет |
+| no_estimate_reason | text | нет |
+| owner_id | user ref | да |
+| created_at / updated_at | timestamp | да |
 
 ## Decision
 
