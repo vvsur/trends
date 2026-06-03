@@ -47,9 +47,18 @@ Backend должен разрабатываться на TypeScript.
 
 ## Требует отдельного решения
 
+Архитектурное решение TR-122:
+
+- API style для MVP: REST JSON API;
+- API versioning: `/api/v1`;
+- contract: OpenAPI 3.0.3 generated from trusted Fastify route schemas;
+- backend schema authoring: TypeBox where practical;
+- frontend shared types: generated with `openapi-typescript`;
+- ADR: `docs/adr/0003-api-style-shared-types.md`.
+
+## Еще требует отдельного решения
+
 Перед началом реализации нужно выбрать и зафиксировать:
 
-- API style: REST, GraphQL или mixed;
-- схема shared types между frontend и backend;
 - стратегия тестирования frontend/backend;
 - способ интеграции с закрытым контуром, import gateway и audit log.

@@ -65,21 +65,20 @@ MVP должен включать:
 
 Перед созданием приложения нужно принять несколько архитектурных решений:
 
-1. API style: REST, GraphQL или mixed.
-2. Схема shared types между frontend и backend.
-3. Хранилище данных и миграции.
-4. Модель пользователей, ролей и интеграция с корпоративной оргструктурой.
-5. Формат audit log и versioning.
-6. Минимальный набор моковых данных для MVP.
-7. Definition of Done для браузерной проверки UI.
-8. Где и когда будет опубликован финальный регламент скоринга и ограничения.
-9. Кто выполняет Product Owner, UX, Trend Analyst, QA и Security/Architecture роли на первом этапе.
+1. Хранилище данных и миграции.
+2. Модель пользователей, ролей и интеграция с корпоративной оргструктурой.
+3. Формат audit log и versioning.
+4. Минимальный набор моковых данных для MVP.
+5. Definition of Done для браузерной проверки UI.
+6. Где и когда будет опубликован финальный регламент скоринга и ограничения.
+7. Кто выполняет Product Owner, UX, Trend Analyst, QA и Security/Architecture роли на первом этапе.
 
 Решено:
 
 - TR-100: MOEX `.skills` submodule подключен, правила закреплены в `AGENTS.md`.
 - TR-120: frontend build tool/framework выбран - Vite + React + TypeScript SPA, ADR `docs/adr/0001-frontend-build-tool.md`.
 - TR-121: backend runtime/framework выбран - Node.js 24 LTS + Fastify + TypeScript, ADR `docs/adr/0002-backend-runtime-framework.md`.
+- TR-122: API style/shared types выбран - REST JSON API + OpenAPI 3.0.3 + generated TypeScript types, ADR `docs/adr/0003-api-style-shared-types.md`.
 
 ## Риски перед стартом
 
@@ -98,7 +97,7 @@ MVP должен включать:
 
 Первый технический срез должен быть узким, но полезным:
 
-1. Выбрать API/shared types, storage/migrations, RBAC и audit log.
+1. Выбрать storage/migrations, RBAC и audit log.
 2. Создать React/TypeScript application skeleton и TypeScript backend skeleton.
 3. Сделать модель ролей и audit log.
 4. Реализовать справочники: domain, department, status, trend maturity.
