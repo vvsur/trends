@@ -25,6 +25,7 @@
 - `docs/17-task-board.md` - временная task board в репозитории до подключения внешнего issue tracker.
 - `docs/18-full-implementation-backlog.md` - полный implementation backlog по release slices и задачам реализации.
 - `docs/19-backlog-coverage-review.md` - проверка, что требования из документации заведены в backlog.
+- `docs/20-development-workspace.md` - структура pnpm workspace и базовые dev-команды.
 - `docs/adr/` - архитектурные решения перед реализацией.
 - `AGENTS.md` - рабочие правила для будущих implementation agents.
 - `docs/research/raw-*.txt` - извлеченный текст PDF для воспроизводимости анализа.
