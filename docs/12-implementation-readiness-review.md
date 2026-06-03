@@ -65,11 +65,10 @@ MVP должен включать:
 
 Перед созданием приложения нужно принять несколько архитектурных решений:
 
-1. Формат audit log и versioning.
-2. Минимальный набор моковых данных для MVP.
-3. Definition of Done для браузерной проверки UI.
-4. Где и когда будет опубликован финальный регламент скоринга и ограничения.
-5. Кто выполняет Product Owner, UX, Trend Analyst, QA и Security/Architecture роли на первом этапе.
+1. Минимальный набор моковых данных для MVP.
+2. Definition of Done для браузерной проверки UI.
+3. Где и когда будет опубликован финальный регламент скоринга и ограничения.
+4. Кто выполняет Product Owner, UX, Trend Analyst, QA и Security/Architecture роли на первом этапе.
 
 Решено:
 
@@ -79,6 +78,7 @@ MVP должен включать:
 - TR-122: API style/shared types выбран - REST JSON API + OpenAPI 3.0.3 + generated TypeScript types, ADR `docs/adr/0003-api-style-shared-types.md`.
 - TR-123: storage/migrations/seed strategy выбран - PostgreSQL + Prisma ORM/Migrate + idempotent traceable seed, ADR `docs/adr/0004-storage-migrations-seed.md`.
 - TR-124: RBAC и роли MVP выбраны - employee, trend_owner, expert, executive, admin with scoped assignments, ADR `docs/adr/0005-rbac-mvp.md`.
+- TR-125: audit log/versioning выбран - append-only AuditEvent + per-entity version counters, ADR `docs/adr/0006-audit-log-versioning.md`.
 
 ## Риски перед стартом
 
@@ -97,15 +97,14 @@ MVP должен включать:
 
 Первый технический срез должен быть узким, но полезным:
 
-1. Выбрать audit log.
-2. Создать React/TypeScript application skeleton и TypeScript backend skeleton.
-3. Сделать модель ролей и audit log.
-4. Реализовать справочники: domain, department, status, trend maturity.
-5. Реализовать ручной CRUD для IT-трендов.
-6. Загрузить seed-набор из PDF: стратегические инициативы и первичные тренды/инновации.
-7. Реализовать реестр инноваций и связь с трендом.
-8. Реализовать базовый configurable draft scoring.
-9. Реализовать "Мои тренды" и статус моей идеи.
-10. Реализовать MVP dashboard: KPI 1.3 + value scorecard skeleton.
+1. Создать React/TypeScript application skeleton и TypeScript backend skeleton.
+2. Реализовать модель ролей и audit log.
+3. Реализовать справочники: domain, department, status, trend maturity.
+4. Реализовать ручной CRUD для IT-трендов.
+5. Загрузить seed-набор из PDF: стратегические инициативы и первичные тренды/инновации.
+6. Реализовать реестр инноваций и связь с трендом.
+7. Реализовать базовый configurable draft scoring.
+8. Реализовать "Мои тренды" и статус моей идеи.
+9. Реализовать MVP dashboard: KPI 1.3 + value scorecard skeleton.
 
 После этого можно расширять pilot workflow и бизнес-кейсы.

@@ -9,6 +9,7 @@
 | email | string | да |
 | status | enum active/inactive/service | да |
 | department_id | ref | нет |
+| version | int | да |
 | created_at / updated_at | timestamp | да |
 
 ## RoleAssignment
@@ -22,7 +23,30 @@
 | scope_id | string/UUID | нет |
 | active | boolean | да |
 | reason | text | нет |
+| version | int | да |
 | created_at / updated_at | timestamp | да |
+
+## AuditEvent
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| id | UUID | да |
+| event_type | enum create/update/delete/status_change/review/publish/import/seed/correction/decision/admin_override | да |
+| entity_type | enum/ref | да |
+| entity_id | string/UUID | да |
+| entity_version_before | int | нет |
+| entity_version_after | int | нет |
+| actor_id | user/service ref | да |
+| actor_type | enum user/system/import/seed | да |
+| actor_role | enum/ref | нет |
+| actor_scope | json | нет |
+| source | enum manual/import/seed/system/admin | да |
+| reason | text | нет |
+| before | json | нет |
+| after | json | нет |
+| changed_fields | string[] | нет |
+| correlation_id | string/UUID | нет |
+| created_at | timestamp | да |
 
 ## Trend
 
@@ -40,6 +64,7 @@
 | status | enum | да |
 | horizon | enum | да |
 | relevance_score | int 0-100 | нет |
+| version | int | да |
 | created_at / updated_at | timestamp | да |
 
 Допустимые домены первого уровня:
@@ -69,6 +94,7 @@
 | pipeline_status | enum | да |
 | expected_effect | text | нет |
 | comment | text | нет |
+| version | int | да |
 
 ## Hypothesis
 
@@ -84,6 +110,7 @@
 | owner_id | user ref | да |
 | status | enum draft/ready_for_scoring/scored/pilot/planned/stopped | да |
 | linked_pilot_id | ref | нет |
+| version | int | да |
 | created_at / updated_at | timestamp | да |
 
 ## Scoring
@@ -102,6 +129,7 @@
 | total_score | decimal | да |
 | recommendation | enum | да |
 | comment | text | нет |
+| version | int | да |
 | created_at | timestamp | да |
 
 ## Pilot
@@ -121,6 +149,7 @@
 | target | text/metric | да |
 | result | text | нет |
 | decision | enum | нет |
+| version | int | да |
 
 ## RiskConstraint
 
@@ -135,6 +164,7 @@
 | owner_id | user ref | да |
 | description | text | да |
 | mitigation | text | нет |
+| version | int | да |
 | created_at / updated_at | timestamp | да |
 
 ## ResourceEstimate
@@ -149,6 +179,7 @@
 | confidence | enum low/medium/high | нет |
 | no_estimate_reason | text | нет |
 | owner_id | user ref | да |
+| version | int | да |
 | created_at / updated_at | timestamp | да |
 
 ## Decision
@@ -163,6 +194,7 @@
 | decision_date | date | да |
 | rationale | text | да |
 | next_review_date | date | нет |
+| version | int | да |
 
 ## BusinessCase
 
@@ -177,6 +209,7 @@
 | constraints | text | нет |
 | reusable_for | text | нет |
 | contacts | user refs | да |
+| version | int | да |
 
 ## Source
 
@@ -191,6 +224,7 @@
 | collection_frequency | enum | да |
 | owner_id | user ref | да |
 | active | boolean | да |
+| version | int | да |
 
 ## ExternalSignal
 
@@ -213,6 +247,7 @@
 | review_status | enum | да |
 | reviewed_by | user ref | нет |
 | linked_trend_id | ref | нет |
+| version | int | да |
 
 ## ImportBatch
 
@@ -228,6 +263,7 @@
 | signature | string | да |
 | validation_status | enum | да |
 | validation_errors | json | нет |
+| version | int | да |
 
 ## EmployeeProfile
 
@@ -240,6 +276,7 @@
 | interests | string[] | нет |
 | subscribed_domains | enum[] | нет |
 | contribution_score | decimal | нет |
+| version | int | да |
 
 ## Contribution
 
@@ -252,6 +289,7 @@
 | contribution_type | enum | да |
 | business_impact | text | нет |
 | recognized | boolean | да |
+| version | int | да |
 | created_at | timestamp | да |
 
 ## ValueMetric
@@ -269,3 +307,4 @@
 | confidence | decimal | нет |
 | calculation_note | text | нет |
 | owner_id | user ref | да |
+| version | int | да |

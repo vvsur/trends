@@ -37,7 +37,7 @@
 | TR-122 | Выбрать API style и контракт shared types | Done | P0 | Architecture | Codex | 2026-06-03 | Done: ADR `docs/adr/0003-api-style-shared-types.md`, выбран REST JSON + OpenAPI 3.0.3 + generated TS types |
 | TR-123 | Выбрать хранилище данных и стратегию миграций | Done | P0 | Architecture/Data | Codex | 2026-06-03 | Done: ADR `docs/adr/0004-storage-migrations-seed.md`, выбран PostgreSQL + Prisma ORM/Migrate |
 | TR-124 | Определить RBAC и роли MVP | Done | P0 | Product/Security | Codex | 2026-06-03 | Done: ADR `docs/adr/0005-rbac-mvp.md`, scoped roles employee/trend_owner/expert/executive/admin |
-| TR-125 | Определить формат audit log и versioning | Ready | P0 | Architecture/Security | TBD | 2026-06-03 | Нужно до CRUD |
+| TR-125 | Определить формат audit log и versioning | Done | P0 | Architecture/Security | Codex | 2026-06-03 | Done: ADR `docs/adr/0006-audit-log-versioning.md`, AuditEvent + per-entity versioning |
 | TR-022 | Импортировать стартовый реестр из материалов | Ready | P0 | Product/Data | TBD | 2026-06-03 | Использовать seed contract из `docs/13-source-traceability.md` |
 | TR-073 | Страница "Мои тренды" | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует UX-gate |
 | TR-074 | Статус своей идеи | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует workflow и feedback SLA |
