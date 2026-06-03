@@ -43,6 +43,8 @@ pnpm lint
 pnpm contract:check
 ```
 
+Test evidence после задач фиксируется по `docs/21-test-evidence-format.md`.
+
 ## Notes
 
 - Application code is intentionally not created in TR-202.

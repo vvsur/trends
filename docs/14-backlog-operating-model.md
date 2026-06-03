@@ -141,6 +141,7 @@ User Story | Spike | Technical Enabler | Data Task | UX Task | QA Task | Governa
 - после реализации задача проходит `In Review` и `Testing`;
 - в `Done` задача попадает только после выполнения Definition of Done;
 - текущие статусы в репозитории можно вести в `docs/17-task-board.md`, пока не подключен внешний issue tracker.
+- test evidence фиксируется в формате `docs/21-test-evidence-format.md`.
 
 ## Правило "беру в работу"
 
@@ -197,6 +198,7 @@ P0 ставится только задачам, без которых MVP не 
 - Еженедельно: refinement ближайших задач, проверка Definition of Ready.
 - Перед стартом каждой задачи: короткий task analysis.
 - После завершения каждой задачи: result analysis и test evidence.
+- Формат evidence: `docs/21-test-evidence-format.md`.
 - Ежемесячно: сверка backlog с KPI, value scorecard, employee value и PDF traceability.
 - Ежеквартально: пересмотр roadmap, доменов, метрик и стратегического fit.
 

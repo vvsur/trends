@@ -59,7 +59,7 @@
 | TR-204 | P0 | Done | Настроить shared types/API contract baseline | TR-122 | OpenAPI 3.0.3 baseline, generated TS types, FE/BE type-only usage and stale check configured |
 | TR-205 | P0 | Done | Настроить базовый layout приложения | TR-100, TR-200 | Layout/navigation components extracted; nav and icon-button states use MOEX token recipes; desktop/mobile browser check passed |
 | TR-206 | P0 | Done | Настроить light/dark/inverted theme shell | TR-100, TR-200 | Theme shell state centralized; light/dark/inverted persisted; `color-scheme` synced; 4-state browser check passed |
-| TR-207 | P0 | Ready | Настроить начальный test evidence format | TR-203 | Документирован формат вывода тестов/screenshots/manual checks |
+| TR-207 | P0 | Done | Настроить начальный test evidence format | TR-203 | `docs/21-test-evidence-format.md` documents commands, screenshots, manual checks, residual risks and follow-ups |
 
 ## Release 2. Core Domain Model, Reference Data, Audit
 
@@ -289,5 +289,5 @@
 
 ## Next recommended tasks
 
-1. `TR-207`: настроить начальный test evidence format.
-2. `TR-022`: импортировать стартовый реестр из материалов.
+1. `TR-022`: импортировать стартовый реестр из материалов.
+2. `TR-126`: определить Definition of Done для browser/UI проверки.

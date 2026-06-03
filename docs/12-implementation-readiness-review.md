@@ -79,6 +79,7 @@ MVP должен включать:
 - TR-123: storage/migrations/seed strategy выбран - PostgreSQL + Prisma ORM/Migrate + idempotent traceable seed, ADR `docs/adr/0004-storage-migrations-seed.md`.
 - TR-124: RBAC и роли MVP выбраны - employee, trend_owner, expert, executive, admin with scoped assignments, ADR `docs/adr/0005-rbac-mvp.md`.
 - TR-125: audit log/versioning выбран - append-only AuditEvent + per-entity version counters, ADR `docs/adr/0006-audit-log-versioning.md`.
+- TR-207: начальный формат test evidence зафиксирован в `docs/21-test-evidence-format.md`.
 
 ## Риски перед стартом
 

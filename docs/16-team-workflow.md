@@ -45,7 +45,7 @@
 - `target_release` или `milestone`;
 - `links`: связанные документы, PR, design, decisions;
 - `blocked_reason`, если status = `Blocked`;
-- `done_evidence`: тесты, screenshots, ссылки, summary.
+- `done_evidence`: тесты, screenshots, ссылки, summary по формату `docs/21-test-evidence-format.md`.
 
 ## WIP limits
 
@@ -115,7 +115,7 @@
 
 - acceptance criteria выполнены;
 - Definition of Done выполнен;
-- test evidence зафиксирован;
+- test evidence зафиксирован по `docs/21-test-evidence-format.md`;
 - residual risks описаны;
 - follow-up задачи созданы или добавлены в backlog.
 
@@ -173,4 +173,3 @@ Blocked-задача должна иметь:
 - Atlassian workflow statuses: workflow status describes where a work item is in the process. https://support.atlassian.com/jira-cloud-administration/docs/what-is-a-workflow-status/
 - Atlassian WIP limits: WIP limits constrain the amount of work in each status to improve flow. https://www.atlassian.com/agile/kanban/wip-limits
 - Scrum Guide: Product Backlog transparency and Definition of Done. https://scrumguides.org/scrum-guide.html
-
