@@ -45,3 +45,5 @@ MOEX design system skills подключены как `.skills` submodule, а п
 Ограничение по стеку для будущей реализации: frontend на React, backend на TypeScript. Для frontend MVP выбран Vite + React + TypeScript SPA, решение зафиксировано в `docs/adr/0001-frontend-build-tool.md`. Для backend MVP выбран Node.js 24 LTS + Fastify + TypeScript, решение зафиксировано в `docs/adr/0002-backend-runtime-framework.md`. API baseline: REST JSON `/api/v1` + OpenAPI 3.0.3 + generated TypeScript types, ADR `docs/adr/0003-api-style-shared-types.md`. Storage baseline: PostgreSQL + Prisma ORM/Migrate + traceable idempotent seed strategy, ADR `docs/adr/0004-storage-migrations-seed.md`. RBAC baseline: scoped roles `employee`, `trend_owner`, `expert`, `executive`, `admin`, ADR `docs/adr/0005-rbac-mvp.md`. Audit baseline: append-only `AuditEvent` + per-entity versioning, ADR `docs/adr/0006-audit-log-versioning.md`.
 
 Frontend skeleton создан в `apps/frontend`: Vite + React routes-заглушки, MOEX token CSS, light/dark/inverted theme controls.
+
+Backend skeleton создан в `apps/backend`: Fastify app factory, `/api/v1/health`, TypeScript build and health endpoint test.

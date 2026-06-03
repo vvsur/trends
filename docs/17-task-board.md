@@ -40,7 +40,8 @@
 | TR-125 | Определить формат audit log и versioning | Done | P0 | Architecture/Security | Codex | 2026-06-03 | Done: ADR `docs/adr/0006-audit-log-versioning.md`, AuditEvent + per-entity versioning |
 | TR-202 | Настроить monorepo/workspace или структуру FE/BE | Done | P0 | Architecture | Codex | 2026-06-03 | Done: pnpm workspace, apps/frontend, apps/backend, packages/api-contract, dev commands documented |
 | TR-200 | Создать frontend skeleton на React | Done | P0 | Architecture/Frontend | Codex | 2026-06-03 | Done: Vite React skeleton, routes-заглушки, MOEX token CSS, typecheck/build/browser check |
-| TR-201 | Создать backend skeleton на TypeScript | Ready | P0 | Architecture/Backend | TBD | 2026-06-03 | Следующая задача; требуется Node.js 24 LTS для проверки Fastify |
+| TR-201 | Создать backend skeleton на TypeScript | Done | P0 | Architecture/Backend | Codex | 2026-06-03 | Done: Fastify TypeScript skeleton, `/api/v1/health`, app factory test |
+| TR-203 | Настроить lint/typecheck/test baseline | Ready | P0 | Architecture/QA | TBD | 2026-06-03 | Следующая задача после frontend/backend skeleton |
 | TR-022 | Импортировать стартовый реестр из материалов | Ready | P0 | Product/Data | TBD | 2026-06-03 | Использовать seed contract из `docs/13-source-traceability.md` |
 | TR-073 | Страница "Мои тренды" | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует UX-gate |
 | TR-074 | Статус своей идеи | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует workflow и feedback SLA |

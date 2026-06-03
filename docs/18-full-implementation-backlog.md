@@ -53,9 +53,9 @@
 | --- | --- | --- | --- | --- | --- |
 | TR-001 | P0 | Blocked | Главная страница портала с ключевыми разделами | TR-100, TR-200, TR-205 | Есть навигация: техрадар, реестр, скоринг, пилоты, KPI, кейсы |
 | TR-200 | P0 | Done | Создать frontend skeleton на React | TR-100, TR-120, TR-202 | Vite React skeleton запускается; маршруты-заглушки есть; MOEX token CSS подключен; typecheck/build/browser check пройдены |
-| TR-201 | P0 | Ready | Создать backend skeleton на TypeScript | TR-121, TR-202 | Backend запускается локально; health endpoint; базовая структура модулей |
+| TR-201 | P0 | Done | Создать backend skeleton на TypeScript | TR-121, TR-202 | Backend запускается локально; `/api/v1/health`; app factory и базовая структура модулей |
 | TR-202 | P0 | Done | Настроить monorepo/workspace или структуру FE/BE | TR-120, TR-121 | pnpm workspace структура понятна; команды install/dev/test documented |
-| TR-203 | P0 | Blocked | Настроить lint/typecheck/test baseline | TR-200, TR-201 | Есть команды lint/typecheck/test; они проходят на skeleton |
+| TR-203 | P0 | Ready | Настроить lint/typecheck/test baseline | TR-200, TR-201 | Есть команды lint/typecheck/test; они проходят на skeleton |
 | TR-204 | P0 | Blocked | Настроить shared types/API contract baseline | TR-122 | FE и BE используют общий контракт или generated client/types |
 | TR-205 | P0 | Blocked | Настроить базовый layout приложения | TR-100, TR-200 | Навигация по основным разделам без ad hoc UI |
 | TR-206 | P0 | Blocked | Настроить light/dark/inverted theme shell | TR-100, TR-200 | Переключение/проверка тем работает на shell |
@@ -289,5 +289,5 @@
 
 ## Next recommended tasks
 
-1. `TR-201`: создать backend skeleton на TypeScript.
-2. `TR-203`: настроить lint/typecheck/test baseline после backend skeleton.
+1. `TR-203`: настроить lint/typecheck/test baseline.
+2. `TR-204`: настроить shared types/API contract baseline.
