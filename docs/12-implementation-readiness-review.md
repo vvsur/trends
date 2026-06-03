@@ -65,24 +65,27 @@ MVP должен включать:
 
 Перед созданием приложения нужно принять несколько архитектурных решений:
 
-1. Frontend build tool/framework поверх React.
-2. Backend runtime/framework на TypeScript.
-3. API style: REST, GraphQL или mixed.
-4. Схема shared types между frontend и backend.
-5. Хранилище данных и миграции.
-6. Модель пользователей, ролей и интеграция с корпоративной оргструктурой.
-7. Формат audit log и versioning.
-8. Как подключать MOEX `.skills` submodule и кто владеет `AGENTS.md`.
-9. Минимальный набор моковых данных для MVP.
-10. Definition of Done для браузерной проверки UI.
-11. Где и когда будет опубликован финальный регламент скоринга и ограничения.
-12. Кто выполняет Product Owner, UX, Trend Analyst, QA и Security/Architecture роли на первом этапе.
+1. Backend runtime/framework на TypeScript.
+2. API style: REST, GraphQL или mixed.
+3. Схема shared types между frontend и backend.
+4. Хранилище данных и миграции.
+5. Модель пользователей, ролей и интеграция с корпоративной оргструктурой.
+6. Формат audit log и versioning.
+7. Минимальный набор моковых данных для MVP.
+8. Definition of Done для браузерной проверки UI.
+9. Где и когда будет опубликован финальный регламент скоринга и ограничения.
+10. Кто выполняет Product Owner, UX, Trend Analyst, QA и Security/Architecture роли на первом этапе.
+
+Решено:
+
+- TR-100: MOEX `.skills` submodule подключен, правила закреплены в `AGENTS.md`.
+- TR-120: frontend build tool/framework выбран - Vite + React + TypeScript SPA, ADR `docs/adr/0001-frontend-build-tool.md`.
 
 ## Риски перед стартом
 
 | Риск | Последствие | Что сделать до/в начале реализации |
 | --- | --- | --- |
-| Начать UI без MOEX design system | Быстрая техническая и визуальная задолженность | Сначала выполнить TR-100 |
+| Начать UI без MOEX design system | Быстрая техническая и визуальная задолженность | TR-100 выполнен; для UI соблюдать `.skills` и `AGENTS.md` |
 | Перегрузить MVP внешним сборщиком | Задержка запуска первого полезного контура | Оставить open collector на следующий этап |
 | Не сделать "Мои тренды" | Сотрудники не увидят личной пользы | Включить TR-073 в первый UI-срез |
 | Не сделать feedback SLA | Идеи будут восприниматься как черная дыра | Включить TR-074/TR-075 в первый workflow |
@@ -95,16 +98,15 @@ MVP должен включать:
 
 Первый технический срез должен быть узким, но полезным:
 
-1. Подключить MOEX design system skills и `AGENTS.md` rules.
-2. Принять backlog operating model и назначить обязательные expertise/skills.
-3. Создать React/TypeScript application skeleton и TypeScript backend skeleton.
-4. Сделать модель ролей и audit log.
-5. Реализовать справочники: domain, department, status, trend maturity.
-6. Реализовать ручной CRUD для IT-трендов.
-7. Загрузить seed-набор из PDF: стратегические инициативы и первичные тренды/инновации.
-8. Реализовать реестр инноваций и связь с трендом.
-9. Реализовать базовый configurable draft scoring.
-10. Реализовать "Мои тренды" и статус моей идеи.
-11. Реализовать MVP dashboard: KPI 1.3 + value scorecard skeleton.
+1. Выбрать backend runtime/framework, API/shared types, storage/migrations, RBAC и audit log.
+2. Создать React/TypeScript application skeleton и TypeScript backend skeleton.
+3. Сделать модель ролей и audit log.
+4. Реализовать справочники: domain, department, status, trend maturity.
+5. Реализовать ручной CRUD для IT-трендов.
+6. Загрузить seed-набор из PDF: стратегические инициативы и первичные тренды/инновации.
+7. Реализовать реестр инноваций и связь с трендом.
+8. Реализовать базовый configurable draft scoring.
+9. Реализовать "Мои тренды" и статус моей идеи.
+10. Реализовать MVP dashboard: KPI 1.3 + value scorecard skeleton.
 
 После этого можно расширять pilot workflow и бизнес-кейсы.
