@@ -35,7 +35,7 @@
 | TR-120 | Выбрать frontend build tool/framework поверх React | Done | P0 | Architecture | Codex | 2026-06-03 | Done: ADR `docs/adr/0001-frontend-build-tool.md`, выбран Vite + React + TypeScript SPA |
 | TR-121 | Выбрать TypeScript backend runtime/framework | Done | P0 | Architecture | Codex | 2026-06-03 | Done: ADR `docs/adr/0002-backend-runtime-framework.md`, выбран Node.js 24 LTS + Fastify + TypeScript |
 | TR-122 | Выбрать API style и контракт shared types | Done | P0 | Architecture | Codex | 2026-06-03 | Done: ADR `docs/adr/0003-api-style-shared-types.md`, выбран REST JSON + OpenAPI 3.0.3 + generated TS types |
-| TR-123 | Выбрать хранилище данных и стратегию миграций | Ready | P0 | Architecture/Data | TBD | 2026-06-03 | Нужно до core model и seed loader |
+| TR-123 | Выбрать хранилище данных и стратегию миграций | Done | P0 | Architecture/Data | Codex | 2026-06-03 | Done: ADR `docs/adr/0004-storage-migrations-seed.md`, выбран PostgreSQL + Prisma ORM/Migrate |
 | TR-124 | Определить RBAC и роли MVP | Ready | P0 | Product/Security | TBD | 2026-06-03 | Нужно до ручной корректировки и review |
 | TR-125 | Определить формат audit log и versioning | Ready | P0 | Architecture/Security | TBD | 2026-06-03 | Нужно до CRUD |
 | TR-022 | Импортировать стартовый реестр из материалов | Ready | P0 | Product/Data | TBD | 2026-06-03 | Использовать seed contract из `docs/13-source-traceability.md` |
