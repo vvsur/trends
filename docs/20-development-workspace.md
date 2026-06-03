@@ -27,6 +27,8 @@ apps/
   backend/        Fastify backend skeleton
 packages/
   api-contract/   Generated/shared API contract types, TR-204
+data/
+  seed/           Traceable PDF-derived seed source files
 ```
 
 ## Root Commands

@@ -46,7 +46,9 @@
 | TR-205 | Настроить базовый layout приложения | Done | P0 | Frontend | Codex | 2026-06-03 | Done: layout/navigation components extracted, MOEX token states aligned, desktop/mobile browser check |
 | TR-206 | Настроить light/dark/inverted theme shell | Done | P0 | Frontend | Codex | 2026-06-03 | Done: centralized theme shell, localStorage persistence, color-scheme sync, 4-state browser check |
 | TR-207 | Настроить начальный test evidence format | Done | P0 | QA | Codex | 2026-06-03 | Done: `docs/21-test-evidence-format.md` added and linked from DoD/workflow docs |
-| TR-022 | Импортировать стартовый реестр из материалов | Ready | P0 | Product/Data | TBD | 2026-06-03 | Использовать seed contract из `docs/13-source-traceability.md` |
+| TR-022 | Импортировать стартовый реестр из материалов | Blocked | P0 | Product/Data | TBD | 2026-06-03 | Blocked: нужны seed data files, reference data и seed loader before import |
+| TR-310 | Подготовить seed data file для PDF-инициатив | Done | P0 | Product/Data | Codex | 2026-06-03 | Done: `data/seed/strategic-initiatives.seed.json`; 7 records validated against traceability contract |
+| TR-311 | Подготовить seed data file для первичных трендов | Ready | P0 | Product/Data | TBD | 2026-06-03 | Следующая seed задача; сохранить пропуск номера `9` |
 | TR-073 | Страница "Мои тренды" | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует UX-gate |
 | TR-074 | Статус своей идеи | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует workflow и feedback SLA |
 | TR-075 | Полезный ответ при отклонении идеи | Backlog | P0 | Product/UX | TBD | 2026-06-03 | Требует UX copy и decision reasons |

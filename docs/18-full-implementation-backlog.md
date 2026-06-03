@@ -71,8 +71,8 @@
 | TR-004 | P0 | Blocked | Поэтапное включение доменов | TR-300 | В MVP активен `technology`; остальные домены включаются позднее без миграции данных |
 | TR-005 | P0 | Blocked | Ручная корректировка данных пользователем с правами | TR-305, TR-306, TR-307 | Для трендов, инноваций, скорингов, пилотов, источников и решений есть редактирование с причиной |
 | TR-006 | P0 | Blocked | История изменений процесса | TR-306 | Audit log показывает автора, дату, старое значение, новое значение, причину и источник |
-| TR-300 | P0 | Blocked | Реализовать справочник доменов трендов | TR-123, TR-201 | Есть `technology`; остальные домены предусмотрены, но disabled/hidden для MVP |
-| TR-301 | P0 | Blocked | Реализовать справочник департаментов | TR-123 | Есть ITG, КСС, TKC; можно добавить/изменить/деактивировать |
+| TR-300 | P0 | Ready | Реализовать справочник доменов трендов | TR-123, TR-201 | Есть `technology`; остальные домены предусмотрены, но disabled/hidden для MVP |
+| TR-301 | P0 | Ready | Реализовать справочник департаментов | TR-123 | Есть ITG, КСС, TKC; можно добавить/изменить/деактивировать |
 | TR-302 | P0 | Blocked | Реализовать справочники статусов pipeline | TR-123 | Статусы innovation/pilot/trend соответствуют backlog |
 | TR-303 | P0 | Blocked | Реализовать справочник maturity/recommendation | TR-123 | Есть watch/assess/pilot/scale/hold или локализованные аналоги |
 | TR-304 | P0 | Blocked | Реализовать User/EmployeeProfile модель | TR-124 | Есть роль, департамент, навыки, интересы, подписки |
@@ -87,11 +87,11 @@
 
 | ID | Priority | Status | Task | Dependencies | Acceptance criteria |
 | --- | --- | --- | --- | --- | --- |
-| TR-022 | P0 | Ready | Импортировать стартовый реестр из материалов | TR-300, TR-301 | Импортированы 7 стратегических инициатив и 10 трендов из `docs/13-source-traceability.md` |
-| TR-310 | P0 | Blocked | Подготовить seed data file для PDF-инициатив | TR-123 | Seed содержит source_pdf, source_number, department, created_quarter, owner, year, comment |
-| TR-311 | P0 | Blocked | Подготовить seed data file для первичных трендов | TR-123 | Seed сохраняет пропуск номера `9`; владельцы/комментарии сохранены |
+| TR-022 | P0 | Blocked | Импортировать стартовый реестр из материалов | TR-300, TR-301, TR-312, TR-313 | Импортированы 7 стратегических инициатив и 10 трендов из `docs/13-source-traceability.md` |
+| TR-310 | P0 | Done | Подготовить seed data file для PDF-инициатив | TR-123 | `data/seed/strategic-initiatives.seed.json` contains 7 traceable records with source_pdf, source_number, department, created_quarter, owner, year, comment |
+| TR-311 | P0 | Ready | Подготовить seed data file для первичных трендов | TR-123 | Seed сохраняет пропуск номера `9`; владельцы/комментарии сохранены |
 | TR-312 | P0 | Blocked | Реализовать seed loader | TR-310, TR-311 | Повторный запуск идемпотентен; ошибки показывают строку/поле |
-| TR-313 | P0 | Blocked | Реализовать source traceability fields | TR-123 | У seed-записей есть ссылка на PDF/raw/source number |
+| TR-313 | P0 | Ready | Реализовать source traceability fields | TR-123 | У seed-записей есть ссылка на PDF/raw/source number |
 | TR-314 | P0 | Blocked | Реализовать UI/API для проверки seed после импорта | TR-312, TR-205 | Пользователь видит, что импортировано и что требует ручной проверки |
 | TR-315 | P0 | Blocked | Реализовать ручную корректировку seed-записей | TR-307, TR-314 | Любое исправление seed сохраняет audit trail и source traceability |
 
@@ -289,5 +289,5 @@
 
 ## Next recommended tasks
 
-1. `TR-022`: импортировать стартовый реестр из материалов.
-2. `TR-126`: определить Definition of Done для browser/UI проверки.
+1. `TR-311`: подготовить seed data file для первичных трендов.
+2. `TR-313`: реализовать source traceability fields.
