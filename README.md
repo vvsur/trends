@@ -19,6 +19,9 @@
 - `docs/11-technology-stack.md` - ограничения по стеку: React на frontend и TypeScript на backend.
 - `docs/12-implementation-readiness-review.md` - проверка целостности документации и готовности к старту реализации.
 - `docs/13-source-traceability.md` - матрица покрытия PDF-материалов, seed-набор инициатив и первичных трендов.
+- `docs/14-backlog-operating-model.md` - правила формирования backlog, Definition of Ready/Done и цикл работы над задачей.
+- `docs/15-required-expertise-and-skills.md` - необходимые роли/skills: trend analysis, UX, design system, data governance, QA и другие.
+- `AGENTS.md` - рабочие правила для будущих implementation agents.
 - `docs/research/raw-*.txt` - извлеченный текст PDF для воспроизводимости анализа.
 
 ## Текущий фокус

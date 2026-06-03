@@ -126,6 +126,14 @@
 | TR-101 | P1 | Провести аудит текущего UI на соответствие MOEX design system | Проверить raw-цвета в CSS/TS/TSX; кнопки вне дизайн-системы; самодельные темы или CSS variables; некорректные hover/pressed/active/focus состояния; визуальные расхождения на текущем разрешении. По результатам аудита подготовить список нарушений и план миграции без автоматической правки UI. |
 | TR-102 | P0 | Зафиксировать и соблюдать ограничения стека: React frontend, TypeScript backend | В проектной документации закреплено: frontend реализуется на React, backend реализуется на TypeScript. До начала реализации принято отдельное архитектурное решение по frontend build tool/framework, backend runtime/framework, API style и shared types. Новые задачи реализации не должны выбирать альтернативный frontend/backend стек без отдельного согласованного изменения архитектуры. |
 
+## Epic 12. Delivery governance и backlog operating model
+
+| ID | Приоритет | User story | Acceptance criteria |
+| --- | --- | --- | --- |
+| TR-110 | P0 | Закрепить правила формирования backlog и работы с задачами | В документации есть backlog operating model с типами задач, шаблоном, Definition of Ready, Definition of Done, правилом analysis before implementation, правилом post-implementation analysis/testing, cadence refinement и UX/data gates. |
+| TR-111 | P0 | Закрепить обязательные skills/expertise для реализации портала | В документации есть skill matrix: Trend Analysis, UX Expertise, MOEX Design System, Delivery Quality, Data Governance, QA, Security/Architecture, Product и domain experts. Для каждого типа задач указано, какие skills обязательны. |
+| TR-112 | P0 | Добавить рабочие правила для implementation agents | В корневом `AGENTS.md` зафиксированы правила: читать документацию до реализации, сначала analysis, затем implementation, self-review, testing, result analysis, обновление docs/backlog, соблюдение React/TypeScript и MOEX DS guardrails. |
+
 ## MVP-срез
 
 В первый релиз должны войти:
@@ -140,7 +148,8 @@
 - TR-050, TR-051, TR-054;
 - TR-073, TR-074, TR-075;
 - TR-090, TR-092;
-- TR-100, TR-102.
+- TR-100, TR-102;
+- TR-110, TR-111, TR-112.
 
 MVP ограничивается доменом `technology`. Домены `exchange_finance`, `regulatory`, `hr`, `product_client`, `resilience`, `macro_industry` и `esg` должны быть предусмотрены в модели данных и интерфейсах, но подключаются поэтапно.
 

@@ -56,6 +56,8 @@ MVP должен включать:
 - TypeScript backend;
 - MOEX design system rules до активной UI-разработки.
 - seed-импорт 7 стратегических инициатив и 10 первичных трендов/инноваций из PDF, описанных в `docs/13-source-traceability.md`.
+- backlog operating model, Definition of Ready/Done и обязательный цикл analysis -> implementation -> review/testing после каждой задачи.
+- required expertise/skills: trend analysis, UX expertise, design system, data governance, QA, security/architecture, product ownership.
 
 Внешний open collector, автоматический сбор сигналов, полноценные биржевые/HR/ESG домены и AI-assisted analytics остаются следующими этапами.
 
@@ -74,6 +76,7 @@ MVP должен включать:
 9. Минимальный набор моковых данных для MVP.
 10. Definition of Done для браузерной проверки UI.
 11. Где и когда будет опубликован финальный регламент скоринга и ограничения.
+12. Кто выполняет Product Owner, UX, Trend Analyst, QA и Security/Architecture роли на первом этапе.
 
 ## Риски перед стартом
 
@@ -93,14 +96,15 @@ MVP должен включать:
 Первый технический срез должен быть узким, но полезным:
 
 1. Подключить MOEX design system skills и `AGENTS.md` rules.
-2. Создать React/TypeScript application skeleton и TypeScript backend skeleton.
-3. Сделать модель ролей и audit log.
-4. Реализовать справочники: domain, department, status, trend maturity.
-5. Реализовать ручной CRUD для IT-трендов.
-6. Загрузить seed-набор из PDF: стратегические инициативы и первичные тренды/инновации.
-7. Реализовать реестр инноваций и связь с трендом.
-8. Реализовать базовый configurable draft scoring.
-9. Реализовать "Мои тренды" и статус моей идеи.
-10. Реализовать MVP dashboard: KPI 1.3 + value scorecard skeleton.
+2. Принять backlog operating model и назначить обязательные expertise/skills.
+3. Создать React/TypeScript application skeleton и TypeScript backend skeleton.
+4. Сделать модель ролей и audit log.
+5. Реализовать справочники: domain, department, status, trend maturity.
+6. Реализовать ручной CRUD для IT-трендов.
+7. Загрузить seed-набор из PDF: стратегические инициативы и первичные тренды/инновации.
+8. Реализовать реестр инноваций и связь с трендом.
+9. Реализовать базовый configurable draft scoring.
+10. Реализовать "Мои тренды" и статус моей идеи.
+11. Реализовать MVP dashboard: KPI 1.3 + value scorecard skeleton.
 
 После этого можно расширять pilot workflow и бизнес-кейсы.
