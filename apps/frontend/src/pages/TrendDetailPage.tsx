@@ -20,6 +20,20 @@ type TrendDetailState =
       trend: null;
     };
 
+type SourceTrace = {
+  imported_from_dataset?: string;
+  review_status?: string;
+  source_contract?: string;
+  source_hash?: string;
+  source_kind?: string;
+  source_number?: number | string;
+  source_pdf?: string;
+  source_raw_text?: string;
+  source_row_key?: string;
+  source_section?: string;
+  version?: number;
+};
+
 const dateFormatter = new Intl.DateTimeFormat('ru-RU', {
   day: '2-digit',
   month: 'short',
@@ -30,16 +44,106 @@ function formatDate(value: string) {
   return dateFormatter.format(new Date(value));
 }
 
-function sourceTraceText(sourceTrace: unknown) {
-  if (!sourceTrace) {
-    return 'Source traceability не назначена';
+function readSourceTrace(sourceTrace: unknown): SourceTrace | null {
+  if (!sourceTrace || typeof sourceTrace !== 'object') {
+    return null;
   }
 
-  if (typeof sourceTrace === 'object') {
-    return JSON.stringify(sourceTrace);
+  return sourceTrace;
+}
+
+function formatSourceNumber(sourceTrace: SourceTrace) {
+  return sourceTrace.source_number === undefined ? 'PDF' : `#${String(sourceTrace.source_number)}`;
+}
+
+function formatHash(value: string | undefined) {
+  return value ? `${value.slice(0, 10)}…${value.slice(-8)}` : 'Не указан';
+}
+
+function formatReviewStatus(value: string | undefined) {
+  if (value === 'pending') {
+    return 'Ожидает review';
   }
 
-  return String(sourceTrace);
+  if (value === 'approved') {
+    return 'Подтверждено';
+  }
+
+  if (value === 'rejected') {
+    return 'Отклонено';
+  }
+
+  if (value === 'corrected') {
+    return 'Исправлено вручную';
+  }
+
+  return value ?? 'Не указан';
+}
+
+function SourceTraceCard({ sourceTrace }: { sourceTrace: unknown }) {
+  const trace = readSourceTrace(sourceTrace);
+
+  if (!trace) {
+    return (
+      <article className="source-trace-card">
+        <div className="source-trace-card-header">
+          <Link2 size={20} strokeWidth={2} aria-hidden="true" />
+          <div>
+            <strong>Source traceability</strong>
+            <span>Не назначена</span>
+          </div>
+        </div>
+      </article>
+    );
+  }
+
+  return (
+    <article className="source-trace-card">
+      <div className="source-trace-card-header">
+        <Link2 size={20} strokeWidth={2} aria-hidden="true" />
+        <div>
+          <strong>Source traceability</strong>
+          <span>{trace.source_section ?? 'PDF seed source'}</span>
+        </div>
+        <span className="trend-status trend-status-info">{formatSourceNumber(trace)}</span>
+      </div>
+
+      <dl className="source-trace-grid">
+        <div>
+          <dt>Источник</dt>
+          <dd>{trace.source_kind ?? 'Не указан'}</dd>
+        </div>
+        <div>
+          <dt>Review</dt>
+          <dd>{formatReviewStatus(trace.review_status)}</dd>
+        </div>
+        <div>
+          <dt>Dataset</dt>
+          <dd>{trace.imported_from_dataset ?? 'Не указан'}</dd>
+        </div>
+        <div>
+          <dt>Row key</dt>
+          <dd>{trace.source_row_key ?? 'Не указан'}</dd>
+        </div>
+        <div>
+          <dt>PDF</dt>
+          <dd>{trace.source_pdf ?? 'Не указан'}</dd>
+        </div>
+        <div>
+          <dt>Raw text</dt>
+          <dd>{trace.source_raw_text ?? 'Не указан'}</dd>
+        </div>
+        <div>
+          <dt>Contract</dt>
+          <dd>{trace.source_contract ?? 'Не указан'}</dd>
+        </div>
+        <div>
+          <dt>Hash</dt>
+          <dd>{formatHash(trace.source_hash)}</dd>
+        </div>
+      </dl>
+    </article>
+  );
 }
 
 function DetailEmptySection({ icon: Icon, title }: { icon: typeof Gauge; title: string }) {
@@ -182,11 +286,7 @@ export function TrendDetailPage() {
         <DetailEmptySection icon={GitBranch} title="Связанные инновации" />
         <DetailEmptySection icon={GitBranch} title="Связанные пилоты" />
         <DetailEmptySection icon={Gauge} title="Метрики" />
-        <article className="detail-empty-section">
-          <Link2 size={20} strokeWidth={2} aria-hidden="true" />
-          <strong>Source traceability</strong>
-          <span>{sourceTraceText(trend.sourceTrace)}</span>
-        </article>
+        <SourceTraceCard sourceTrace={trend.sourceTrace} />
       </div>
     </section>
   );
