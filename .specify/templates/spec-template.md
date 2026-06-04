@@ -31,6 +31,8 @@
 
 **Independent Test**: [Describe how this can be tested independently - e.g., "Can be fully tested by [specific action] and delivers [specific value]"]
 
+**Constitution Value Check**: [State the company, employee, process/risk, or MVP value this story protects]
+
 **Acceptance Scenarios**:
 
 1. **Given** [initial state], **When** [action], **Then** [expected outcome]
@@ -77,6 +79,9 @@
 
 - What happens when [boundary condition]?
 - How does system handle [error scenario]?
+- If the feature touches governed data, what happens when a manual correction is submitted without a reason?
+- If the feature touches seed/import data, how is source traceability preserved?
+- If the feature touches UI, how are loading, empty, error, disabled, and permission states represented?
 
 ## Requirements *(mandatory)*
 
@@ -92,6 +97,7 @@
 - **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
 - **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
 - **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-XXX**: System MUST preserve manual correction, audit, source traceability, RBAC, and consistent error behavior where applicable.
 
 *Example of marking unclear requirements:*
 
@@ -129,3 +135,11 @@
 - [Assumption about scope boundaries, e.g., "Mobile support is out of scope for v1"]
 - [Assumption about data/environment, e.g., "Existing authentication system will be reused"]
 - [Dependency on existing system/service, e.g., "Requires access to the existing user profile API"]
+
+## Constitution Alignment *(mandatory)*
+
+- **MVP scope**: [How this feature stays within the intended MVP/slice]
+- **Manual control/audit/traceability**: [Required or N/A with rationale]
+- **Delivery evidence**: [How acceptance and test evidence will be captured]
+- **Stack/architecture**: [React/TypeScript/SQLite/OpenAPI/closed-contour impact or N/A]
+- **Employee/company/UX value**: [Explicit value and UI gate impact]

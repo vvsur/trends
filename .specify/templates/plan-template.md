@@ -40,7 +40,19 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- **Value-led MVP scope**: Confirm the plan protects the technology-trends MVP
+  and does not silently expand future domains, automation, scoring, pilots,
+  KPI, cases, or My Trends beyond the feature scope.
+- **Manual control, audit, and traceability**: Confirm manual correction,
+  reason-required governed changes, audit history, and PDF/source traceability
+  are preserved where the feature touches governed data.
+- **Delivery discipline**: Confirm the feature has analysis, acceptance
+  criteria, verification, evidence, and documentation-update paths.
+- **Stack and architecture boundaries**: Confirm React frontend, TypeScript
+  backend, SQLite/Prisma MVP storage, OpenAPI/REST contracts, and closed-contour
+  boundaries remain intact unless an ADR explicitly changes them.
+- **Employee, company, and UX value**: Confirm company value, employee value,
+  UX states, and MOEX design system requirements are addressed where relevant.
 
 ## Project Structure
 

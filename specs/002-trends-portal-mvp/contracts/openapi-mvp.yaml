@@ -1,0 +1,324 @@
+openapi: 3.0.3
+info:
+  title: Corporate Trends Portal Implemented Baseline Contract
+  version: 0.1.0
+  description: >
+    Planning contract synchronized to implemented backend behavior. The
+    canonical implementation contract remains packages/api-contract/openapi/openapi.yaml.
+servers:
+  - url: /api/v1
+paths:
+  /health:
+    get:
+      summary: Check service health
+      responses:
+        "200":
+          description: Service is available
+  /reference-data/{dictionary}:
+    get:
+      summary: List implemented reference data dictionary items
+      parameters:
+        - $ref: "#/components/parameters/Dictionary"
+      responses:
+        "200":
+          description: Reference data list
+    post:
+      summary: Create reference data item as an administrator
+      parameters:
+        - $ref: "#/components/parameters/Dictionary"
+        - $ref: "#/components/parameters/ActorEmail"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReferenceDataCreate"
+      responses:
+        "201":
+          description: Reference data item created
+        "400":
+          description: Validation error
+        "401":
+          description: Authentication required
+        "403":
+          description: Permission denied
+  /reference-data/{dictionary}/{id}:
+    patch:
+      summary: Update reference data item with reason
+      parameters:
+        - $ref: "#/components/parameters/Dictionary"
+        - $ref: "#/components/parameters/Id"
+        - $ref: "#/components/parameters/ActorEmail"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReferenceDataUpdate"
+      responses:
+        "200":
+          description: Reference data item updated
+        "400":
+          description: Validation error
+        "401":
+          description: Authentication required
+        "403":
+          description: Permission denied
+        "404":
+          description: Reference data item not found
+  /reference-data/{dictionary}/{id}/deactivate:
+    post:
+      summary: Deactivate reference data item with reason
+      parameters:
+        - $ref: "#/components/parameters/Dictionary"
+        - $ref: "#/components/parameters/Id"
+        - $ref: "#/components/parameters/ActorEmail"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReasonRequest"
+      responses:
+        "200":
+          description: Reference data item deactivated
+        "400":
+          description: Validation error
+        "401":
+          description: Authentication required
+        "403":
+          description: Permission denied
+        "404":
+          description: Reference data item not found
+  /trends:
+    get:
+      summary: List trend cards with implemented filters
+      parameters:
+        - name: domainCode
+          in: query
+          schema:
+            type: string
+        - name: statusCode
+          in: query
+          schema:
+            type: string
+        - name: ownerId
+          in: query
+          schema:
+            type: string
+        - name: departmentId
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Trend list
+    post:
+      summary: Create trend as an authorized trend editor
+      parameters:
+        - $ref: "#/components/parameters/ActorEmail"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrendCreate"
+      responses:
+        "201":
+          description: Trend created
+        "400":
+          description: Validation error
+        "401":
+          description: Authentication required
+        "403":
+          description: Permission denied
+  /trends/{id}:
+    get:
+      summary: Get trend detail
+      parameters:
+        - $ref: "#/components/parameters/Id"
+      responses:
+        "200":
+          description: Trend detail
+        "404":
+          description: Trend not found
+    patch:
+      summary: Update trend with reason as an authorized trend editor
+      parameters:
+        - $ref: "#/components/parameters/Id"
+        - $ref: "#/components/parameters/ActorEmail"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrendUpdate"
+      responses:
+        "200":
+          description: Trend updated
+        "400":
+          description: Validation error
+        "401":
+          description: Authentication required
+        "403":
+          description: Permission denied
+        "404":
+          description: Trend not found
+  /strategic-initiatives:
+    get:
+      summary: List PDF-derived strategic initiatives
+      responses:
+        "200":
+          description: Strategic initiative list
+components:
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    ActorEmail:
+      name: X-Trends-Actor-Email
+      in: header
+      required: true
+      schema:
+        type: string
+        format: email
+    Dictionary:
+      name: dictionary
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - departments
+          - trend-domains
+          - trend-statuses
+          - innovation-statuses
+          - pilot-statuses
+          - maturity-rings
+          - trend-recommendations
+  schemas:
+    ReasonRequest:
+      type: object
+      required:
+        - reason
+      additionalProperties: false
+      properties:
+        reason:
+          type: string
+          minLength: 1
+    ReferenceDataCreate:
+      type: object
+      required:
+        - code
+        - name
+        - description
+        - sortOrder
+      additionalProperties: false
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        sortOrder:
+          type: integer
+        active:
+          type: boolean
+        visibleInMvp:
+          type: boolean
+    ReferenceDataUpdate:
+      allOf:
+        - $ref: "#/components/schemas/ReasonRequest"
+        - type: object
+          additionalProperties: false
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+            description:
+              type: string
+            sortOrder:
+              type: integer
+            active:
+              type: boolean
+            visibleInMvp:
+              type: boolean
+    TrendCreate:
+      type: object
+      required:
+        - title
+        - description
+        - domainCode
+        - maturityRingCode
+        - recommendationCode
+        - ownerId
+        - reviewDate
+        - statusCode
+        - horizon
+      additionalProperties: false
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        domainCode:
+          type: string
+        secondaryDomainCodes:
+          type: array
+          items:
+            type: string
+        maturityRingCode:
+          type: string
+        recommendationCode:
+          type: string
+        ownerId:
+          type: string
+        reviewDate:
+          type: string
+        statusCode:
+          type: string
+        horizon:
+          type: string
+        relevanceScore:
+          type: integer
+          minimum: 0
+          maximum: 100
+        sourceTrace: {}
+    TrendUpdate:
+      allOf:
+        - $ref: "#/components/schemas/ReasonRequest"
+        - type: object
+          additionalProperties: false
+          properties:
+            title:
+              type: string
+            description:
+              type: string
+            domainCode:
+              type: string
+            secondaryDomainCodes:
+              type: array
+              items:
+                type: string
+            maturityRingCode:
+              type: string
+            recommendationCode:
+              type: string
+            ownerId:
+              type: string
+            reviewDate:
+              type: string
+            statusCode:
+              type: string
+            horizon:
+              type: string
+            relevanceScore:
+              type: integer
+              minimum: 0
+              maximum: 100
+            sourceTrace: {}
