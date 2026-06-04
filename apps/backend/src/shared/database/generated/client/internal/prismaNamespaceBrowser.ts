@@ -62,7 +62,8 @@ export const ModelName = {
   PilotStatus: 'PilotStatus',
   MaturityRing: 'MaturityRing',
   TrendRecommendation: 'TrendRecommendation',
-  Trend: 'Trend'
+  Trend: 'Trend',
+  StrategicInitiative: 'StrategicInitiative'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -267,6 +268,24 @@ export const TrendScalarFieldEnum = {
 } as const
 
 export type TrendScalarFieldEnum = (typeof TrendScalarFieldEnum)[keyof typeof TrendScalarFieldEnum]
+
+
+export const StrategicInitiativeScalarFieldEnum = {
+  id: 'id',
+  seedKey: 'seedKey',
+  title: 'title',
+  departmentId: 'departmentId',
+  createdQuarter: 'createdQuarter',
+  ownerName: 'ownerName',
+  year: 'year',
+  comment: 'comment',
+  sourceTraceJson: 'sourceTraceJson',
+  version: 'version',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StrategicInitiativeScalarFieldEnum = (typeof StrategicInitiativeScalarFieldEnum)[keyof typeof StrategicInitiativeScalarFieldEnum]
 
 
 export const SortOrder = {

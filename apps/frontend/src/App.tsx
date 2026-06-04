@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { AppLayout } from './layout/AppLayout';
+import { InitiativeListPage } from './pages/InitiativeListPage';
 import { ModulePage } from './pages/ModulePage';
 import { TrendDetailPage } from './pages/TrendDetailPage';
 import { TrendListPage } from './pages/TrendListPage';
@@ -19,10 +20,11 @@ export function App() {
     >
       <Routes>
         <Route element={<Navigate to="/trends" replace />} path="/" />
+        <Route element={<InitiativeListPage />} path="/innovations" />
         <Route element={<TrendListPage />} path="/trends" />
         <Route element={<TrendDetailPage />} path="/trends/:id" />
         {portalRoutes
-          .filter((route) => route.path !== '/trends')
+          .filter((route) => !['/innovations', '/trends'].includes(route.path))
           .map((route) => (
             <Route element={<ModulePage route={route} />} key={route.path} path={route.path} />
           ))}

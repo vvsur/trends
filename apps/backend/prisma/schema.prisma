@@ -31,6 +31,7 @@ model Department {
   sortOrder        Int               @map("sort_order")
   createdAt        DateTime          @default(now()) @map("created_at")
   updatedAt        DateTime          @updatedAt @map("updated_at")
+  strategicInitiatives StrategicInitiative[]
   users            User[]
   employeeProfiles EmployeeProfile[]
 
@@ -212,4 +213,23 @@ model Trend {
   @@index([statusId])
   @@index([reviewDate])
   @@map("trends")
+}
+
+model StrategicInitiative {
+  id              String     @id @default(uuid())
+  seedKey         String     @unique @map("seed_key")
+  title           String
+  departmentId    String     @map("department_id")
+  department      Department @relation(fields: [departmentId], references: [id], onUpdate: Cascade, onDelete: Restrict)
+  createdQuarter  String     @map("created_quarter")
+  ownerName       String     @map("owner_name")
+  year            String
+  comment         String
+  sourceTraceJson String     @map("source_trace_json")
+  version         Int        @default(1)
+  createdAt       DateTime   @default(now()) @map("created_at")
+  updatedAt       DateTime   @updatedAt @map("updated_at")
+
+  @@index([departmentId])
+  @@map("strategic_initiatives")
 }

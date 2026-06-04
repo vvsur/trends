@@ -86,4 +86,5 @@ Test evidence после задач фиксируется по `docs/21-test-ev
 - TR-011 added backend trend list filters for `domainCode`, `statusCode`, `ownerId` and `departmentId`, exposed through OpenAPI for future URL-backed React list views.
 - TR-320 added the React `/trends` list view with URL-backed filters, loading/error/empty states and Vite `/api` proxy to the local Fastify backend; browser screenshots checked light, dark and inverted contexts.
 - TR-321 added the React `/trends/:id` detail view with linked list rows, source traceability visibility and empty related innovations/pilots/metrics sections; browser screenshots checked light, dark and inverted contexts.
+- TR-022 published PDF seed data into local SQLite through `seed:publish`: 10 technology trends are visible in `/trends` with source numbers `1,2,3,4,5,6,7,8,10,11`, 7 strategic initiatives are visible in `/innovations` with source numbers `1..7`, and seed audit events exist for all 17 published records.
 - Backend Vitest runs with `--fileParallelism=false` because SQLite write tests share one local database and parallel file execution can produce `SQLITE_BUSY`.

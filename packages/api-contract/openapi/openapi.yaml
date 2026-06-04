@@ -10,6 +10,8 @@ tags:
     description: Service readiness endpoints.
   - name: Trends
     description: Trend card endpoints.
+  - name: StrategicInitiatives
+    description: PDF-seeded strategic initiative endpoints.
 paths:
   /health:
     get:
@@ -142,6 +144,21 @@ paths:
           $ref: "#/components/responses/ForbiddenError"
         "404":
           $ref: "#/components/responses/NotFoundError"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /strategic-initiatives:
+    get:
+      operationId: listStrategicInitiatives
+      tags:
+        - StrategicInitiatives
+      summary: List PDF-seeded strategic initiatives.
+      responses:
+        "200":
+          description: Strategic initiatives.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StrategicInitiativeListResponse"
         "500":
           $ref: "#/components/responses/InternalServerError"
   /trends:
@@ -503,6 +520,71 @@ components:
           type: string
         name:
           type: string
+    StrategicInitiativeDepartment:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - code
+        - name
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+    StrategicInitiativeItem:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - seedKey
+        - title
+        - department
+        - createdQuarter
+        - ownerName
+        - year
+        - comment
+        - sourceTrace
+        - version
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+        seedKey:
+          type: string
+        title:
+          type: string
+        department:
+          $ref: "#/components/schemas/StrategicInitiativeDepartment"
+        createdQuarter:
+          type: string
+        ownerName:
+          type: string
+        year:
+          type: string
+        comment:
+          type: string
+        sourceTrace:
+          nullable: true
+        version:
+          type: integer
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    StrategicInitiativeListResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/StrategicInitiativeItem"
     TrendOwner:
       type: object
       additionalProperties: false

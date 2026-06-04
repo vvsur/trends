@@ -94,6 +94,16 @@ Backend exposes trend card management under `/api/v1/trends`.
 
 The MVP trend card stores title, description, primary domain, optional secondary domain codes, maturity ring, recommendation, owner, review date, status, horizon, optional relevance score and optional source trace JSON. Mutations write audit events in the same transaction. UI list/detail experiences remain separate frontend backlog items.
 
+## PDF Seed Publication Baseline
+
+Backend publishes traceable PDF seed data from `data/seed/*.seed.json` into SQLite through the TypeScript seed publisher.
+
+- `pnpm --filter @trends/backend run seed:publish` loads `data/seed/generated/portal-seed.load.json` and upserts 10 primary technology trends plus 7 strategic initiatives.
+- Technology trends are published into `/api/v1/trends` with source trace JSON, `technology` domain, `in_review` status and `assess` maturity/recommendation placeholders; final scoring regulation is not invented.
+- Strategic initiatives are published into `StrategicInitiative` and exposed by `GET /api/v1/strategic-initiatives`.
+- PDF source numbering is preserved exactly, including the missing trend position `9`.
+- Seed publication writes `AuditEvent` records with `event_type=seed` and `source=seed` for published trends and strategic initiatives.
+
 ## RBAC policy baseline
 
 Backend authorization uses scope-aware RBAC policy primitives from ADR 0005. The baseline roles are:

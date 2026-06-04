@@ -240,6 +240,7 @@ export type DepartmentWhereInput = {
   sortOrder?: Prisma.IntFilter<"Department"> | number
   createdAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Department"> | Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeListRelationFilter
   users?: Prisma.UserListRelationFilter
   employeeProfiles?: Prisma.EmployeeProfileListRelationFilter
 }
@@ -253,6 +254,7 @@ export type DepartmentOrderByWithRelationInput = {
   sortOrder?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  strategicInitiatives?: Prisma.StrategicInitiativeOrderByRelationAggregateInput
   users?: Prisma.UserOrderByRelationAggregateInput
   employeeProfiles?: Prisma.EmployeeProfileOrderByRelationAggregateInput
 }
@@ -269,6 +271,7 @@ export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
   sortOrder?: Prisma.IntFilter<"Department"> | number
   createdAt?: Prisma.DateTimeFilter<"Department"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Department"> | Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeListRelationFilter
   users?: Prisma.UserListRelationFilter
   employeeProfiles?: Prisma.EmployeeProfileListRelationFilter
 }, "id" | "code">
@@ -312,6 +315,7 @@ export type DepartmentCreateInput = {
   sortOrder: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeCreateNestedManyWithoutDepartmentInput
   users?: Prisma.UserCreateNestedManyWithoutDepartmentInput
   employeeProfiles?: Prisma.EmployeeProfileCreateNestedManyWithoutDepartmentInput
 }
@@ -325,6 +329,7 @@ export type DepartmentUncheckedCreateInput = {
   sortOrder: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeUncheckedCreateNestedManyWithoutDepartmentInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutDepartmentInput
   employeeProfiles?: Prisma.EmployeeProfileUncheckedCreateNestedManyWithoutDepartmentInput
 }
@@ -338,6 +343,7 @@ export type DepartmentUpdateInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeUpdateManyWithoutDepartmentNestedInput
   users?: Prisma.UserUpdateManyWithoutDepartmentNestedInput
   employeeProfiles?: Prisma.EmployeeProfileUpdateManyWithoutDepartmentNestedInput
 }
@@ -351,6 +357,7 @@ export type DepartmentUncheckedUpdateInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeUncheckedUpdateManyWithoutDepartmentNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutDepartmentNestedInput
   employeeProfiles?: Prisma.EmployeeProfileUncheckedUpdateManyWithoutDepartmentNestedInput
 }
@@ -469,6 +476,20 @@ export type DepartmentUpdateOneRequiredWithoutEmployeeProfilesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutEmployeeProfilesInput, Prisma.DepartmentUpdateWithoutEmployeeProfilesInput>, Prisma.DepartmentUncheckedUpdateWithoutEmployeeProfilesInput>
 }
 
+export type DepartmentCreateNestedOneWithoutStrategicInitiativesInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutStrategicInitiativesInput, Prisma.DepartmentUncheckedCreateWithoutStrategicInitiativesInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutStrategicInitiativesInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+}
+
+export type DepartmentUpdateOneRequiredWithoutStrategicInitiativesNestedInput = {
+  create?: Prisma.XOR<Prisma.DepartmentCreateWithoutStrategicInitiativesInput, Prisma.DepartmentUncheckedCreateWithoutStrategicInitiativesInput>
+  connectOrCreate?: Prisma.DepartmentCreateOrConnectWithoutStrategicInitiativesInput
+  upsert?: Prisma.DepartmentUpsertWithoutStrategicInitiativesInput
+  connect?: Prisma.DepartmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DepartmentUpdateToOneWithWhereWithoutStrategicInitiativesInput, Prisma.DepartmentUpdateWithoutStrategicInitiativesInput>, Prisma.DepartmentUncheckedUpdateWithoutStrategicInitiativesInput>
+}
+
 export type DepartmentCreateWithoutUsersInput = {
   id?: string
   code: string
@@ -478,6 +499,7 @@ export type DepartmentCreateWithoutUsersInput = {
   sortOrder: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeCreateNestedManyWithoutDepartmentInput
   employeeProfiles?: Prisma.EmployeeProfileCreateNestedManyWithoutDepartmentInput
 }
 
@@ -490,6 +512,7 @@ export type DepartmentUncheckedCreateWithoutUsersInput = {
   sortOrder: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeUncheckedCreateNestedManyWithoutDepartmentInput
   employeeProfiles?: Prisma.EmployeeProfileUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
@@ -518,6 +541,7 @@ export type DepartmentUpdateWithoutUsersInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeUpdateManyWithoutDepartmentNestedInput
   employeeProfiles?: Prisma.EmployeeProfileUpdateManyWithoutDepartmentNestedInput
 }
 
@@ -530,6 +554,7 @@ export type DepartmentUncheckedUpdateWithoutUsersInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeUncheckedUpdateManyWithoutDepartmentNestedInput
   employeeProfiles?: Prisma.EmployeeProfileUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
@@ -542,6 +567,7 @@ export type DepartmentCreateWithoutEmployeeProfilesInput = {
   sortOrder: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeCreateNestedManyWithoutDepartmentInput
   users?: Prisma.UserCreateNestedManyWithoutDepartmentInput
 }
 
@@ -554,6 +580,7 @@ export type DepartmentUncheckedCreateWithoutEmployeeProfilesInput = {
   sortOrder: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeUncheckedCreateNestedManyWithoutDepartmentInput
   users?: Prisma.UserUncheckedCreateNestedManyWithoutDepartmentInput
 }
 
@@ -582,6 +609,7 @@ export type DepartmentUpdateWithoutEmployeeProfilesInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeUpdateManyWithoutDepartmentNestedInput
   users?: Prisma.UserUpdateManyWithoutDepartmentNestedInput
 }
 
@@ -594,7 +622,76 @@ export type DepartmentUncheckedUpdateWithoutEmployeeProfilesInput = {
   sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  strategicInitiatives?: Prisma.StrategicInitiativeUncheckedUpdateManyWithoutDepartmentNestedInput
   users?: Prisma.UserUncheckedUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentCreateWithoutStrategicInitiativesInput = {
+  id?: string
+  code: string
+  name: string
+  description: string
+  active?: boolean
+  sortOrder: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserCreateNestedManyWithoutDepartmentInput
+  employeeProfiles?: Prisma.EmployeeProfileCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentUncheckedCreateWithoutStrategicInitiativesInput = {
+  id?: string
+  code: string
+  name: string
+  description: string
+  active?: boolean
+  sortOrder: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  users?: Prisma.UserUncheckedCreateNestedManyWithoutDepartmentInput
+  employeeProfiles?: Prisma.EmployeeProfileUncheckedCreateNestedManyWithoutDepartmentInput
+}
+
+export type DepartmentCreateOrConnectWithoutStrategicInitiativesInput = {
+  where: Prisma.DepartmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutStrategicInitiativesInput, Prisma.DepartmentUncheckedCreateWithoutStrategicInitiativesInput>
+}
+
+export type DepartmentUpsertWithoutStrategicInitiativesInput = {
+  update: Prisma.XOR<Prisma.DepartmentUpdateWithoutStrategicInitiativesInput, Prisma.DepartmentUncheckedUpdateWithoutStrategicInitiativesInput>
+  create: Prisma.XOR<Prisma.DepartmentCreateWithoutStrategicInitiativesInput, Prisma.DepartmentUncheckedCreateWithoutStrategicInitiativesInput>
+  where?: Prisma.DepartmentWhereInput
+}
+
+export type DepartmentUpdateToOneWithWhereWithoutStrategicInitiativesInput = {
+  where?: Prisma.DepartmentWhereInput
+  data: Prisma.XOR<Prisma.DepartmentUpdateWithoutStrategicInitiativesInput, Prisma.DepartmentUncheckedUpdateWithoutStrategicInitiativesInput>
+}
+
+export type DepartmentUpdateWithoutStrategicInitiativesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUpdateManyWithoutDepartmentNestedInput
+  employeeProfiles?: Prisma.EmployeeProfileUpdateManyWithoutDepartmentNestedInput
+}
+
+export type DepartmentUncheckedUpdateWithoutStrategicInitiativesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  sortOrder?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  users?: Prisma.UserUncheckedUpdateManyWithoutDepartmentNestedInput
+  employeeProfiles?: Prisma.EmployeeProfileUncheckedUpdateManyWithoutDepartmentNestedInput
 }
 
 
@@ -603,11 +700,13 @@ export type DepartmentUncheckedUpdateWithoutEmployeeProfilesInput = {
  */
 
 export type DepartmentCountOutputType = {
+  strategicInitiatives: number
   users: number
   employeeProfiles: number
 }
 
 export type DepartmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  strategicInitiatives?: boolean | DepartmentCountOutputTypeCountStrategicInitiativesArgs
   users?: boolean | DepartmentCountOutputTypeCountUsersArgs
   employeeProfiles?: boolean | DepartmentCountOutputTypeCountEmployeeProfilesArgs
 }
@@ -620,6 +719,13 @@ export type DepartmentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.E
    * Select specific fields to fetch from the DepartmentCountOutputType
    */
   select?: Prisma.DepartmentCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * DepartmentCountOutputType without action
+ */
+export type DepartmentCountOutputTypeCountStrategicInitiativesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StrategicInitiativeWhereInput
 }
 
 /**
@@ -646,6 +752,7 @@ export type DepartmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   sortOrder?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  strategicInitiatives?: boolean | Prisma.Department$strategicInitiativesArgs<ExtArgs>
   users?: boolean | Prisma.Department$usersArgs<ExtArgs>
   employeeProfiles?: boolean | Prisma.Department$employeeProfilesArgs<ExtArgs>
   _count?: boolean | Prisma.DepartmentCountOutputTypeDefaultArgs<ExtArgs>
@@ -686,6 +793,7 @@ export type DepartmentSelectScalar = {
 
 export type DepartmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "name" | "description" | "active" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["department"]>
 export type DepartmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  strategicInitiatives?: boolean | Prisma.Department$strategicInitiativesArgs<ExtArgs>
   users?: boolean | Prisma.Department$usersArgs<ExtArgs>
   employeeProfiles?: boolean | Prisma.Department$employeeProfilesArgs<ExtArgs>
   _count?: boolean | Prisma.DepartmentCountOutputTypeDefaultArgs<ExtArgs>
@@ -696,6 +804,7 @@ export type DepartmentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 export type $DepartmentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Department"
   objects: {
+    strategicInitiatives: Prisma.$StrategicInitiativePayload<ExtArgs>[]
     users: Prisma.$UserPayload<ExtArgs>[]
     employeeProfiles: Prisma.$EmployeeProfilePayload<ExtArgs>[]
   }
@@ -1102,6 +1211,7 @@ readonly fields: DepartmentFieldRefs;
  */
 export interface Prisma__DepartmentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  strategicInitiatives<T extends Prisma.Department$strategicInitiativesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$strategicInitiativesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StrategicInitiativePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   users<T extends Prisma.Department$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   employeeProfiles<T extends Prisma.Department$employeeProfilesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Department$employeeProfilesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmployeeProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1529,6 +1639,30 @@ export type DepartmentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many Departments to delete.
    */
   limit?: number
+}
+
+/**
+ * Department.strategicInitiatives
+ */
+export type Department$strategicInitiativesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StrategicInitiative
+   */
+  select?: Prisma.StrategicInitiativeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StrategicInitiative
+   */
+  omit?: Prisma.StrategicInitiativeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StrategicInitiativeInclude<ExtArgs> | null
+  where?: Prisma.StrategicInitiativeWhereInput
+  orderBy?: Prisma.StrategicInitiativeOrderByWithRelationInput | Prisma.StrategicInitiativeOrderByWithRelationInput[]
+  cursor?: Prisma.StrategicInitiativeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StrategicInitiativeScalarFieldEnum | Prisma.StrategicInitiativeScalarFieldEnum[]
 }
 
 /**

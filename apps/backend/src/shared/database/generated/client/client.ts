@@ -24,7 +24,7 @@ export * as $Enums from './enums.js'
 export * from "./enums.js"
 /**
  * ## Prisma Client
- * 
+ *
  * Type-safe database client for TypeScript
  * @example
  * ```
@@ -34,7 +34,7 @@ export * from "./enums.js"
  * // Fetch zero or more TrendDomains
  * const trendDomains = await prisma.trendDomain.findMany()
  * ```
- * 
+ *
  * Read more in our [docs](https://pris.ly/d/client).
  */
 export const PrismaClient = $Class.getPrismaClientClass()
@@ -101,3 +101,8 @@ export type TrendRecommendation = Prisma.TrendRecommendationModel
  * 
  */
 export type Trend = Prisma.TrendModel
+/**
+ * Model StrategicInitiative
+ *
+ */
+export type StrategicInitiative = Prisma.StrategicInitiativeModel

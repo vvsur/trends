@@ -94,7 +94,7 @@
 
 | ID | Priority | Status | Task | Dependencies | Acceptance criteria |
 | --- | --- | --- | --- | --- | --- |
-| TR-022 | P0 | Blocked | Импортировать стартовый реестр из материалов | TR-300, TR-301, TR-312, TR-313 | В SQLite через Prisma импортированы 7 стратегических инициатив и 10 трендов из `docs/13-source-traceability.md` |
+| TR-022 | P0 | Done | Импортировать стартовый реестр из материалов | TR-300, TR-301, TR-312, TR-313 | В SQLite через Prisma опубликованы 7 стратегических инициатив и 10 трендов из `docs/13-source-traceability.md`; `/trends` and `/innovations` show the data; seed audit events verified |
 | TR-310 | P0 | Done | Подготовить seed data file для PDF-инициатив | TR-123 | `data/seed/strategic-initiatives.seed.json` contains 7 traceable records with source_pdf, source_number, department, created_quarter, owner, year, comment |
 | TR-311 | P0 | Done | Подготовить seed data file для первичных трендов | TR-123 | `data/seed/primary-technology-trends.seed.json` contains 10 traceable records and preserves missing source number `9` |
 | TR-312 | P0 | Done | Реализовать seed loader | TR-310, TR-311 | `pnpm seed:load` generates `data/seed/generated/portal-seed.load.json`; repeated run is idempotent; loader validation errors include item and field context |
@@ -298,4 +298,4 @@
 
 1. `TR-020`: создать инновацию в реестре после проверки domain model/API dependencies.
 2. `TR-021`: реализовать статусы жизненного цикла инновации на базе справочника `innovation_statuses`.
-3. `TR-022`: импортировать стартовый реестр после появления недостающей модели strategic initiatives/import publication flow.
+3. `TR-314`: реализовать UI/API для проверки seed после импорта.

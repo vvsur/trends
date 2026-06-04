@@ -395,7 +395,8 @@ export const ModelName = {
   PilotStatus: 'PilotStatus',
   MaturityRing: 'MaturityRing',
   TrendRecommendation: 'TrendRecommendation',
-  Trend: 'Trend'
+  Trend: 'Trend',
+  StrategicInitiative: 'StrategicInitiative'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -411,7 +412,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "trendDomain" | "department" | "user" | "roleAssignment" | "employeeProfile" | "auditEvent" | "trendStatus" | "innovationStatus" | "pilotStatus" | "maturityRing" | "trendRecommendation" | "trend"
+    modelProps: "trendDomain" | "department" | "user" | "roleAssignment" | "employeeProfile" | "auditEvent" | "trendStatus" | "innovationStatus" | "pilotStatus" | "maturityRing" | "trendRecommendation" | "trend" | "strategicInitiative"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1303,6 +1304,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    StrategicInitiative: {
+      payload: Prisma.$StrategicInitiativePayload<ExtArgs>
+      fields: Prisma.StrategicInitiativeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StrategicInitiativeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicInitiativePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StrategicInitiativeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicInitiativePayload>
+        }
+        findFirst: {
+          args: Prisma.StrategicInitiativeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicInitiativePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StrategicInitiativeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicInitiativePayload>
+        }
+        findMany: {
+          args: Prisma.StrategicInitiativeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicInitiativePayload>[]
+        }
+        create: {
+          args: Prisma.StrategicInitiativeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicInitiativePayload>
+        }
+        createMany: {
+          args: Prisma.StrategicInitiativeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.StrategicInitiativeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicInitiativePayload>[]
+        }
+        delete: {
+          args: Prisma.StrategicInitiativeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicInitiativePayload>
+        }
+        update: {
+          args: Prisma.StrategicInitiativeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicInitiativePayload>
+        }
+        deleteMany: {
+          args: Prisma.StrategicInitiativeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StrategicInitiativeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.StrategicInitiativeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicInitiativePayload>[]
+        }
+        upsert: {
+          args: Prisma.StrategicInitiativeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StrategicInitiativePayload>
+        }
+        aggregate: {
+          args: Prisma.StrategicInitiativeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateStrategicInitiative>
+        }
+        groupBy: {
+          args: Prisma.StrategicInitiativeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StrategicInitiativeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StrategicInitiativeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StrategicInitiativeCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1530,6 +1605,24 @@ export const TrendScalarFieldEnum = {
 export type TrendScalarFieldEnum = (typeof TrendScalarFieldEnum)[keyof typeof TrendScalarFieldEnum]
 
 
+export const StrategicInitiativeScalarFieldEnum = {
+  id: 'id',
+  seedKey: 'seedKey',
+  title: 'title',
+  departmentId: 'departmentId',
+  createdQuarter: 'createdQuarter',
+  ownerName: 'ownerName',
+  year: 'year',
+  comment: 'comment',
+  sourceTraceJson: 'sourceTraceJson',
+  version: 'version',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type StrategicInitiativeScalarFieldEnum = (typeof StrategicInitiativeScalarFieldEnum)[keyof typeof StrategicInitiativeScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1708,6 +1801,7 @@ export type GlobalOmitConfig = {
   maturityRing?: Prisma.MaturityRingOmit
   trendRecommendation?: Prisma.TrendRecommendationOmit
   trend?: Prisma.TrendOmit
+  strategicInitiative?: Prisma.StrategicInitiativeOmit
 }
 
 /* Types for Logging */

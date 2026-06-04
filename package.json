@@ -19,6 +19,7 @@
     "contract:check": "pnpm --filter @trends/api-contract run check:generated",
     "seed:check": "node scripts/validate-seed-source.mjs",
     "seed:load": "pnpm --filter @trends/backend run seed:load",
+    "seed:publish": "pnpm --filter @trends/backend run seed:publish",
     "db:validate": "pnpm --filter @trends/backend run db:validate",
     "db:generate": "pnpm --filter @trends/backend run db:generate",
     "db:migrate:dev": "pnpm --filter @trends/backend run db:migrate:dev",

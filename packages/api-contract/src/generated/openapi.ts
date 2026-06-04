@@ -73,6 +73,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/strategic-initiatives": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List PDF-seeded strategic initiatives. */
+        get: operations["listStrategicInitiatives"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/trends": {
         parameters: {
             query?: never;
@@ -170,6 +187,28 @@ export interface components {
             id: string;
             code: string;
             name: string;
+        };
+        StrategicInitiativeDepartment: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        StrategicInitiativeItem: {
+            id: string;
+            seedKey: string;
+            title: string;
+            department: components["schemas"]["StrategicInitiativeDepartment"];
+            createdQuarter: string;
+            ownerName: string;
+            year: string;
+            comment: string;
+            sourceTrace: unknown;
+            version: number;
+            createdAt: string;
+            updatedAt: string;
+        };
+        StrategicInitiativeListResponse: {
+            data: components["schemas"]["StrategicInitiativeItem"][];
         };
         TrendOwner: {
             id: string;
@@ -455,6 +494,27 @@ export interface operations {
             401: components["responses"]["UnauthorizedError"];
             403: components["responses"]["ForbiddenError"];
             404: components["responses"]["NotFoundError"];
+            500: components["responses"]["InternalServerError"];
+        };
+    };
+    listStrategicInitiatives: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Strategic initiatives. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StrategicInitiativeListResponse"];
+                };
+            };
             500: components["responses"]["InternalServerError"];
         };
     };
