@@ -6,8 +6,24 @@ import { createPrismaClient, type AppPrismaClient } from '../../shared/database/
 
 let app: FastifyInstance | undefined;
 let prisma: AppPrismaClient | undefined;
+const createdTrendIds: string[] = [];
 
 afterEach(async () => {
+  if (prisma && createdTrendIds.length > 0) {
+    await prisma.auditEvent.deleteMany({
+      where: {
+        entityId: { in: createdTrendIds },
+        entityType: 'trend',
+      },
+    });
+    await prisma.trend.deleteMany({
+      where: {
+        id: { in: createdTrendIds },
+      },
+    });
+    createdTrendIds.length = 0;
+  }
+
   await app?.close();
   await prisma?.$disconnect();
   app = undefined;
@@ -74,7 +90,7 @@ describe('trend routes', () => {
   it('lets admin create, read and update a trend card with audit trail', async () => {
     prisma = createPrismaClient();
     app = await buildApp({ prisma });
-    const title = `AI platform trend ${randomUUID().slice(0, 8)}`;
+    const title = `Корпоративная AI-платформа для безопасного внедрения GenAI ${randomUUID().slice(0, 8)}`;
 
     const createResponse = await app.inject({
       headers: {
@@ -82,7 +98,7 @@ describe('trend routes', () => {
       },
       method: 'POST',
       payload: {
-        description: 'Tracks internal platform engineering and AI adoption for MVP.',
+        description: 'Tracks reusable AI services, governance, model access and production adoption for the MVP trend registry.',
         domainCode: 'technology',
         horizon: '2026',
         maturityRingCode: 'assess',
@@ -99,8 +115,9 @@ describe('trend routes', () => {
 
     expect(createResponse.statusCode).toBe(201);
     const created = createResponse.json().data;
+    createdTrendIds.push(created.id);
     expect(created).toMatchObject({
-      description: 'Tracks internal platform engineering and AI adoption for MVP.',
+      description: 'Tracks reusable AI services, governance, model access and production adoption for the MVP trend registry.',
       domain: {
         code: 'technology',
       },
