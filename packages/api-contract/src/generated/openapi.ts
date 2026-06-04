@@ -21,6 +21,94 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/reference-data/{dictionary}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List managed reference data dictionary items. */
+        get: operations["listReferenceData"];
+        put?: never;
+        /** Create a managed reference data dictionary item. */
+        post: operations["createReferenceData"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/reference-data/{dictionary}/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update a managed reference data dictionary item. */
+        patch: operations["updateReferenceData"];
+        trace?: never;
+    };
+    "/reference-data/{dictionary}/{id}/deactivate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Deactivate a managed reference data dictionary item. */
+        post: operations["deactivateReferenceData"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/trends": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List trend cards. */
+        get: operations["listTrends"];
+        put?: never;
+        /** Create a trend card. */
+        post: operations["createTrend"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/trends/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get a trend card by id. */
+        get: operations["getTrend"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update a trend card. */
+        patch: operations["updateTrend"];
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -31,9 +119,189 @@ export interface components {
             /** @enum {string} */
             status: "ok";
         };
+        /** @enum {string} */
+        ApiErrorCode: "validation_error" | "unauthorized" | "forbidden" | "not_found" | "conflict" | "internal_error";
+        ApiError: {
+            code: components["schemas"]["ApiErrorCode"];
+            message: string;
+            statusCode: number;
+            requestId: string;
+            details?: unknown;
+        };
+        ApiErrorResponse: {
+            error: components["schemas"]["ApiError"];
+        };
+        ReferenceDataItem: {
+            id: string;
+            code: string;
+            name: string;
+            description: string;
+            active: boolean;
+            sortOrder: number;
+            visibleInMvp?: boolean;
+        };
+        ReferenceDataItemResponse: {
+            data: components["schemas"]["ReferenceDataItem"];
+        };
+        ReferenceDataListResponse: {
+            data: components["schemas"]["ReferenceDataItem"][];
+        };
+        ReferenceDataCreateInput: {
+            code: string;
+            name: string;
+            description: string;
+            active?: boolean;
+            sortOrder: number;
+            visibleInMvp?: boolean;
+        };
+        ReferenceDataUpdateInput: {
+            code?: string;
+            name?: string;
+            description?: string;
+            active?: boolean;
+            sortOrder?: number;
+            visibleInMvp?: boolean;
+            reason: string;
+        };
+        ReferenceDataDeactivateInput: {
+            reason: string;
+        };
+        TrendReference: {
+            id: string;
+            code: string;
+            name: string;
+        };
+        TrendOwner: {
+            id: string;
+            displayName: string;
+            email: string;
+            status: string;
+        };
+        TrendItem: {
+            id: string;
+            title: string;
+            description: string;
+            domain: components["schemas"]["TrendReference"];
+            secondaryDomainCodes: string[];
+            maturityRing: components["schemas"]["TrendReference"];
+            recommendation: components["schemas"]["TrendReference"];
+            owner: components["schemas"]["TrendOwner"];
+            reviewDate: string;
+            status: components["schemas"]["TrendReference"];
+            horizon: string;
+            relevanceScore: number | null;
+            sourceTrace: unknown;
+            version: number;
+            createdAt: string;
+            updatedAt: string;
+        };
+        TrendItemResponse: {
+            data: components["schemas"]["TrendItem"];
+        };
+        TrendListResponse: {
+            data: components["schemas"]["TrendItem"][];
+        };
+        TrendCreateInput: {
+            title: string;
+            description: string;
+            domainCode: string;
+            secondaryDomainCodes?: string[];
+            maturityRingCode: string;
+            recommendationCode: string;
+            ownerId: string;
+            reviewDate: string;
+            statusCode: string;
+            horizon: string;
+            relevanceScore?: number | null;
+            sourceTrace?: unknown;
+        };
+        TrendUpdateInput: {
+            title?: string;
+            description?: string;
+            domainCode?: string;
+            secondaryDomainCodes?: string[];
+            maturityRingCode?: string;
+            recommendationCode?: string;
+            ownerId?: string;
+            reviewDate?: string;
+            statusCode?: string;
+            horizon?: string;
+            relevanceScore?: number | null;
+            sourceTrace?: unknown;
+            reason: string;
+        };
     };
-    responses: never;
-    parameters: never;
+    responses: {
+        /** @description Request validation failed. */
+        ValidationError: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["ApiErrorResponse"];
+            };
+        };
+        /** @description Authentication is required. */
+        UnauthorizedError: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["ApiErrorResponse"];
+            };
+        };
+        /** @description Actor is not allowed to perform the action. */
+        ForbiddenError: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["ApiErrorResponse"];
+            };
+        };
+        /** @description Resource was not found. */
+        NotFoundError: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["ApiErrorResponse"];
+            };
+        };
+        /** @description Request conflicts with current resource state. */
+        ConflictError: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["ApiErrorResponse"];
+            };
+        };
+        /** @description Unexpected server error. */
+        InternalServerError: {
+            headers: {
+                [name: string]: unknown;
+            };
+            content: {
+                "application/json": components["schemas"]["ApiErrorResponse"];
+            };
+        };
+    };
+    parameters: {
+        /** @description Local MVP actor email used by the closed-contour auth shim. */
+        ActorEmailHeader: string;
+        DictionaryPath: "departments" | "trend-domains" | "trend-statuses" | "innovation-statuses" | "pilot-statuses" | "maturity-rings" | "trend-recommendations";
+        ReferenceDataIdPath: string;
+        TrendIdPath: string;
+        /** @description Filter trend cards by primary trend domain code. */
+        TrendDomainCodeQuery: string;
+        /** @description Filter trend cards by trend status code. */
+        TrendStatusCodeQuery: string;
+        /** @description Filter trend cards by owner user id. */
+        TrendOwnerIdQuery: string;
+        /** @description Filter trend cards by owner department id. */
+        TrendDepartmentIdQuery: string;
+    };
     requestBodies: never;
     headers: never;
     pathItems: never;
@@ -58,6 +326,255 @@ export interface operations {
                     "application/json": components["schemas"]["HealthResponse"];
                 };
             };
+            404: components["responses"]["NotFoundError"];
+            500: components["responses"]["InternalServerError"];
+        };
+    };
+    listReferenceData: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                dictionary: components["parameters"]["DictionaryPath"];
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Reference data items. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReferenceDataListResponse"];
+                };
+            };
+            404: components["responses"]["NotFoundError"];
+            500: components["responses"]["InternalServerError"];
+        };
+    };
+    createReferenceData: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Local MVP actor email used by the closed-contour auth shim. */
+                "X-Trends-Actor-Email": components["parameters"]["ActorEmailHeader"];
+            };
+            path: {
+                dictionary: components["parameters"]["DictionaryPath"];
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReferenceDataCreateInput"];
+            };
+        };
+        responses: {
+            /** @description Reference data item created. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReferenceDataItemResponse"];
+                };
+            };
+            400: components["responses"]["ValidationError"];
+            401: components["responses"]["UnauthorizedError"];
+            403: components["responses"]["ForbiddenError"];
+            404: components["responses"]["NotFoundError"];
+            500: components["responses"]["InternalServerError"];
+        };
+    };
+    updateReferenceData: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Local MVP actor email used by the closed-contour auth shim. */
+                "X-Trends-Actor-Email": components["parameters"]["ActorEmailHeader"];
+            };
+            path: {
+                dictionary: components["parameters"]["DictionaryPath"];
+                id: components["parameters"]["ReferenceDataIdPath"];
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReferenceDataUpdateInput"];
+            };
+        };
+        responses: {
+            /** @description Reference data item updated. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReferenceDataItemResponse"];
+                };
+            };
+            400: components["responses"]["ValidationError"];
+            401: components["responses"]["UnauthorizedError"];
+            403: components["responses"]["ForbiddenError"];
+            404: components["responses"]["NotFoundError"];
+            500: components["responses"]["InternalServerError"];
+        };
+    };
+    deactivateReferenceData: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Local MVP actor email used by the closed-contour auth shim. */
+                "X-Trends-Actor-Email": components["parameters"]["ActorEmailHeader"];
+            };
+            path: {
+                dictionary: components["parameters"]["DictionaryPath"];
+                id: components["parameters"]["ReferenceDataIdPath"];
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReferenceDataDeactivateInput"];
+            };
+        };
+        responses: {
+            /** @description Reference data item deactivated. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReferenceDataItemResponse"];
+                };
+            };
+            400: components["responses"]["ValidationError"];
+            401: components["responses"]["UnauthorizedError"];
+            403: components["responses"]["ForbiddenError"];
+            404: components["responses"]["NotFoundError"];
+            500: components["responses"]["InternalServerError"];
+        };
+    };
+    listTrends: {
+        parameters: {
+            query?: {
+                /** @description Filter trend cards by primary trend domain code. */
+                domainCode?: components["parameters"]["TrendDomainCodeQuery"];
+                /** @description Filter trend cards by trend status code. */
+                statusCode?: components["parameters"]["TrendStatusCodeQuery"];
+                /** @description Filter trend cards by owner user id. */
+                ownerId?: components["parameters"]["TrendOwnerIdQuery"];
+                /** @description Filter trend cards by owner department id. */
+                departmentId?: components["parameters"]["TrendDepartmentIdQuery"];
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Trend cards. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TrendListResponse"];
+                };
+            };
+            500: components["responses"]["InternalServerError"];
+        };
+    };
+    createTrend: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Local MVP actor email used by the closed-contour auth shim. */
+                "X-Trends-Actor-Email": components["parameters"]["ActorEmailHeader"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TrendCreateInput"];
+            };
+        };
+        responses: {
+            /** @description Trend card created. */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TrendItemResponse"];
+                };
+            };
+            400: components["responses"]["ValidationError"];
+            401: components["responses"]["UnauthorizedError"];
+            403: components["responses"]["ForbiddenError"];
+            500: components["responses"]["InternalServerError"];
+        };
+    };
+    getTrend: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: components["parameters"]["TrendIdPath"];
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Trend card. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TrendItemResponse"];
+                };
+            };
+            404: components["responses"]["NotFoundError"];
+            500: components["responses"]["InternalServerError"];
+        };
+    };
+    updateTrend: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Local MVP actor email used by the closed-contour auth shim. */
+                "X-Trends-Actor-Email": components["parameters"]["ActorEmailHeader"];
+            };
+            path: {
+                id: components["parameters"]["TrendIdPath"];
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TrendUpdateInput"];
+            };
+        };
+        responses: {
+            /** @description Trend card updated. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TrendItemResponse"];
+                };
+            };
+            400: components["responses"]["ValidationError"];
+            401: components["responses"]["UnauthorizedError"];
+            403: components["responses"]["ForbiddenError"];
+            404: components["responses"]["NotFoundError"];
+            500: components["responses"]["InternalServerError"];
         };
     };
 }

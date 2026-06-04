@@ -45,7 +45,7 @@ Backend должен разрабатываться на TypeScript.
 - production backend должен собираться через TypeScript compiler и запускаться как compiled JavaScript на Node.js;
 - request/response validation должна использовать доверенные статические схемы приложения, а не пользовательские dynamic schemas.
 
-## Требует отдельного решения
+## API
 
 Архитектурное решение TR-122:
 
@@ -56,16 +56,18 @@ Backend должен разрабатываться на TypeScript.
 - frontend shared types: generated with `openapi-typescript`;
 - ADR: `docs/adr/0003-api-style-shared-types.md`.
 
-## Еще требует отдельного решения
+## Storage
 
 Архитектурное решение TR-123:
 
-- primary database для MVP: PostgreSQL;
-- data access/migrations: Prisma ORM + Prisma Migrate;
-- target PostgreSQL: supported major, initially PostgreSQL 17+;
+- primary database для MVP: SQLite;
+- data access/migrations: Prisma ORM + Prisma Migrate with SQLite provider;
+- database path/config: documented `DATABASE_URL`, initially file-based SQLite for local/dev MVP;
 - seed strategy: versioned source files + idempotent TypeScript seed runner, preserving `docs/13-source-traceability.md`;
 - rollback strategy: backups + forward-fix migrations, destructive changes only with explicit plan;
 - ADR: `docs/adr/0004-storage-migrations-seed.md`.
+
+PostgreSQL не используется в MVP baseline. Любой переход с SQLite на PostgreSQL требует отдельного ADR, data migration plan, export/import rehearsal и обновления backlog.
 
 ## Все еще требует отдельного решения
 

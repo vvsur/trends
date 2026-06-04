@@ -1,5 +1,9 @@
 # Черновая модель данных
 
+## Storage baseline
+
+MVP реализует эту модель в SQLite через Prisma ORM/Migrate. Физическая схема должна использовать `provider = "sqlite"` и `DATABASE_URL` с файловым SQLite database path. PostgreSQL не является MVP baseline; переход на него возможен только отдельным ADR, планом миграции и проверкой совместимости данных.
+
 ## User
 
 | Поле | Тип | Обязательное |
@@ -12,7 +16,23 @@
 | version | int | да |
 | created_at / updated_at | timestamp | да |
 
+## Department
+
+Department хранит управляемый справочник подразделений/платформ для seed import, фильтров, KPI и ownership. Стартовые значения MVP берутся из PDF traceability: `ITG`, `КСС`, `TKC`.
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| id | UUID/string | да |
+| code | string unique | да |
+| name | string | да |
+| description | text | да |
+| active | boolean | да |
+| sort_order | int | да |
+| created_at / updated_at | timestamp | да |
+
 ## RoleAssignment
+
+RoleAssignment хранит RBAC-роли из ADR 0005. В TR-304 это только модель данных; middleware/policies реализуются отдельно в TR-305.
 
 | Поле | Тип | Обязательное |
 | --- | --- | --- |
@@ -47,6 +67,15 @@
 | changed_fields | string[] | нет |
 | correlation_id | string/UUID | нет |
 | created_at | timestamp | да |
+
+SQLite implementation stores structured audit values as JSON text columns:
+
+- `actor_scope_json`
+- `before_json`
+- `after_json`
+- `changed_fields_json`
+
+Application helpers must serialize focused snapshots and write `AuditEvent` in the same transaction as the business mutation.
 
 ## SourceTrace
 
@@ -104,6 +133,104 @@ SourceTrace - обязательный компонент для записей,
 - `resilience`
 - `macro_industry`
 - `esg`
+
+## TrendDomain
+
+TrendDomain хранит управляемый справочник доменов трендов. В MVP активен и видим только `technology`; остальные домены заведены как inactive/hidden, чтобы включать их позднее без миграции структуры данных.
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| id | UUID/string | да |
+| code | string unique | да |
+| name | string | да |
+| description | text | да |
+| active | boolean | да |
+| visible_in_mvp | boolean | да |
+| sort_order | int | да |
+| created_at / updated_at | timestamp | да |
+
+Правило поэтапного включения доменов:
+
+- в MVP `technology` имеет `active = true` и `visible_in_mvp = true`;
+- будущие домены заведены заранее с `active = false` и `visible_in_mvp = false`;
+- включение нового домена выполняется изменением записи справочника, а не миграцией структуры данных;
+- до появления admin CRUD и RBAC включение доменов должно проходить как controlled data change с audit trail в будущих задачах TR-002/TR-305/TR-306.
+
+## Pipeline Status Dictionaries
+
+Статусы trend, innovation и pilot хранятся как управляемые справочники в SQLite/Prisma, а не как жесткие enum в коде. Это нужно для ручного администрирования справочников и будущего изменения pipeline без миграции бизнес-таблиц.
+
+Общая структура `TrendStatus`, `InnovationStatus`, `PilotStatus`:
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| id | UUID/string | да |
+| code | string unique | да |
+| name | string | да |
+| description | text | да |
+| active | boolean | да |
+| sort_order | int | да |
+| created_at / updated_at | timestamp | да |
+
+Стартовые `TrendStatus` значения:
+
+- `draft`
+- `in_review`
+- `published`
+- `archived`
+
+Стартовые `InnovationStatus` значения соответствуют TR-021:
+
+- `proposed`
+- `under_assessment`
+- `scored`
+- `pilot`
+- `effect_measurement`
+- `implemented`
+- `stopped`
+- `deferred`
+
+Стартовые `PilotStatus` значения поддерживают TR-042/TR-043/TR-045:
+
+- `planned`
+- `active`
+- `blocked`
+- `overdue`
+- `completed`
+- `stopped`
+- `deferred`
+
+## Maturity And Recommendation Dictionaries
+
+Зрелость тренда и рекомендация хранятся как управляемые справочники в SQLite/Prisma, чтобы radar rings и дальнейшие рекомендации можно было менять без переписывания кода карточки тренда.
+
+Общая структура `MaturityRing` и `TrendRecommendation`:
+
+| Поле | Тип | Обязательное |
+| --- | --- | --- |
+| id | UUID/string | да |
+| code | string unique | да |
+| name | string | да |
+| description | text | да |
+| active | boolean | да |
+| sort_order | int | да |
+| created_at / updated_at | timestamp | да |
+
+Стартовые `MaturityRing` значения:
+
+- `adopt`
+- `trial`
+- `assess`
+- `watch`
+- `hold`
+
+Стартовые `TrendRecommendation` значения:
+
+- `watch`
+- `assess`
+- `pilot`
+- `scale`
+- `hold`
 
 ## Innovation
 
@@ -295,16 +422,20 @@ SourceTrace - обязательный компонент для записей,
 
 ## EmployeeProfile
 
+EmployeeProfile хранит employee-facing данные для "Мои тренды", релевантности по подразделению, навыкам, интересам и подпискам. В SQLite списки навыков, интересов и подписанных доменов хранятся как JSON text (`skills_json`, `interests_json`, `subscribed_domains_json`) до появления отдельной нормализованной модели skill/subscription.
+
 | Поле | Тип | Обязательное |
 | --- | --- | --- |
+| id | UUID | да |
 | user_id | user ref | да |
-| role | string/ref | да |
+| primary_role | string/ref | да |
 | department_id | ref | да |
-| skills | string[] | нет |
-| interests | string[] | нет |
-| subscribed_domains | enum[] | нет |
-| contribution_score | decimal | нет |
+| skills_json | JSON text string[] | да |
+| interests_json | JSON text string[] | да |
+| subscribed_domains_json | JSON text string[] | да |
+| contribution_score | float | нет |
 | version | int | да |
+| created_at / updated_at | timestamp | да |
 
 ## Contribution
 

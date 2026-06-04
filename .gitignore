@@ -9,3 +9,12 @@ dist/
 test-results/
 playwright-report/
 *.tsbuildinfo
+
+# Local SQLite database files
+apps/backend/data/*.sqlite
+apps/backend/data/*.sqlite-*
+apps/backend/data/*.db
+apps/backend/data/*.db-*
+
+# Generated Prisma client output
+apps/backend/prisma/generated/

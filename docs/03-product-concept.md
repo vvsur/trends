@@ -185,6 +185,8 @@
 
 - Frontend должен быть реализован на React.
 - Backend должен быть реализован на TypeScript.
+- Для MVP выбран storage baseline: SQLite + Prisma ORM/Migrate.
+- PostgreSQL не используется в MVP и может быть рассмотрен позже только через отдельное архитектурное решение и план миграции.
 - Конкретные framework/runtime поверх React и TypeScript выбираются отдельным архитектурным решением до начала реализации.
 - Подробно: `docs/11-technology-stack.md`.
 
@@ -210,6 +212,7 @@ MVP должен покрыть 2026 KPI и создать основу для 2
 - импорт текущего реестра из PDF;
 - роли владельца, эксперта, руководителя и администратора;
 - подключение MOEX design system skills и фиксация правил UI-разработки в `AGENTS.md` до начала активной UI-реализации;
+- хранение данных MVP на SQLite через Prisma ORM/Migrate;
 - соблюдение ограничений стека: React на frontend и TypeScript на backend.
 
 ## Не-MVP

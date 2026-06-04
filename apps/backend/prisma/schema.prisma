@@ -1,0 +1,215 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/shared/database/generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model TrendDomain {
+  id           String   @id @default(uuid())
+  code         String   @unique
+  name         String
+  description  String
+  active       Boolean  @default(false)
+  visibleInMvp Boolean  @default(false) @map("visible_in_mvp")
+  sortOrder    Int      @map("sort_order")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+  trends       Trend[]
+
+  @@map("trend_domains")
+}
+
+model Department {
+  id               String            @id @default(uuid())
+  code             String            @unique
+  name             String
+  description      String
+  active           Boolean           @default(true)
+  sortOrder        Int               @map("sort_order")
+  createdAt        DateTime          @default(now()) @map("created_at")
+  updatedAt        DateTime          @updatedAt @map("updated_at")
+  users            User[]
+  employeeProfiles EmployeeProfile[]
+
+  @@map("departments")
+}
+
+model User {
+  id              String            @id @default(uuid())
+  displayName     String            @map("display_name")
+  email           String            @unique
+  status          String            @default("active")
+  departmentId    String?           @map("department_id")
+  department      Department?       @relation(fields: [departmentId], references: [id], onUpdate: Cascade, onDelete: SetNull)
+  version         Int               @default(1)
+  createdAt       DateTime          @default(now()) @map("created_at")
+  updatedAt       DateTime          @updatedAt @map("updated_at")
+  roleAssignments RoleAssignment[]
+  employeeProfile EmployeeProfile?
+  ownedTrends      Trend[]
+
+  @@index([departmentId])
+  @@map("users")
+}
+
+model RoleAssignment {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  role      String
+  scopeType String?  @map("scope_type")
+  scopeId   String?  @map("scope_id")
+  active    Boolean  @default(true)
+  reason    String?
+  version   Int      @default(1)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@index([role, active])
+  @@map("role_assignments")
+}
+
+model EmployeeProfile {
+  id                    String     @id @default(uuid())
+  userId                String     @unique @map("user_id")
+  user                  User       @relation(fields: [userId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+  primaryRole           String     @default("employee") @map("primary_role")
+  departmentId          String     @map("department_id")
+  department            Department @relation(fields: [departmentId], references: [id], onUpdate: Cascade, onDelete: Restrict)
+  skillsJson            String     @default("[]") @map("skills_json")
+  interestsJson         String     @default("[]") @map("interests_json")
+  subscribedDomainsJson String     @default("[]") @map("subscribed_domains_json")
+  contributionScore     Float?     @map("contribution_score")
+  version               Int        @default(1)
+  createdAt             DateTime   @default(now()) @map("created_at")
+  updatedAt             DateTime   @updatedAt @map("updated_at")
+
+  @@index([departmentId])
+  @@map("employee_profiles")
+}
+
+model AuditEvent {
+  id                  String   @id @default(uuid())
+  eventType           String   @map("event_type")
+  entityType          String   @map("entity_type")
+  entityId            String   @map("entity_id")
+  entityVersionBefore Int?     @map("entity_version_before")
+  entityVersionAfter  Int?     @map("entity_version_after")
+  actorId             String   @map("actor_id")
+  actorType           String   @map("actor_type")
+  actorRole           String?  @map("actor_role")
+  actorScopeJson      String?  @map("actor_scope_json")
+  source              String
+  reason              String?
+  beforeJson          String?  @map("before_json")
+  afterJson           String?  @map("after_json")
+  changedFieldsJson   String?  @map("changed_fields_json")
+  correlationId       String?  @map("correlation_id")
+  createdAt           DateTime @default(now()) @map("created_at")
+
+  @@index([entityType, entityId, createdAt])
+  @@index([actorId, createdAt])
+  @@map("audit_events")
+}
+
+model TrendStatus {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  description String
+  active      Boolean  @default(true)
+  sortOrder   Int      @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  trends      Trend[]
+
+  @@map("trend_statuses")
+}
+
+model InnovationStatus {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  description String
+  active      Boolean  @default(true)
+  sortOrder   Int      @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("innovation_statuses")
+}
+
+model PilotStatus {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  description String
+  active      Boolean  @default(true)
+  sortOrder   Int      @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("pilot_statuses")
+}
+
+model MaturityRing {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  description String
+  active      Boolean  @default(true)
+  sortOrder   Int      @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  trends      Trend[]
+
+  @@map("maturity_rings")
+}
+
+model TrendRecommendation {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  description String
+  active      Boolean  @default(true)
+  sortOrder   Int      @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  trends      Trend[]
+
+  @@map("trend_recommendations")
+}
+
+model Trend {
+  id                 String              @id @default(uuid())
+  title              String
+  description        String
+  domainId           String              @map("domain_id")
+  domain             TrendDomain         @relation(fields: [domainId], references: [id], onUpdate: Cascade, onDelete: Restrict)
+  secondaryDomainsJson String            @default("[]") @map("secondary_domains_json")
+  maturityRingId     String              @map("maturity_ring_id")
+  maturityRing       MaturityRing        @relation(fields: [maturityRingId], references: [id], onUpdate: Cascade, onDelete: Restrict)
+  recommendationId   String              @map("recommendation_id")
+  recommendation     TrendRecommendation @relation(fields: [recommendationId], references: [id], onUpdate: Cascade, onDelete: Restrict)
+  ownerId            String              @map("owner_id")
+  owner              User                @relation(fields: [ownerId], references: [id], onUpdate: Cascade, onDelete: Restrict)
+  reviewDate         DateTime            @map("review_date")
+  statusId           String              @map("status_id")
+  status             TrendStatus         @relation(fields: [statusId], references: [id], onUpdate: Cascade, onDelete: Restrict)
+  horizon            String
+  relevanceScore     Int?                @map("relevance_score")
+  sourceTraceJson    String?             @map("source_trace_json")
+  version            Int                 @default(1)
+  createdAt          DateTime            @default(now()) @map("created_at")
+  updatedAt          DateTime            @updatedAt @map("updated_at")
+
+  @@index([domainId])
+  @@index([ownerId])
+  @@index([statusId])
+  @@index([reviewDate])
+  @@map("trends")
+}

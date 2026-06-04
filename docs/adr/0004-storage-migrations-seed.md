@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted
+Accepted. Amended 2026-06-04: primary database changed from PostgreSQL to SQLite for MVP; backlog and implementation tasks must use SQLite as the MVP baseline.
 
 ## Date
 
@@ -22,19 +22,21 @@ Storage foundation должен:
 - сохранять auditability and source traceability;
 - иметь проверяемую migration history;
 - позволять idempotent seed from PDF/source docs;
-- поддерживать JSON fields where useful for before/after audit snapshots and import validation errors;
-- работать с Node.js 24 + Fastify + TypeScript backend.
+- поддерживать JSON/text fields where useful for before/after audit snapshots and import validation errors;
+- работать с Node.js 24 + Fastify + TypeScript backend;
+- быть простым для локального MVP-запуска без отдельного database server.
 
 ## Decision
 
-Primary database: PostgreSQL.
+Primary database for MVP: SQLite.
 
 Database access and migrations:
 
-- ORM/query layer: Prisma ORM for MVP application data access;
+- ORM/query layer: Prisma ORM for MVP application data access, using SQLite provider;
 - migration tool: Prisma Migrate with committed SQL migration history;
-- target PostgreSQL version: supported PostgreSQL major, initially PostgreSQL 17+; exact production minor is pinned by deployment/infra;
-- Prisma schema and migrations live with backend/database package after TR-202 decides repository structure;
+- database file for local/dev MVP: `apps/backend/data/trends.sqlite` or another documented path configured through `DATABASE_URL`;
+- SQLite foreign key enforcement must be enabled for application connections;
+- Prisma schema and migrations live with the backend/database package;
 - custom SQL is allowed inside reviewed migration files for indexes, constraints, views or database features Prisma cannot express safely.
 
 Seed strategy:
@@ -48,24 +50,26 @@ Seed strategy:
 
 Rollback strategy:
 
-- production rollback is backup/restore plus forward-fix migration, not automatic destructive down migration;
+- production rollback is SQLite database file backup/restore plus forward-fix migration, not automatic destructive down migration;
 - every production migration requires migration status check, backup point and post-migration verification;
 - destructive migrations require explicit ADR/backlog note and data migration plan;
 - failed Prisma migrations are resolved only through documented operational steps, not manual hidden edits.
 
 ## Alternatives Considered
 
-### SQLite
+### PostgreSQL
 
 Pros:
 
-- very simple local setup;
-- useful for some tests or prototypes.
+- strong fit for concurrent corporate workflows, audit-heavy mutations and future import staging;
+- rich operational tooling for backups, permissions, reporting and scaling;
+- JSON fields and SQL features are useful for audit snapshots and validation errors.
 
 Cons for this MVP:
 
-- weaker fit for concurrent corporate workflows, audit-heavy mutations and future import staging;
-- not the intended production database for the portal.
+- higher local setup cost and extra infrastructure dependency before core MVP workflows exist;
+- requires Docker or a managed dev database for every contributor;
+- premature for the current single-node MVP slice.
 
 ### MongoDB / document database
 
@@ -84,7 +88,7 @@ Pros:
 
 - TypeScript-native schema;
 - SQL-like mental model;
-- good PostgreSQL support.
+- good SQLite and PostgreSQL support.
 
 Cons for this MVP:
 
@@ -98,26 +102,30 @@ Positive:
 - Data model can enforce references for core entities.
 - Migrations are reviewable and committed.
 - Seed import can preserve PDF traceability without mixing business data into schema evolution.
-- PostgreSQL JSON fields remain available for audit snapshots and validation errors.
+- Local development does not require a separate database server.
+- SQLite text/JSON-style fields remain available for audit snapshots and validation errors, with application-level validation where needed.
 
 Trade-offs:
 
-- Local development needs PostgreSQL, likely through Docker or a managed dev database.
+- SQLite has lower concurrency headroom than PostgreSQL; this is acceptable for MVP but must be revisited before multi-team production scale.
+- Database backup/restore is file-based in MVP and needs clear operational rules.
 - Prisma schema is an additional source artifact that must stay aligned with ADRs and data model docs.
-- Complex reporting may eventually need SQL views/materialized views or analytics-specific read models.
+- Some complex reporting may eventually need SQL views or analytics-specific read models.
+- Moving from SQLite to PostgreSQL later requires a separate ADR, migration plan, data export/import rehearsal and compatibility review.
 
 ## Implementation Notes
 
-- TR-202 should decide package paths, but a likely shape is `apps/backend/prisma/schema.prisma`, `apps/backend/prisma/migrations/`, `apps/backend/prisma/seed.ts`.
+- The initial Prisma datasource should use `provider = "sqlite"` and a documented `DATABASE_URL`, for example `file:./data/trends.sqlite`.
 - TR-203 should include migration status/check commands once backend tooling exists.
 - TR-310/TR-311 should create seed source files before the seed loader.
-- TR-312 should implement idempotent seed loading with row-level validation and clear error reporting.
-- TR-313 should add source traceability fields to affected tables.
+- TR-312 implements idempotent seed loading with row-level validation and clear error reporting.
+- TR-313 documents source traceability fields for affected tables.
 - TR-125/TR-306 should define how seed/import/manual corrections appear in audit log.
 
 ## Sources
 
-- PostgreSQL versioning policy - https://www.postgresql.org/support/versioning/
-- Prisma Migrate CLI - https://docs.prisma.io/docs/cli/migrate
+- SQLite documentation - https://www.sqlite.org/docs.html
+- SQLite foreign key support - https://www.sqlite.org/foreignkeys.html
+- Prisma Migrate CLI - https://www.prisma.io/docs/orm/reference/prisma-cli-reference
 - Prisma Migrate getting started - https://www.prisma.io/docs/orm/prisma-migrate/getting-started
-- Prisma seeding workflow - https://docs.prisma.io/docs/orm/prisma-migrate/workflows/seeding
+- Prisma seeding workflow - https://www.prisma.io/docs/orm/prisma-migrate/workflows/seeding

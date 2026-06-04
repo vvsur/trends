@@ -18,6 +18,9 @@
 - `Backlog`: задача зафиксирована, но требует refinement.
 - `Discovery`: нужен анализ/решение перед delivery.
 - `Ready`: можно брать в работу после проверки Definition of Ready.
+- `In Progress`: исполнитель взял задачу в работу.
+- `In Review`: реализация завершена, идет review/self-review.
+- `Testing`: идет acceptance verification.
 - `Blocked`: нельзя делать без внешнего решения.
 - `Done`: выполнено и отражено в документации/коде.
 
@@ -39,9 +42,11 @@
 | TR-120 | P0 | Done | Выбрать frontend build tool/framework поверх React | TR-102 | ADR фиксирует выбор Vite + React + TypeScript SPA, причины, альтернативы, последствия |
 | TR-121 | P0 | Done | Выбрать TypeScript backend runtime/framework | TR-102 | ADR фиксирует выбор Node.js 24 LTS + Fastify + TypeScript, причины, альтернативы, последствия |
 | TR-122 | P0 | Done | Выбрать API style и контракт shared types | TR-120, TR-121 | Зафиксировано REST JSON API + OpenAPI 3.0.3 + generated TypeScript types |
-| TR-123 | P0 | Done | Выбрать хранилище данных и стратегию миграций | TR-121 | ADR фиксирует PostgreSQL + Prisma ORM/Migrate, traceable seed strategy and rollback policy |
+| TR-123 | P0 | Done | Выбрать хранилище данных и стратегию миграций | TR-121 | ADR фиксирует SQLite + Prisma ORM/Migrate for MVP, traceable seed strategy and file backup/forward-fix rollback policy |
+| TR-128 | P0 | Done | Перевести storage baseline и backlog с PostgreSQL на SQLite | TR-123 | Все docs/backlog/task board указывают SQLite + Prisma ORM/Migrate как MVP baseline; задач на PostgreSQL baseline нет; PostgreSQL упоминается только как альтернатива или future migration через отдельный ADR |
 | TR-124 | P0 | Done | Определить RBAC и роли MVP | `docs/03-product-concept.md` | Описаны роли employee, trend_owner, expert, executive, admin; права на CRUD/review/correction и scope-aware assignments |
 | TR-125 | P0 | Done | Определить формат audit log и versioning | TR-005, TR-006 | Зафиксированы AuditEvent fields, tracked entities, before/after, actor, reason and entity versioning |
+| TR-129 | P0 | Done | Определить MVP current actor/auth context | TR-124, TR-304, TR-305 | Выбран способ получать authenticated actor для backend API: local seeded auth shim или внешняя identity boundary; решение покрывает RBAC и audit actor context |
 | TR-126 | P0 | Backlog | Определить Definition of Done для browser/UI проверки | TR-100 | Зафиксированы браузер, разрешение, темы, screenshots/evidence |
 | TR-127 | P0 | Backlog | Назначить обязательные expertise/roles на первый этап | TR-111 | Назначены Product, UX, Trend Analyst, QA, Security/Architecture owners |
 
@@ -67,19 +72,21 @@
 
 | ID | Priority | Status | Task | Dependencies | Acceptance criteria |
 | --- | --- | --- | --- | --- | --- |
-| TR-002 | P0 | Blocked | Управление справочниками департаментов, доменов и статусов | TR-300, TR-301, TR-302, TR-305 | Admin может создать/изменить/деактивировать справочник без изменения кода |
-| TR-004 | P0 | Blocked | Поэтапное включение доменов | TR-300 | В MVP активен `technology`; остальные домены включаются позднее без миграции данных |
+| TR-002 | P0 | Done | Управление справочниками департаментов, доменов и статусов | TR-129, TR-300, TR-301, TR-302, TR-305, TR-306, TR-307, TR-309 | Admin может создать/изменить/деактивировать справочник без изменения кода |
+| TR-004 | P0 | Done | Поэтапное включение доменов | TR-300 | В MVP активен `technology`; остальные домены включаются позднее без миграции данных |
 | TR-005 | P0 | Blocked | Ручная корректировка данных пользователем с правами | TR-305, TR-306, TR-307 | Для трендов, инноваций, скорингов, пилотов, источников и решений есть редактирование с причиной |
 | TR-006 | P0 | Blocked | История изменений процесса | TR-306 | Audit log показывает автора, дату, старое значение, новое значение, причину и источник |
-| TR-300 | P0 | Ready | Реализовать справочник доменов трендов | TR-123, TR-201 | Есть `technology`; остальные домены предусмотрены, но disabled/hidden для MVP |
-| TR-301 | P0 | Ready | Реализовать справочник департаментов | TR-123 | Есть ITG, КСС, TKC; можно добавить/изменить/деактивировать |
-| TR-302 | P0 | Blocked | Реализовать справочники статусов pipeline | TR-123 | Статусы innovation/pilot/trend соответствуют backlog |
-| TR-303 | P0 | Blocked | Реализовать справочник maturity/recommendation | TR-123 | Есть watch/assess/pilot/scale/hold или локализованные аналоги |
-| TR-304 | P0 | Blocked | Реализовать User/EmployeeProfile модель | TR-124 | Есть роль, департамент, навыки, интересы, подписки |
-| TR-305 | P0 | Blocked | Реализовать RBAC middleware/policies | TR-124, TR-201 | Права различают admin, owner, expert, employee, executive |
-| TR-306 | P0 | Blocked | Реализовать audit log для CRUD | TR-125 | Create/update/delete фиксируют actor, before/after, reason, timestamp |
-| TR-307 | P0 | Blocked | Реализовать reason-required manual correction | TR-306 | Ручная корректировка требует reason и видна в истории |
-| TR-308 | P0 | Blocked | Реализовать базовые API error conventions | TR-201 | Ошибки валидации/доступа/не найдено имеют единый формат |
+| TR-299 | P0 | Done | Настроить SQLite/Prisma baseline | TR-123, TR-201 | Prisma schema uses `provider = "sqlite"`; `DATABASE_URL` documented; migration/status commands exist; SQLite database file path is gitignored; foreign keys are enabled |
+| TR-300 | P0 | Done | Реализовать справочник доменов трендов | TR-299 | SQLite/Prisma schema and migration include domain dictionary; есть `technology`; остальные домены предусмотрены, но disabled/hidden для MVP |
+| TR-301 | P0 | Done | Реализовать справочник департаментов | TR-299 | SQLite/Prisma schema and seed include ITG, КСС, TKC; можно добавить/изменить/деактивировать |
+| TR-302 | P0 | Done | Реализовать справочники статусов pipeline | TR-299 | SQLite/Prisma schema stores innovation/pilot/trend statuses; статусы соответствуют backlog |
+| TR-303 | P0 | Done | Реализовать справочник maturity/recommendation | TR-299 | SQLite/Prisma schema stores maturity/recommendation values; есть watch/assess/pilot/scale/hold или локализованные аналоги |
+| TR-304 | P0 | Done | Реализовать User/EmployeeProfile модель | TR-124 | Есть роль, департамент, навыки, интересы, подписки |
+| TR-305 | P0 | Done | Реализовать RBAC middleware/policies | TR-124, TR-201 | Права различают admin, owner, expert, employee, executive |
+| TR-306 | P0 | Done | Реализовать audit log для CRUD | TR-125 | Create/update/delete фиксируют actor, before/after, reason, timestamp |
+| TR-307 | P0 | Done | Реализовать reason-required manual correction | TR-306 | Ручная корректировка требует reason и видна в истории |
+| TR-308 | P0 | Done | Реализовать базовые API error conventions | TR-201 | Ошибки валидации/доступа/не найдено имеют единый формат |
+| TR-309 | P0 | Done | Подключить application Prisma client для SQLite | TR-299 | Backend code can instantiate Prisma 7 client with SQLite driver adapter and query local database |
 
 ## Release 3. Seed Import from PDF and Source Traceability
 
@@ -87,10 +94,10 @@
 
 | ID | Priority | Status | Task | Dependencies | Acceptance criteria |
 | --- | --- | --- | --- | --- | --- |
-| TR-022 | P0 | Blocked | Импортировать стартовый реестр из материалов | TR-300, TR-301, TR-312, TR-313 | Импортированы 7 стратегических инициатив и 10 трендов из `docs/13-source-traceability.md` |
+| TR-022 | P0 | Blocked | Импортировать стартовый реестр из материалов | TR-300, TR-301, TR-312, TR-313 | В SQLite через Prisma импортированы 7 стратегических инициатив и 10 трендов из `docs/13-source-traceability.md` |
 | TR-310 | P0 | Done | Подготовить seed data file для PDF-инициатив | TR-123 | `data/seed/strategic-initiatives.seed.json` contains 7 traceable records with source_pdf, source_number, department, created_quarter, owner, year, comment |
 | TR-311 | P0 | Done | Подготовить seed data file для первичных трендов | TR-123 | `data/seed/primary-technology-trends.seed.json` contains 10 traceable records and preserves missing source number `9` |
-| TR-312 | P0 | Ready | Реализовать seed loader | TR-310, TR-311 | Повторный запуск идемпотентен; ошибки показывают строку/поле |
+| TR-312 | P0 | Done | Реализовать seed loader | TR-310, TR-311 | `pnpm seed:load` generates `data/seed/generated/portal-seed.load.json`; repeated run is idempotent; loader validation errors include item and field context |
 | TR-313 | P0 | Done | Реализовать source traceability fields | TR-123 | SourceTrace documented in data model; `pnpm seed:check` validates source contract, PDF/raw references and source numbers |
 | TR-314 | P0 | Blocked | Реализовать UI/API для проверки seed после импорта | TR-312, TR-205 | Пользователь видит, что импортировано и что требует ручной проверки |
 | TR-315 | P0 | Blocked | Реализовать ручную корректировку seed-записей | TR-307, TR-314 | Любое исправление seed сохраняет audit trail и source traceability |
@@ -101,16 +108,16 @@
 
 | ID | Priority | Status | Task | Dependencies | Acceptance criteria |
 | --- | --- | --- | --- | --- | --- |
-| TR-010 | P0 | Blocked | Создать карточку тренда | TR-300, TR-305 | Поля: title, description, domain, maturity, recommendation, owner, review date, status |
-| TR-011 | P0 | Blocked | Реализовать фильтры списка трендов | TR-010 | Фильтры по domain, status, owner, department сохраняются в URL |
+| TR-010 | P0 | Done | Создать карточку тренда | TR-300, TR-305 | Поля: title, description, domain, maturity, recommendation, owner, review date, status |
+| TR-011 | P0 | Done | Реализовать фильтры списка трендов | TR-010 | Фильтры по domain, status, owner, department сохраняются в URL |
 | TR-012 | P1 | Blocked | Радарная визуализация трендов | TR-323 | Тренды распределены по кольцам зрелости и квадрантам доменов |
 | TR-013 | P1 | Blocked | Фиксация источников сигналов у тренда | TR-324 | У тренда есть список источников, дата сигнала и краткая интерпретация |
-| TR-014 | P0 | Blocked | Сделать домен обязательным полем тренда | TR-300, TR-010 | Без domain нельзя создать/опубликовать trend |
+| TR-014 | P0 | Done | Сделать домен обязательным полем тренда | TR-300, TR-010 | Без domain нельзя создать/опубликовать trend |
 | TR-015 | P1 | Blocked | Cross-domain тренды | TR-004, TR-014 | Один тренд может быть связан с несколькими доменами и показывает влияние на бизнес, технологии, риск и HR |
-| TR-016 | P0 | Blocked | Поддержать IT trend MVP без внешнего сборщика | TR-010 | Тренд `technology` создается/редактируется вручную |
+| TR-016 | P0 | Done | Поддержать IT trend MVP без внешнего сборщика | TR-010 | Тренд `technology` создается/редактируется вручную |
 | TR-017 | P1 | Blocked | Подключение биржевых и финансовых трендов вторым этапом | TR-500 | Домен `exchange_finance` имеет владельца, источники, review workflow и отдельные фильтры |
-| TR-320 | P0 | Blocked | Реализовать Trend list view | TR-010, TR-011 | Есть список, пустое состояние, loading, error, permission states |
-| TR-321 | P0 | Blocked | Реализовать Trend detail view | TR-010 | Видны связанные innovations, pilots, metrics, source traceability |
+| TR-320 | P0 | Done | Реализовать Trend list view | TR-010, TR-011 | Есть список, пустое состояние, loading, error, permission states |
+| TR-321 | P0 | Done | Реализовать Trend detail view | TR-010 | Видны связанные innovations, pilots, metrics, source traceability |
 | TR-322 | P0 | Blocked | Реализовать Trend edit workflow | TR-307, TR-321 | Редактирование требует прав и reason для опубликованных данных |
 | TR-323 | P1 | Blocked | Реализовать radar visualization | TR-012, TR-100 | Тренды распределены по maturity/rings и domain quadrants |
 | TR-324 | P1 | Blocked | Реализовать source signals section | TR-013 | Можно добавить/посмотреть source signal вручную |
@@ -289,5 +296,6 @@
 
 ## Next recommended tasks
 
-1. `TR-312`: реализовать seed loader.
-2. `TR-300`: реализовать справочник доменов трендов.
+1. `TR-020`: создать инновацию в реестре после проверки domain model/API dependencies.
+2. `TR-021`: реализовать статусы жизненного цикла инновации на базе справочника `innovation_statuses`.
+3. `TR-022`: импортировать стартовый реестр после появления недостающей модели strategic initiatives/import publication flow.

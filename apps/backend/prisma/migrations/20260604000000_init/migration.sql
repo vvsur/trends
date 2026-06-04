@@ -1,0 +1,2 @@
+-- Initial SQLite/Prisma baseline.
+-- Domain tables are introduced by the following data-model tasks.

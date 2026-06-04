@@ -144,6 +144,7 @@
 | TR-114 | P0 | Вести task board для командной работы до подключения issue tracker | В репозитории есть `docs/17-task-board.md` с текущими статусами ключевых задач, assignee, owner, updated_at и notes. Правила обновления task board описаны в `docs/16-team-workflow.md`. |
 | TR-115 | P0 | Сформировать полный implementation backlog по всей документации | В `docs/18-full-implementation-backlog.md` сформирован полный реализационный backlog по release slices: governance, architecture decisions, skeleton, core data, seed import, trend CRUD, innovation registry, scoring, pilots, dashboards, employee value, sources, business cases, testing и future roadmap. Для задач указаны priority, status, dependencies и acceptance criteria. |
 | TR-116 | P0 | Проверить покрытие всей документации задачами backlog | В `docs/19-backlog-coverage-review.md` есть матрица покрытия по документам; выявленные пробелы добавлены в `docs/04-backlog.md` и `docs/18-full-implementation-backlog.md`; механическая сверка product/implementation backlog проходит без пропусков. |
+| TR-128 | P0 | Перевести storage baseline и backlog с PostgreSQL на SQLite | Во всех архитектурных документах, task board и implementation backlog MVP-хранилище указано как SQLite + Prisma ORM/Migrate; PostgreSQL остается только как рассмотренная альтернатива/будущая миграция через отдельный ADR; задач на PostgreSQL baseline в backlog нет. |
 
 ## Детализированный implementation backlog
 

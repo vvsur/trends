@@ -17,7 +17,12 @@
     "format:check": "pnpm -r --if-present run format:check",
     "contract:generate": "pnpm --filter @trends/api-contract run generate",
     "contract:check": "pnpm --filter @trends/api-contract run check:generated",
-    "seed:check": "node scripts/validate-seed-source.mjs"
+    "seed:check": "node scripts/validate-seed-source.mjs",
+    "seed:load": "pnpm --filter @trends/backend run seed:load",
+    "db:validate": "pnpm --filter @trends/backend run db:validate",
+    "db:generate": "pnpm --filter @trends/backend run db:generate",
+    "db:migrate:dev": "pnpm --filter @trends/backend run db:migrate:dev",
+    "db:migrate:status": "pnpm --filter @trends/backend run db:migrate:status"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

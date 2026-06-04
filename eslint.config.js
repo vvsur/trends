@@ -8,6 +8,7 @@ export default [
     ignores: [
       '.skills/**',
       'apps/**/dist/**',
+      'apps/backend/src/shared/database/generated/**',
       'node_modules/**',
       'playwright-report/**',
       'test-results/**',

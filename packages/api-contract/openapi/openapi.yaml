@@ -8,6 +8,8 @@ servers:
 tags:
   - name: Health
     description: Service readiness endpoints.
+  - name: Trends
+    description: Trend card endpoints.
 paths:
   /health:
     get:
@@ -22,7 +24,324 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthResponse"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /reference-data/{dictionary}:
+    get:
+      operationId: listReferenceData
+      tags:
+        - ReferenceData
+      summary: List managed reference data dictionary items.
+      parameters:
+        - $ref: "#/components/parameters/DictionaryPath"
+      responses:
+        "200":
+          description: Reference data items.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReferenceDataListResponse"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    post:
+      operationId: createReferenceData
+      tags:
+        - ReferenceData
+      summary: Create a managed reference data dictionary item.
+      parameters:
+        - $ref: "#/components/parameters/DictionaryPath"
+        - $ref: "#/components/parameters/ActorEmailHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReferenceDataCreateInput"
+      responses:
+        "201":
+          description: Reference data item created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReferenceDataItemResponse"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          $ref: "#/components/responses/ForbiddenError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /reference-data/{dictionary}/{id}:
+    patch:
+      operationId: updateReferenceData
+      tags:
+        - ReferenceData
+      summary: Update a managed reference data dictionary item.
+      parameters:
+        - $ref: "#/components/parameters/DictionaryPath"
+        - $ref: "#/components/parameters/ReferenceDataIdPath"
+        - $ref: "#/components/parameters/ActorEmailHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReferenceDataUpdateInput"
+      responses:
+        "200":
+          description: Reference data item updated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReferenceDataItemResponse"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          $ref: "#/components/responses/ForbiddenError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /reference-data/{dictionary}/{id}/deactivate:
+    post:
+      operationId: deactivateReferenceData
+      tags:
+        - ReferenceData
+      summary: Deactivate a managed reference data dictionary item.
+      parameters:
+        - $ref: "#/components/parameters/DictionaryPath"
+        - $ref: "#/components/parameters/ReferenceDataIdPath"
+        - $ref: "#/components/parameters/ActorEmailHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReferenceDataDeactivateInput"
+      responses:
+        "200":
+          description: Reference data item deactivated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReferenceDataItemResponse"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          $ref: "#/components/responses/ForbiddenError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /trends:
+    get:
+      operationId: listTrends
+      tags:
+        - Trends
+      summary: List trend cards.
+      parameters:
+        - $ref: "#/components/parameters/TrendDomainCodeQuery"
+        - $ref: "#/components/parameters/TrendStatusCodeQuery"
+        - $ref: "#/components/parameters/TrendOwnerIdQuery"
+        - $ref: "#/components/parameters/TrendDepartmentIdQuery"
+      responses:
+        "200":
+          description: Trend cards.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrendListResponse"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    post:
+      operationId: createTrend
+      tags:
+        - Trends
+      summary: Create a trend card.
+      parameters:
+        - $ref: "#/components/parameters/ActorEmailHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrendCreateInput"
+      responses:
+        "201":
+          description: Trend card created.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrendItemResponse"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          $ref: "#/components/responses/ForbiddenError"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+  /trends/{id}:
+    get:
+      operationId: getTrend
+      tags:
+        - Trends
+      summary: Get a trend card by id.
+      parameters:
+        - $ref: "#/components/parameters/TrendIdPath"
+      responses:
+        "200":
+          description: Trend card.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrendItemResponse"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+    patch:
+      operationId: updateTrend
+      tags:
+        - Trends
+      summary: Update a trend card.
+      parameters:
+        - $ref: "#/components/parameters/TrendIdPath"
+        - $ref: "#/components/parameters/ActorEmailHeader"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TrendUpdateInput"
+      responses:
+        "200":
+          description: Trend card updated.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TrendItemResponse"
+        "400":
+          $ref: "#/components/responses/ValidationError"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "403":
+          $ref: "#/components/responses/ForbiddenError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
 components:
+  parameters:
+    ActorEmailHeader:
+      name: X-Trends-Actor-Email
+      in: header
+      required: true
+      schema:
+        type: string
+      description: Local MVP actor email used by the closed-contour auth shim.
+    DictionaryPath:
+      name: dictionary
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+          - departments
+          - trend-domains
+          - trend-statuses
+          - innovation-statuses
+          - pilot-statuses
+          - maturity-rings
+          - trend-recommendations
+    ReferenceDataIdPath:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    TrendIdPath:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    TrendDomainCodeQuery:
+      name: domainCode
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filter trend cards by primary trend domain code.
+    TrendStatusCodeQuery:
+      name: statusCode
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filter trend cards by trend status code.
+    TrendOwnerIdQuery:
+      name: ownerId
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filter trend cards by owner user id.
+    TrendDepartmentIdQuery:
+      name: departmentId
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Filter trend cards by owner department id.
+  responses:
+    ValidationError:
+      description: Request validation failed.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiErrorResponse"
+    UnauthorizedError:
+      description: Authentication is required.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiErrorResponse"
+    ForbiddenError:
+      description: Actor is not allowed to perform the action.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiErrorResponse"
+    NotFoundError:
+      description: Resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiErrorResponse"
+    ConflictError:
+      description: Request conflicts with current resource state.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiErrorResponse"
+    InternalServerError:
+      description: Unexpected server error.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ApiErrorResponse"
   schemas:
     HealthResponse:
       type: object
@@ -38,3 +357,323 @@ components:
           type: string
           enum:
             - ok
+    ApiErrorCode:
+      type: string
+      enum:
+        - validation_error
+        - unauthorized
+        - forbidden
+        - not_found
+        - conflict
+        - internal_error
+    ApiError:
+      type: object
+      additionalProperties: false
+      required:
+        - code
+        - message
+        - statusCode
+        - requestId
+      properties:
+        code:
+          $ref: "#/components/schemas/ApiErrorCode"
+        message:
+          type: string
+        statusCode:
+          type: integer
+          minimum: 400
+          maximum: 599
+        requestId:
+          type: string
+        details:
+          nullable: true
+    ApiErrorResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - error
+      properties:
+        error:
+          $ref: "#/components/schemas/ApiError"
+    ReferenceDataItem:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - code
+        - name
+        - description
+        - active
+        - sortOrder
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+        visibleInMvp:
+          type: boolean
+    ReferenceDataItemResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/ReferenceDataItem"
+    ReferenceDataListResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/ReferenceDataItem"
+    ReferenceDataCreateInput:
+      type: object
+      additionalProperties: false
+      required:
+        - code
+        - name
+        - description
+        - sortOrder
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+        visibleInMvp:
+          type: boolean
+    ReferenceDataUpdateInput:
+      type: object
+      additionalProperties: false
+      required:
+        - reason
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        active:
+          type: boolean
+        sortOrder:
+          type: integer
+        visibleInMvp:
+          type: boolean
+        reason:
+          type: string
+          minLength: 1
+    ReferenceDataDeactivateInput:
+      type: object
+      additionalProperties: false
+      required:
+        - reason
+      properties:
+        reason:
+          type: string
+          minLength: 1
+    TrendReference:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - code
+        - name
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+    TrendOwner:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - displayName
+        - email
+        - status
+      properties:
+        id:
+          type: string
+        displayName:
+          type: string
+        email:
+          type: string
+        status:
+          type: string
+    TrendItem:
+      type: object
+      additionalProperties: false
+      required:
+        - id
+        - title
+        - description
+        - domain
+        - secondaryDomainCodes
+        - maturityRing
+        - recommendation
+        - owner
+        - reviewDate
+        - status
+        - horizon
+        - relevanceScore
+        - sourceTrace
+        - version
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        domain:
+          $ref: "#/components/schemas/TrendReference"
+        secondaryDomainCodes:
+          type: array
+          items:
+            type: string
+        maturityRing:
+          $ref: "#/components/schemas/TrendReference"
+        recommendation:
+          $ref: "#/components/schemas/TrendReference"
+        owner:
+          $ref: "#/components/schemas/TrendOwner"
+        reviewDate:
+          type: string
+        status:
+          $ref: "#/components/schemas/TrendReference"
+        horizon:
+          type: string
+        relevanceScore:
+          type: integer
+          nullable: true
+          minimum: 0
+          maximum: 100
+        sourceTrace:
+          nullable: true
+        version:
+          type: integer
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    TrendItemResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - data
+      properties:
+        data:
+          $ref: "#/components/schemas/TrendItem"
+    TrendListResponse:
+      type: object
+      additionalProperties: false
+      required:
+        - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/TrendItem"
+    TrendCreateInput:
+      type: object
+      additionalProperties: false
+      required:
+        - title
+        - description
+        - domainCode
+        - maturityRingCode
+        - recommendationCode
+        - ownerId
+        - reviewDate
+        - statusCode
+        - horizon
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        domainCode:
+          type: string
+        secondaryDomainCodes:
+          type: array
+          items:
+            type: string
+        maturityRingCode:
+          type: string
+        recommendationCode:
+          type: string
+        ownerId:
+          type: string
+        reviewDate:
+          type: string
+        statusCode:
+          type: string
+        horizon:
+          type: string
+        relevanceScore:
+          type: integer
+          nullable: true
+          minimum: 0
+          maximum: 100
+        sourceTrace:
+          nullable: true
+    TrendUpdateInput:
+      type: object
+      additionalProperties: false
+      required:
+        - reason
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        domainCode:
+          type: string
+        secondaryDomainCodes:
+          type: array
+          items:
+            type: string
+        maturityRingCode:
+          type: string
+        recommendationCode:
+          type: string
+        ownerId:
+          type: string
+        reviewDate:
+          type: string
+        statusCode:
+          type: string
+        horizon:
+          type: string
+        relevanceScore:
+          type: integer
+          nullable: true
+          minimum: 0
+          maximum: 100
+        sourceTrace:
+          nullable: true
+        reason:
+          type: string
+          minLength: 1

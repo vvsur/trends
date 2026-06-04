@@ -11,6 +11,7 @@
 - ценность для сотрудников выражена через "Мои тренды", статус идей, feedback SLA, профиль вклада, навыки, обучение и открытые пилоты;
 - UI должен идти через MOEX design system skills;
 - frontend ограничен React, backend ограничен TypeScript.
+- storage baseline для MVP выбран как SQLite + Prisma ORM/Migrate; PostgreSQL не входит в MVP.
 
 ## Ценность для компании
 
@@ -76,7 +77,8 @@ MVP должен включать:
 - TR-120: frontend build tool/framework выбран - Vite + React + TypeScript SPA, ADR `docs/adr/0001-frontend-build-tool.md`.
 - TR-121: backend runtime/framework выбран - Node.js 24 LTS + Fastify + TypeScript, ADR `docs/adr/0002-backend-runtime-framework.md`.
 - TR-122: API style/shared types выбран - REST JSON API + OpenAPI 3.0.3 + generated TypeScript types, ADR `docs/adr/0003-api-style-shared-types.md`.
-- TR-123: storage/migrations/seed strategy выбран - PostgreSQL + Prisma ORM/Migrate + idempotent traceable seed, ADR `docs/adr/0004-storage-migrations-seed.md`.
+- TR-123: storage/migrations/seed strategy выбран - SQLite + Prisma ORM/Migrate + idempotent traceable seed, ADR `docs/adr/0004-storage-migrations-seed.md`.
+- TR-128: документация и backlog выровнены на SQLite-only MVP baseline; PostgreSQL оставлен только как future alternative через отдельный ADR.
 - TR-124: RBAC и роли MVP выбраны - employee, trend_owner, expert, executive, admin with scoped assignments, ADR `docs/adr/0005-rbac-mvp.md`.
 - TR-125: audit log/versioning выбран - append-only AuditEvent + per-entity version counters, ADR `docs/adr/0006-audit-log-versioning.md`.
 - TR-207: начальный формат test evidence зафиксирован в `docs/21-test-evidence-format.md`.
@@ -92,6 +94,7 @@ MVP должен включать:
 | Не связать пилоты с value metrics | Руководство не увидит бизнес-эффект | Включить TR-054 и базовый ValueMetric |
 | Не определить роли | Ручная корректировка и review станут хаотичными | Зафиксировать RBAC до реализации |
 | Потерять стартовый реестр из PDF | MVP начнется с пустого или неполного контекста | Использовать `docs/13-source-traceability.md` как seed contract |
+| Неявно вернуть PostgreSQL в ближайшие задачи | Появится инфраструктурная зависимость, противоречащая MVP baseline | Держать TR-299 и связанные data-задачи на SQLite/Prisma; переход на PostgreSQL только через отдельный ADR |
 | Придумать финальный скоринг до публикации регламента | Модель придется болезненно переделывать | Реализовать configurable draft scoring и TR-036 |
 
 ## Рекомендованный первый implementation slice
