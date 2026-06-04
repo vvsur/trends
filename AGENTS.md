@@ -119,3 +119,8 @@ Before implementation, read the relevant documents:
 - Do not remove user changes without explicit request.
 - Prefer small vertical slices.
 - After every implementation task, report what was tested and what remains risky.
+
+<!-- SPECKIT START -->
+For additional context about technologies to be used, project structure,
+shell commands, and other important information, read the current plan
+<!-- SPECKIT END -->
